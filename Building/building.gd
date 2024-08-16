@@ -1,7 +1,7 @@
 class_name Building
-extends Node
+extends Resource
 
-@export var pattern: int = -1
+@export var pattern_index: int = -1
 
 var root_position: Vector2i
 var tiles_relative: Array[Vector2i]
@@ -9,11 +9,6 @@ var tiles_relative: Array[Vector2i]
 @export var production: Production
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+# Called when the resource enters the scene tree
+func _init() -> void:
 	pass

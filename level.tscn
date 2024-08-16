@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://do5ljpj4vtp4m"]
+[gd_scene load_steps=4 format=3 uid="uid://do5ljpj4vtp4m"]
 
+[ext_resource type="Script" path="res://level.gd" id="1_alcdi"]
 [ext_resource type="TileSet" uid="uid://cln4dq0iihryq" path="res://buildings.tres" id="1_uc2yi"]
 [ext_resource type="Script" path="res://ghost.gd" id="2_35ren"]
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_alcdi")
 
 [node name="BackdropLayer" type="TileMapLayer" parent="."]
 
