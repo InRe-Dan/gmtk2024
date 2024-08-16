@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://do5ljpj4vtp4m"]
+
+[ext_resource type="TileSet" uid="uid://cln4dq0iihryq" path="res://buildings.tres" id="1_uc2yi"]
+[ext_resource type="Script" path="res://ghost.gd" id="2_35ren"]
+
+[node name="Level" type="Node2D"]
+
+[node name="BackdropLayer" type="TileMapLayer" parent="."]
+
+[node name="BuildingsLayer" type="TileMapLayer" parent="."]
+tile_set = ExtResource("1_uc2yi")
+
+[node name="GhostLayer" type="TileMapLayer" parent="."]
+tile_set = ExtResource("1_uc2yi")
+script = ExtResource("2_35ren")

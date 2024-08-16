@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7et7l4hr0bn2"]
+
+[ext_resource type="PackedScene" uid="uid://do5ljpj4vtp4m" path="res://level.tscn" id="1_qclth"]
+
+[node name="World" type="Node2D"]
+texture_filter = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Level" parent="." instance=ExtResource("1_qclth")]
