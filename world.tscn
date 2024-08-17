@@ -5,6 +5,4 @@
 [node name="World" type="Node2D"]
 texture_filter = 1
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="Level" parent="." instance=ExtResource("1_qclth")]

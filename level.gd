@@ -1,7 +1,9 @@
 class_name Level
-extends Node
+extends Node2D
 
 signal resources_added
+
+const PAN_SPEED = 100.0
 
 @onready var ghost_layer: GhostLayer = $GhostLayer
 @onready var buildings_layer: TileMapLayer = $BuildingsLayer
@@ -22,10 +24,13 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	# Draw building ghost
 	ghost_layer.draw_pattern()
+	
+	var pan_direction: Vector2 = -Vector2(Input.get_axis("pan_left", "pan_right"), Input.get_axis("pan_up", "pan_down")).normalized()
+	position += pan_direction * delta * PAN_SPEED
 
 
 # Intercepts unhandled input
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("submit"):
 		build_ghost()
 
