@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsne7661tkcrm"]
+
+[ext_resource type="PackedScene" uid="uid://gn35k16s7xxk" path="res://Grid/grid.tscn" id="1_mxj2h"]
+
+[node name="Main" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Grid" parent="CanvasLayer" instance=ExtResource("1_mxj2h")]
