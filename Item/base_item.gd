@@ -14,6 +14,9 @@ class Placement extends RefCounted:
 	func _init(pos : Vector2i, rot : Item.Rotation) -> void:
 		position = pos
 		rotation = rot
+	func get_tiles() -> Array[Vector2i]:
+		# TODO return all tiles on the grid used by this placement
+		return []
 
 func get_placement(rotation : Rotation, position : Vector2i) -> Placement:
 	# Generate placement object for this item, taking size/shape into account
