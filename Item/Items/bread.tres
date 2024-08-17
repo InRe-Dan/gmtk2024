@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://mkywp3omc8o3"]
+
+[ext_resource type="Script" path="res://Item/base_item.gd" id="1_1e4df"]
+[ext_resource type="Texture2D" uid="uid://yupiga8jpnaf" path="res://Assets/bread.png" id="2_clus4"]
+
+[resource]
+script = ExtResource("1_1e4df")
+item_name = "Bread"
+sprite = ExtResource("2_clus4")
+type = 0
+relative_cells = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0)])

@@ -8,14 +8,14 @@ enum Rotation {NONE, RIGHT, DOWN, LEFT}
 @export var type : int # placeholder type
 var placement : Placement
 
+# TODO: REMOVE (used for testing until later)
+# TODO: following above ^, set texture size to match placement size
+@export var relative_cells: Array[Vector2i] = []
+
 class Placement extends RefCounted:
-	var position : Vector2i
-	var rotation : Item.Rotation
-	func _init(pos : Vector2i, rot : Item.Rotation) -> void:
-		position = pos
-		rotation = rot
-	func get_tiles() -> Array[Vector2i]:
-		# TODO return all tiles on the grid used by this placement
+	var relative_cells: Array[Vector2i]
+	func get_cell() -> Array[Vector2i]:
+		# TODO return all cell positions on the grid used by this placement
 		return []
 
 func get_placement(rotation : Rotation, position : Vector2i) -> Placement:

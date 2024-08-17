@@ -34,9 +34,15 @@ func _input(event: InputEvent) -> void:
 ## Mouse hovered grid slot
 func _on_slot_mouse_entered(slot: GridSlot) -> void:
 	current_slot = slot
-	if held_item:
-		check_slot_availability(current_slot)
 	
+	# Clear slot statuses
+	for row: Array[GridSlot] in matrix:
+		for grid_slot: GridSlot in row:
+			grid_slot.set_color(GridSlot.State.DEFAULT)
+	
+	if held_item:
+		check_slot_availability(get_slot_positions())
+
 	
 ## Mouse hovered off grid slot
 func _on_slot_mouse_exited(slot: GridSlot) -> void:
@@ -59,39 +65,67 @@ func initialize(columns: int, rows: int) -> void:
 	
 	# Create empty grid slots
 	for column in range(col_count):
-		var column_data: Array[GridSlot]
+		var row_data: Array[GridSlot]
 		for row in range(row_count):
-			column_data.append(create_slot(column, row))
+			row_data.append(create_slot(column, row))
 		
-		matrix.append_array(column_data)
+		matrix.append(row_data)
 
 
 ## Creates a grid slot at the specified column and row
 func create_slot(col: int, row: int) -> GridSlot:
 	var grid_slot: GridSlot = grid_slot_scene.instantiate()
-	grid_slot.initialize(Vector2i(col, row))
+	grid_slot.initialize(Vector2i(row, col))
 	
 	# Subscribe to hover events
 	grid_slot.entered.connect(_on_slot_mouse_entered)
 	grid_slot.exited.connect(_on_slot_mouse_exited)
 	
 	grid_container.add_child(grid_slot)
-	
+	return grid_slot
 
-## Checks to see if the passed grid slot is available
-func check_slot_availability(slot: GridSlot) -> bool:
+
+## Returns a list of slot positions based on the hovered slot and held item
+func get_slot_positions() -> Array[Vector2i]:
+	var positions: Array[Vector2i]
+	
 	# Iterate over all of the cell positions relative to the root (0, 0) cell
-	for relative_position: Vector2i in held_item.item.Placement.relative_cells:
-		var grid_pos: Vector2i = slot.grid_position + relative_position
+	for relative_position: Vector2i in held_item.item.relative_cells:
+		positions.append(current_slot.grid_position + relative_position)
+
+	return positions
+
+
+## Checks to see if slots are available for the passed slot positions
+func check_slot_availability(slots: Array[Vector2i]) -> bool:
+	var available: bool = true
+
+	# Iterate over slot positions
+	for grid_pos in slots:
+		var slot: GridSlot = null
+		var slot_status: bool = true
 		
 		# Check if the relative grid position exists outside the grid bounds
-		if grid_pos.x < 0 or grid_pos.x > col_count:
-			return false
-		if grid_pos.y < 0 or grid_pos.y > row_count:
-			return false
+		if grid_pos.x < 0 or grid_pos.x > col_count - 1:
+			slot_status = false
+		if grid_pos.y < 0 or grid_pos.y > row_count - 1:
+			slot_status = false
 		
-		# Check if the relative grid slot is occupied
-		if slot.state == slot.State.OCCUPIED:
-			return false
+		# Fetch slot at given position
+		if slot_status:
+			slot = matrix[grid_pos.y][grid_pos.x]
+
+			# Check if the slot is occupied
+			if slot.item_stored:
+				slot_status = false
+		
+		# Change slot status appearance based on availability report
+		if not slot_status:
+			if slot:
+				slot.set_color(GridSlot.State.OCCUPIED)
+			available = false
+		else:
+			if slot:
+				slot.set_color(GridSlot.State.AVAILABLE)
 	
-	return true
+	return available

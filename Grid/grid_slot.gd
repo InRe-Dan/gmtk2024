@@ -9,7 +9,6 @@ signal exited(slot)
 var grid_position: Vector2i
 
 enum State {DEFAULT, OCCUPIED, AVAILABLE}
-var state: State = State.DEFAULT
 
 var item_stored = null
 

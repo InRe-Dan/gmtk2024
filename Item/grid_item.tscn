@@ -12,10 +12,3 @@ offset_top = -8.0
 offset_right = 8.0
 offset_bottom = 24.0
 mouse_filter = 2
-
-[node name="TextureRect" type="TextureRect" parent="TextureRect"]
-offset_left = -8.0
-offset_top = -8.0
-offset_right = 8.0
-offset_bottom = 24.0
-mouse_filter = 2

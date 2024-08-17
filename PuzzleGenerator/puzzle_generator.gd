@@ -2,7 +2,7 @@ class_name PuzzleGenerator extends RefCounted
 
 # API example functions
 
-var foods_available : Array[Food]
+var foods_available : Array[Item]
 
 func generate_puzzle(size : Vector2i) -> Array[Rule]:
 	# initalization
