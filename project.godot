@@ -28,14 +28,6 @@ window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_width"
 window/vsync/vsync_mode=0
 
-[file_customization]
-
-folder_colors={
-"res://Building/": "yellow",
-"res://Building/Types/": "orange",
-"res://Interface/": "red"
-}
-
 [input]
 
 submit={
