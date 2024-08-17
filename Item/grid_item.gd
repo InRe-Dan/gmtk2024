@@ -1,9 +1,9 @@
 class_name GridItem
 extends Node2D
 
-@onready var texture: TextureRect = $CanvasLayer/TextureRect
+@onready var texture_rect: TextureRect = $TextureRect
 
-var item: Item
+var item: Item = null
 var selected: bool = false
 
 var initialized: bool = false
@@ -11,7 +11,8 @@ var initialized: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	if not item or not is_instance_valid(item): return
+	texture_rect.texture = item.sprite
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,10 +21,10 @@ func _process(delta: float) -> void:
 		global_position = lerp(global_position, get_global_mouse_position(), delta * Globals.drag_speed)
 
 
-## Initializes this 
-func initialize(item: Item) -> void:
+## Initializes this item
+func initialize(new_item: Item) -> void:
 	if initialized: return
 	initialized = true
 	
-	name = item.name
-	texture.texture = item.sprite
+	item = new_item
+	name = item.item_name

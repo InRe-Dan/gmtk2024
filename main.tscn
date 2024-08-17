@@ -4,6 +4,4 @@
 
 [node name="Main" type="Node2D"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Grid" parent="CanvasLayer" instance=ExtResource("1_mxj2h")]
+[node name="Grid" parent="." instance=ExtResource("1_mxj2h")]

@@ -3,10 +3,19 @@
 [ext_resource type="Script" path="res://Item/grid_item.gd" id="1_nf64v"]
 
 [node name="Item" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_nf64v")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 24.0
+mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="TextureRect" type="TextureRect" parent="TextureRect"]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 24.0
+mouse_filter = 2

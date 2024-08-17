@@ -6,12 +6,21 @@ signal exited(slot)
 
 @onready var status = $Status
 
-var is_hovering: bool = false
+var grid_position: Vector2i
 
 enum State {DEFAULT, OCCUPIED, AVAILABLE}
 var state: State = State.DEFAULT
 
 var item_stored = null
+
+var initialized: bool = false
+
+
+func initialize(position: Vector2i) -> void:
+	if initialized: return
+	initialized = true
+
+	grid_position = position
 
 
 func set_color(new_state) -> void:

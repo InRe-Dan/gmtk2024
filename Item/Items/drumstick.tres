@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bhhj4wif4u3wg"]
+
+[ext_resource type="Script" path="res://Item/base_item.gd" id="1_lbht1"]
+[ext_resource type="Texture2D" uid="uid://v1vecu853t36" path="res://Assets/drumstick.png" id="2_12qeg"]
+
+[resource]
+script = ExtResource("1_lbht1")
+item_name = "Drumstick"
+sprite = ExtResource("2_12qeg")
+type = 0
