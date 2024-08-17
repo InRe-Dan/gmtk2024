@@ -1,6 +1,7 @@
 class_name Building
 extends Resource
 
+@export var name : String = "Unnamed building"
 @export var pattern_index: int = -1
 
 var root_position: Vector2i

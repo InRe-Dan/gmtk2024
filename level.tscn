@@ -19,4 +19,10 @@ tile_set = ExtResource("1_uc2yi")
 tile_set = ExtResource("1_uc2yi")
 script = ExtResource("2_35ren")
 
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Production Label
+"
+
 [connection signal="timeout" from="Tick" to="." method="tick"]

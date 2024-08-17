@@ -32,7 +32,8 @@ window/vsync/vsync_mode=0
 
 folder_colors={
 "res://Building/": "yellow",
-"res://Building/Types/": "orange"
+"res://Building/Types/": "orange",
+"res://Interface/": "red"
 }
 
 [input]

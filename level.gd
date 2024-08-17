@@ -8,7 +8,8 @@ const PAN_SPEED = 100.0
 @onready var ghost_layer: GhostLayer = $GhostLayer
 @onready var buildings_layer: TileMapLayer = $BuildingsLayer
 
-var buildings: Array[Building]
+var buildings: Dictionary # Vector2i -> Building
+var last_production : Production
 
 var wheat: int = 0
 
@@ -24,8 +25,15 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	# Draw building ghost
 	ghost_layer.draw_pattern()
-	
-	var pan_direction: Vector2 = -Vector2(Input.get_axis("pan_left", "pan_right"), Input.get_axis("pan_up", "pan_down")).normalized()
+	var coordinate : Vector2i = buildings_layer.local_to_map(buildings_layer.get_local_mouse_position())
+	$Label.text = str(coordinate)
+	print(buildings.has(coordinate))
+	if buildings.has(coordinate):
+		var building : Building = buildings[coordinate]
+		$Label.text = building.name + "\n" + building.production.get_string()
+	$Label.global_position = get_global_mouse_position() + Vector2(20, 20)
+
+	var pan_direction : Vector2 = Input.get_vector("pan_left", "pan_right", "pan_up", "pan_down")
 	position += pan_direction * delta * PAN_SPEED
 
 
@@ -37,13 +45,14 @@ func _input(event: InputEvent) -> void:
 
 # Production tick
 func tick() -> void:
-	var total_production: Production = Production.new()
+	last_production = Production.new()
 	
 	# Generate resources from buildings
-	for building: Building in buildings:
-		total_production.combine(building.produce())
+	for building: Building in buildings.values():
+		last_production.combine(building.produce())
+		
+	wheat += last_production.wheat
 	
-	wheat += total_production.wheat
 	
 	resources_added.emit()
 
@@ -60,6 +69,6 @@ func build_ghost() -> void:
 	
 	# Draw building to the buildings layer
 	for cell: Vector2i in pattern.get_used_cells():
-		buildings_layer.set_cell(cell + buildings_layer.local_to_map(ghost_layer.get_local_mouse_position()), 0, pattern.get_cell_atlas_coords(cell))
-		
-	buildings.append(building)
+		var coordinate : Vector2i = cell + buildings_layer.local_to_map(ghost_layer.get_local_mouse_position())
+		buildings_layer.set_cell(coordinate, 0, pattern.get_cell_atlas_coords(cell))
+		buildings[coordinate] = building

@@ -11,3 +11,9 @@ extends Resource
 func combine(production: Production) -> void:
 	wheat += production.wheat
 	wood += production.wood
+	
+func get_string() -> String:
+	var str : String = ""
+	str += "Wheat: " + str(wheat) + "\n"
+	str += "Wood: " + str(wheat) + "\n"
+	return str
