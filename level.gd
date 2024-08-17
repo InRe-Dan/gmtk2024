@@ -33,9 +33,6 @@ func _process(delta: float) -> void:
 		$Label.text = building.name + "\n" + building.production.get_string()
 	$Label.global_position = get_global_mouse_position() + Vector2(20, 20)
 
-	var pan_direction : Vector2 = Input.get_vector("pan_left", "pan_right", "pan_up", "pan_down")
-	position += pan_direction * delta * PAN_SPEED
-
 
 # Intercepts unhandled input
 func _input(event: InputEvent) -> void:

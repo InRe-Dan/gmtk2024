@@ -16,6 +16,7 @@ autostart = true
 tile_set = ExtResource("1_uc2yi")
 
 [node name="GhostLayer" type="TileMapLayer" parent="."]
+modulate = Color(0.415686, 1, 1, 0.729412)
 tile_set = ExtResource("1_uc2yi")
 script = ExtResource("2_35ren")
 
