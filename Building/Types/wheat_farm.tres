@@ -10,5 +10,6 @@ wood = 0
 
 [resource]
 script = ExtResource("1_uwo25")
+name = "Farm"
 pattern_index = 0
 production = SubResource("Resource_hb8du")

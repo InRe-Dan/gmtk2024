@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Building" load_steps=4 format=3 uid="uid://dkwxg3ovweu64"]
+
+[ext_resource type="Script" path="res://production.gd" id="1_3ytxs"]
+[ext_resource type="Script" path="res://Building/building.gd" id="2_wyd54"]
+
+[sub_resource type="Resource" id="Resource_d0psf"]
+script = ExtResource("1_3ytxs")
+wheat = 1
+wood = 2
+
+[resource]
+script = ExtResource("2_wyd54")
+name = "Logging Station"
+pattern_index = 1
+production = SubResource("Resource_d0psf")

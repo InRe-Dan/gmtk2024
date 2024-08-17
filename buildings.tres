@@ -1,9 +1,30 @@
-[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://cln4dq0iihryq"]
+[gd_resource type="TileSet" load_steps=11 format=3 uid="uid://cln4dq0iihryq"]
 
 [ext_resource type="Texture2D" uid="uid://esbjhjuoql0b" path="res://prototype_buildings.png" id="1_jab8b"]
 
-[sub_resource type="TileMapPattern" id="TileMapPattern_ceq7j"]
-tile_data = PackedInt32Array(0, 0, 0)
+[sub_resource type="TileMapPattern" id="TileMapPattern_hrud2"]
+tile_data = PackedInt32Array(0, 131072, 5)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_2aecl"]
+tile_data = PackedInt32Array(0, 0, 6)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_ggi5t"]
+tile_data = PackedInt32Array(0, 262144, 5)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_vrcnk"]
+tile_data = PackedInt32Array(0, 131072, 2, 65536, 131072, 3, 1, 196608, 2, 65537, 196608, 3)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_ndgkh"]
+tile_data = PackedInt32Array(0, 393216, 2, 1, 458752, 2, 65537, 458752, 3)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_poxjv"]
+tile_data = PackedInt32Array(0, 0, 3, 65536, 0, 4, 65537, 65536, 4)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_ijaqr"]
+tile_data = PackedInt32Array(0, 131072, 4, 1, 196608, 4, 2, 262144, 4)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_pp5b0"]
+tile_data = PackedInt32Array(0, 65536, 2, 65536, 65536, 3)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_herhg"]
 texture = ExtResource("1_jab8b")
@@ -74,4 +95,11 @@ texture = ExtResource("1_jab8b")
 
 [resource]
 sources/0 = SubResource("TileSetAtlasSource_herhg")
-pattern_0 = SubResource("TileMapPattern_ceq7j")
+pattern_0 = SubResource("TileMapPattern_hrud2")
+pattern_1 = SubResource("TileMapPattern_2aecl")
+pattern_2 = SubResource("TileMapPattern_ggi5t")
+pattern_3 = SubResource("TileMapPattern_vrcnk")
+pattern_4 = SubResource("TileMapPattern_ndgkh")
+pattern_5 = SubResource("TileMapPattern_poxjv")
+pattern_6 = SubResource("TileMapPattern_ijaqr")
+pattern_7 = SubResource("TileMapPattern_pp5b0")

@@ -17,6 +17,7 @@ var wheat: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	ghost_layer.set_building(load("res://Building/Types/wheat_farm.tres"))
+	buildings_layer.clear()
 	ResourceDisplay.set_level(self)
 	ResourceDisplay.resources_changed()
 
