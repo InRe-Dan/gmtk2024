@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://c10w1sgj1wjm6"]
 
-[ext_resource type="Script" path="res://Grid/item.gd" id="1_qa8fp"]
+[ext_resource type="Script" path="res://Item/grid_item.gd" id="1_nf64v"]
 
 [node name="Item" type="Node2D"]
-script = ExtResource("1_qa8fp")
+script = ExtResource("1_nf64v")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

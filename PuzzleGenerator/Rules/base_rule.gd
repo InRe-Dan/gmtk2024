@@ -1,6 +1,6 @@
 class_name Rule extends Resource
 
-func is_valid(gridsize : Vector2i, placed : Array[Food]) -> bool:
+func is_valid(gridsize : Vector2i, placed : Array[Item]) -> bool:
 	push_error("Unimplemented Rule.is_valid")
 	return false
 

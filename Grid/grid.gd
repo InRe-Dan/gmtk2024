@@ -1,6 +1,7 @@
 extends Control
 
 @onready var grid_slot_scene = preload("res://Grid/grid_slot.tscn")
+@onready var grid_item_scene = preload("res://Item/grid_item.tscn")
 @onready var grid_container: GridContainer = $MarginContainer/GridContainer
 
 var initialized: bool = false
