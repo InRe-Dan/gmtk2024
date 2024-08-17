@@ -13,11 +13,21 @@ var state: State = State.DEFAULT
 
 var item_stored = null
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+
+func set_color(new_state) -> void:
+	match new_state:
+		State.OCCUPIED:
+			status.color = Color(Color.RED, 0.2)
+		State.AVAILABLE:
+			status.color = Color(Color.GREEN, 0.2)
+		_: status.color = Color(Color.WHITE, 0.0)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+## Mouse hovered
+func _on_mouse_entered() -> void:
+	entered.emit(self)
+
+
+## Mouse hovered off
+func _on_mouse_exited() -> void:
+	exited.emit(self)
