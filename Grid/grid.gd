@@ -29,13 +29,15 @@ func _process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("submit"):
-		place_item()
+		if held_item:
+			place_item()
+		else:
+			pick_item()
 	
 	# TODO: REMOVE (testing stuff)
 	if event.is_action_pressed("spawn_item"):
 		var new_item: GridItem = grid_item_scene.instantiate()
 		new_item.initialize(load("res://Item/Items/drumstick.tres"))
-		new_item.selected = true
 		held_item = new_item
 		add_child(new_item)
 		if current_slot:
@@ -48,10 +50,12 @@ func _on_slot_mouse_entered(slot: GridSlot) -> void:
 	
 	if held_item:
 		can_place = check_slot_availability(get_slot_positions(current_slot, held_item.item))
+	else:
+		slot.set_color(GridSlot.State.SELECTED)
 
 	
 ## Mouse hovered off grid slot
-func _on_slot_mouse_exited(slot: GridSlot) -> void:
+func _on_slot_mouse_exited() -> void:
 	# Clear slot statuses
 	for row: Array[GridSlot] in matrix:
 		for grid_slot: GridSlot in row:
@@ -121,9 +125,32 @@ func place_item() -> void:
 		slot.item_stored = item
 	
 	# Submit item at position
+	item.root_slot = root_slot
 	item.position = root_slot.position
 	
-	_on_slot_mouse_exited(root_slot)
+	_on_slot_mouse_exited()
+	_on_slot_mouse_entered(root_slot)
+
+
+## Attempts to pick up an item in the hovered slot
+func pick_item() -> void:
+	if held_item or not current_slot: return
+
+	if is_instance_valid(current_slot.item_stored):
+		held_item = current_slot.item_stored
+	else:
+		return
+	
+	var root_slot: GridSlot = held_item.root_slot
+	var slots: Array[GridSlot]
+	
+	# Iterate over slot positions and nullify respective slot's stored item field
+	for grid_pos in get_slot_positions(root_slot, held_item.item):
+		(matrix[grid_pos.y][grid_pos.x] as GridSlot).item_stored = null
+	
+	_on_slot_mouse_exited()
+	_on_slot_mouse_entered(current_slot)
+	
 
 
 ## Returns a list of slot positions based on the passed slot and passed item

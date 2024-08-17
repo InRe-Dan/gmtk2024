@@ -4,7 +4,7 @@ extends Node2D
 @onready var texture_rect: TextureRect = $TextureRect
 
 var item: Item = null
-var selected: bool = false
+var root_slot: GridSlot = null
 
 var initialized: bool = false
 
