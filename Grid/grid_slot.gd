@@ -10,7 +10,7 @@ var grid_position: Vector2i
 
 enum State {DEFAULT, OCCUPIED, AVAILABLE}
 
-var item_stored = null
+var item_stored: GridItem = null
 
 var initialized: bool = false
 

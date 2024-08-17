@@ -15,10 +15,9 @@ func _ready() -> void:
 	texture_rect.texture = item.sprite
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if selected:
-		global_position = lerp(global_position, get_global_mouse_position(), delta * Globals.drag_speed)
+## Called every frame to drag the food to the cursor
+func drag(delta: float) -> void:
+	global_position = lerp(global_position, get_global_mouse_position() - Globals.cell_size_half, delta * Globals.drag_speed)
 
 
 ## Initializes this item

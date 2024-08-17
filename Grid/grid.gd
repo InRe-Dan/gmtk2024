@@ -21,7 +21,16 @@ func _ready() -> void:
 	initialize(8,8)
 
 
+## Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if held_item:
+		held_item.drag(delta)
+
+
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("submit"):
+		place_item()
+	
 	# TODO: REMOVE (testing stuff)
 	if event.is_action_pressed("spawn_item"):
 		var new_item: GridItem = grid_item_scene.instantiate()
@@ -29,24 +38,24 @@ func _input(event: InputEvent) -> void:
 		new_item.selected = true
 		held_item = new_item
 		add_child(new_item)
+		if current_slot:
+			_on_slot_mouse_entered(current_slot)
 
 
 ## Mouse hovered grid slot
 func _on_slot_mouse_entered(slot: GridSlot) -> void:
 	current_slot = slot
 	
-	# Clear slot statuses
-	for row: Array[GridSlot] in matrix:
-		for grid_slot: GridSlot in row:
-			grid_slot.set_color(GridSlot.State.DEFAULT)
-	
 	if held_item:
-		check_slot_availability(get_slot_positions())
+		can_place = check_slot_availability(get_slot_positions(current_slot, held_item.item))
 
 	
 ## Mouse hovered off grid slot
 func _on_slot_mouse_exited(slot: GridSlot) -> void:
-	slot.set_color(GridSlot.State.DEFAULT)
+	# Clear slot statuses
+	for row: Array[GridSlot] in matrix:
+		for grid_slot: GridSlot in row:
+			grid_slot.set_color(GridSlot.State.DEFAULT)
 
 
 ## Initializes the grid to be a certain size
@@ -85,13 +94,45 @@ func create_slot(col: int, row: int) -> GridSlot:
 	return grid_slot
 
 
-## Returns a list of slot positions based on the hovered slot and held item
-func get_slot_positions() -> Array[Vector2i]:
+## Attempts to place the currently held item
+func place_item() -> void:
+	if not held_item or not is_instance_valid(held_item): return
+	if not can_place or not current_slot: return
+	
+	var item: GridItem = held_item
+	var root_slot: GridSlot = current_slot
+	var slots: Array[GridSlot]
+	
+	held_item = null
+	current_slot = null
+	
+	# Iterate over slot positions
+	for grid_pos in get_slot_positions(root_slot, item.item):
+		var slot: GridSlot = null
+		
+		# Check if the relative grid position exists outside the grid bounds
+		if grid_pos.x >= 0 and grid_pos.x < col_count and grid_pos.y >= 0 and grid_pos.y < row_count:
+			slots.append(matrix[grid_pos.y][grid_pos.x])
+		else:
+			return
+	
+	# Iterate over slots
+	for slot: GridSlot in slots:
+		slot.item_stored = item
+	
+	# Submit item at position
+	item.position = root_slot.position
+	
+	_on_slot_mouse_exited(root_slot)
+
+
+## Returns a list of slot positions based on the passed slot and passed item
+func get_slot_positions(slot: GridSlot, item: Item) -> Array[Vector2i]:
 	var positions: Array[Vector2i]
 	
 	# Iterate over all of the cell positions relative to the root (0, 0) cell
-	for relative_position: Vector2i in held_item.item.relative_cells:
-		positions.append(current_slot.grid_position + relative_position)
+	for relative_position: Vector2i in item.relative_cells:
+		positions.append(slot.grid_position + relative_position)
 
 	return positions
 
