@@ -11,4 +11,4 @@ const cell_size: Vector2i = Vector2i(8, 8)
 const cell_size_half: Vector2 = Vector2(cell_size) / 2.0
 
 ## Item drag speed
-const drag_speed: float = 20.0
+const drag_speed: float = 24.0
