@@ -8,13 +8,11 @@ func is_valid(gridsize : Vector2i, placed : Array[Item]) -> bool:
 			return false
 	return true
 
-func get_dragon_request() -> Control:
-	var label : Label = Label.new()
-	label.text = get_debug_request()
-	return label
+func get_dragon_request() -> String:
+	return "[color=grey]Nothing[/color] at [color=black](%s, %s)[/color]" % [position.x, position.y]
 
 func get_debug_request() -> String:
-	return "The should be no item at (%s, %s)" % [position.x, position.y]
+	return "There should be no item at (%s, %s)" % [position.x, position.y]
 
 func is_identical_to(other : Rule) -> bool:
 	if other is not EmptyCellRule:
