@@ -1,12 +1,10 @@
-[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://cq4tmjaexiq6v"]
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://drkiv7udvcxyd"]
 
 [ext_resource type="Script" path="res://Item/base_item.gd" id="1_13wl7"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_a3rjh"]
-load_path = "res://.godot/imported/food1.png-7c97eaa225a708f57be987c9624d7322.ctex"
+[ext_resource type="Texture2D" uid="uid://8g3vs2rl5h4h" path="res://Assets/atlas.png" id="2_ow3fk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lhkg6"]
-atlas = SubResource("CompressedTexture2D_a3rjh")
+atlas = ExtResource("2_ow3fk")
 region = Rect2(0, 32, 16, 8)
 
 [resource]
@@ -14,4 +12,4 @@ script = ExtResource("1_13wl7")
 item_name = "Strawberries"
 sprite = SubResource("AtlasTexture_lhkg6")
 value = 12
-types = Array[int]([0, 32, 4])
+types = Array[int]([])

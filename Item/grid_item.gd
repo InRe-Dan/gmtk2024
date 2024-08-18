@@ -46,6 +46,6 @@ func place() -> void:
 ## Sets item highlighted
 func highlight(state: bool) -> void:
 	if state:
-		modulate = Color(1.5, 1.5, 1.5)
+		modulate = Color(1.2, 1.2, 1.2)
 	else:
 		modulate = Color(1.0, 1.0, 1.0)
