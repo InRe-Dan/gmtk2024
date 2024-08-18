@@ -5,8 +5,8 @@ class_name IsInPositionRule extends Rule
 @export var position : Vector2i = Vector2i.ZERO
 
 func is_valid(gridsize : Vector2i, placed : Array[Item]) -> bool:
-	for item in placed:
-		if position in item.placement.get_tiles() and (item.item_name == item_name or item_name == "*"):
+	for item: Item in placed:
+		if position in item.placement.actual_cells and (item.item_name == item_name or item_name == "*"):
 			return true
 	return false
 

@@ -1,6 +1,8 @@
 class_name Grid
 extends Control
 
+signal grid_cleared()
+signal solution_submitted(items)
 signal total_price_updated(new_total)
 
 @onready var grid_slot_scene = preload("res://Grid/grid_slot.tscn")
@@ -22,11 +24,6 @@ var total_price: int = 0
 var is_ready: bool = false
 
 
-## Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	make_new_grid()
-
-
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if held_item and is_instance_valid(held_item):
@@ -44,11 +41,6 @@ func _input(event: InputEvent) -> void:
 		trash_item()
 
 
-## Makes a new grid
-func make_new_grid() -> void:
-	initialize(randi_range(3, Globals.max_grid_size.x), randi_range(3, Globals.max_grid_size.y))
-
-
 ## Sets ready status to true
 func make_ready() -> void:
 	is_ready = true
@@ -64,13 +56,21 @@ func trash_item() -> void:
 			_on_slot_mouse_entered(current_slot)
 
 
+## Grid fully cleared
+func _on_cleared() -> void:
+	grid_cleared.emit()
+
+
 ## Grid submitted
 func _on_submit() -> void:
 	if not is_ready: return
 	is_ready = false
+	
+	solution_submitted.emit(items, Vector2i(col_count, row_count))
+	
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "position", position + Vector2(0, Globals.cell_size.y * Globals.max_grid_size.y), Globals.grid_tween_time)
-	tween.tween_callback(make_new_grid)
+	tween.tween_callback(_on_cleared)
 	tween.play()
 
 
