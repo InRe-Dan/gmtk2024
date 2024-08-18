@@ -13,10 +13,8 @@ func is_valid(gridsize : Vector2i, placed : Array[Item]) -> bool:
 		return false
 	return true
 
-func get_dragon_request() -> Control:
-	var label : Label = Label.new()
-	label.text = get_debug_request()
-	return label
+func get_dragon_request() -> String:
+	return get_debug_request()
 
 func get_debug_request() -> String:
 	if min == max:
