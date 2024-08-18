@@ -29,7 +29,7 @@ func get_dragon_request() -> Control:
 	return label
 
 func get_debug_request() -> String:
-	return "The following item's can't be touching: " + str(item_names)
+	return "These foods can't touch: " + str(item_names)
 
 func is_identical_to(other : Rule) -> bool:
 	if other is not IsNotTouchingRule:
