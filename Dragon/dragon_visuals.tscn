@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://deukgqgqggkkj"]
+
+[sub_resource type="Gradient" id="Gradient_tocvn"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.223022, 0.374101, 0.532374, 0.654676, 0.76259, 0.81295, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.117196, 0, 1, 1, 0.196586, 0, 1, 1, 0.279757, 0, 1, 1, 0.344026, 0, 1, 1, 0.400734, 0, 1, 1, 0.427197, 0, 1, 1, 0.52549, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ci0hq"]
+gradient = SubResource("Gradient_tocvn")
+width = 16
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_0dma0"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.223022, 0.374101, 0.532374, 0.654676, 0.76259, 0.81295, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.117196, 0, 1, 1, 0.196586, 0, 1, 1, 0.279757, 0, 1, 1, 0.344026, 0, 1, 1, 0.400734, 0, 1, 1, 0.427197, 0, 1, 1, 0.52549, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cori6"]
+gradient = SubResource("Gradient_0dma0")
+height = 8
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_y3iey"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.223022, 0.374101, 0.532374, 0.654676, 0.76259, 0.81295, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.117196, 0, 1, 1, 0.196586, 0, 1, 1, 0.279757, 0, 1, 1, 0.344026, 0, 1, 1, 0.400734, 0, 1, 1, 0.427197, 0, 1, 1, 0.52549, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7lfxy"]
+gradient = SubResource("Gradient_y3iey")
+height = 16
+fill_to = Vector2(0, 1)
+
+[node name="Dragon" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 5)
+texture = SubResource("GradientTexture2D_ci0hq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-10, -18)
+scale = Vector2(0.578125, 1)
+texture = SubResource("GradientTexture2D_cori6")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(-10, -34)
+scale = Vector2(0.578125, 1)
+texture = SubResource("GradientTexture2D_7lfxy")
