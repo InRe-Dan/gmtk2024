@@ -4,6 +4,7 @@ extends Control
 signal grid_cleared()
 signal solution_submitted(items)
 signal total_price_updated(new_total)
+signal selected_slot_changed(grid_position)
 
 @onready var grid_slot_scene = preload("res://Grid/grid_slot.tscn")
 @onready var grid_item_scene = preload("res://Item/grid_item.tscn")
@@ -90,7 +91,8 @@ func _on_new_item_selected(item: Item) -> void:
 ## Mouse hovered grid slot
 func _on_slot_mouse_entered(slot: GridSlot) -> void:
 	current_slot = slot
-	
+	if current_slot:
+		selected_slot_changed.emit(current_slot.grid_position)
 	if held_item and is_instance_valid(held_item):
 		can_place = check_slot_availability(get_slot_positions(current_slot, held_item.item))
 	elif slot:
