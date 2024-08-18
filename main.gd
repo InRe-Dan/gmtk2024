@@ -43,9 +43,7 @@ func _on_solution_submitted(grid_items: Array[GridItem], gridsize: Vector2i) -> 
 	var items: Array[Item] = []
 	for item: GridItem in grid_items:
 		# Determine placement based on root position
-		item.item.placement = item.item.get_placement(item.root_slot.grid_position, Item.Rotation.NONE)
-		print(item.root_slot.grid_position)
-		print(item.item.placement.actual_cells)
+		item.item.placement = item.item.get_placement(Vector2i(item.root_slot.grid_position.y, item.root_slot.grid_position.x), Item.Rotation.NONE)
 		items.append(item.item)
 	
 	if items.size() == 0: return
