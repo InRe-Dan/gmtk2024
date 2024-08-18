@@ -1,6 +1,8 @@
 class_name Grid
 extends Control
 
+signal total_price_updated(new_total)
+
 @onready var grid_slot_scene = preload("res://Grid/grid_slot.tscn")
 @onready var grid_item_scene = preload("res://Item/grid_item.tscn")
 @onready var grid_container: GridContainer = $MarginContainer/GridContainer
@@ -13,6 +15,8 @@ var drag_offset: Vector2i = Vector2i.ZERO
 var row_count: int
 var col_count: int
 var matrix
+
+var total_price: int = 0
 
 var initialized: bool = false
 
@@ -154,6 +158,8 @@ func place_item() -> void:
 	# Submit item at position
 	item.root_slot = root_slot
 	item.position = root_slot.position
+	total_price += item.item.value
+	total_price_updated.emit(total_price)
 	item.place()
 	
 	drag_offset = Vector2i.ZERO
@@ -182,6 +188,9 @@ func pick_item() -> void:
 		(matrix[grid_pos.y][grid_pos.x] as GridSlot).item_stored = null
 	
 	drag_offset = hovered_slot.grid_position - root_slot.grid_position
+	
+	total_price -= held_item.item.value
+	total_price_updated.emit(total_price)
 	
 	_on_slot_mouse_exited()
 	_on_slot_mouse_entered(hovered_slot)

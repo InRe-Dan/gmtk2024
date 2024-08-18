@@ -1,8 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsne7661tkcrm"]
+[gd_scene load_steps=8 format=3 uid="uid://bsne7661tkcrm"]
 
 [ext_resource type="Script" path="res://Item/item_list.gd" id="1_eu7ty"]
 [ext_resource type="PackedScene" uid="uid://gn35k16s7xxk" path="res://Grid/grid.tscn" id="1_mxj2h"]
+[ext_resource type="Script" path="res://Grid/info_box.gd" id="2_auo4a"]
 [ext_resource type="Script" path="res://Grid/workspace.gd" id="2_d3txm"]
+[ext_resource type="FontFile" uid="uid://d0g7r7ojp0qqk" path="res://Assets/Font/undead11.ttf" id="2_jskw5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uii85"]
+bg_color = Color(0.24, 0.24, 0.24, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h4x35"]
+bg_color = Color(0.12, 0.12, 0.12, 1)
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -30,6 +38,34 @@ custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme_override_constants/separation = 0
 script = ExtResource("2_d3txm")
+
+[node name="InfoBox" type="VBoxContainer" parent="VBoxContainer/Workspace"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme_override_constants/separation = 1
+script = ExtResource("2_auo4a")
+
+[node name="Control" type="Control" parent="VBoxContainer/Workspace/InfoBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TotalPrice" type="RichTextLabel" parent="VBoxContainer/Workspace/InfoBox"]
+custom_minimum_size = Vector2(0, 11)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_jskw5")
+theme_override_font_sizes/normal_font_size = 11
+bbcode_enabled = true
+text = "Price: [color=ffe600]$0[/color]"
+fit_content = true
+
+[node name="Submit" type="Button" parent="VBoxContainer/Workspace/InfoBox"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_jskw5")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/hover = SubResource("StyleBoxFlat_uii85")
+theme_override_styles/normal = SubResource("StyleBoxFlat_h4x35")
+text = "Submit"
 
 [node name="ItemsList" type="ScrollContainer" parent="VBoxContainer/Workspace"]
 layout_mode = 2
