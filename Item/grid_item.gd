@@ -13,6 +13,7 @@ var initialized: bool = false
 func _ready() -> void:
 	if not item or not is_instance_valid(item): return
 	texture_rect.texture = item.sprite
+	texture_rect.size = texture_rect.texture.get_size()
 
 
 ## Called every frame to drag the food to the cursor
@@ -33,9 +34,18 @@ func initialize(new_item: Item) -> void:
 func pickup() -> void:
 	z_index = 100
 	scale = Vector2(1.1, 1.1)
+	highlight(true)
 	
 	
 ## Item is placed down
 func place() -> void:
 	z_index = 0
 	scale = Vector2(1, 1)
+	
+
+## Sets item highlighted
+func highlight(state: bool) -> void:
+	if state:
+		modulate = Color(2.0, 2.0, 2.0)
+	else:
+		modulate = Color(1.0, 1.0, 1.0)

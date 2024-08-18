@@ -18,7 +18,8 @@ var initialized: bool = false
 func initialize(position: Vector2i) -> void:
 	if initialized: return
 	initialized = true
-
+	
+	custom_minimum_size = Globals.cell_size
 	grid_position = position
 
 
@@ -32,6 +33,7 @@ func set_color(new_state) -> void:
 			if not item_stored:
 				status.color = Color(Color.GRAY, 0.1)
 			else:
+				item_stored.highlight(true)
 				status.color = Color(Color.BLUE, 0.2)
 		_: status.color = Color(Color.WHITE, 0.0)
 
