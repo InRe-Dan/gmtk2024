@@ -98,13 +98,14 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
 [node name="Zoner" type="Control" parent="VBoxContainer/Workspace"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
 [node name="Grid" parent="VBoxContainer/Workspace/Zoner" instance=ExtResource("1_mxj2h")]
-layout_mode = 2
-offset_left = 4.0
+layout_mode = 0
+offset_left = 32.0
 offset_top = 32.0
-offset_right = 4.0
+offset_right = 32.0
 offset_bottom = 32.0
 
 [node name="InfoBox" type="VBoxContainer" parent="VBoxContainer/Workspace"]

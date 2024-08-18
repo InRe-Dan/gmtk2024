@@ -3,7 +3,7 @@ extends HBoxContainer
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var grid: Grid = get_node("Grid") as Grid
+	var grid: Grid = get_node("Zoner/Grid") as Grid
 	var item_list: ItemsList = get_node("ItemsList") as ItemsList
 	var info_box: InfoBox = get_node("InfoBox") as InfoBox
 	

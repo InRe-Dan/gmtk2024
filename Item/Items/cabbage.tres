@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://mvo0suopol0g"]
+
+[ext_resource type="Script" path="res://Item/base_item.gd" id="1_s8hgt"]
+[ext_resource type="Texture2D" uid="uid://8g3vs2rl5h4h" path="res://Assets/atlas.png" id="2_v2sx1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhkg6"]
+atlas = ExtResource("2_v2sx1")
+region = Rect2(32, 48, 16, 16)
+
+[resource]
+script = ExtResource("1_s8hgt")
+item_name = "Cabbage"
+sprite = SubResource("AtlasTexture_lhkg6")
+value = 14
+types = Array[int]([])

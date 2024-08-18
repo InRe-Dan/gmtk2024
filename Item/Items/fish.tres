@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://djimfhnfnd5rq"]
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://dlfit30754vd"]
 
 [ext_resource type="Script" path="res://Item/base_item.gd" id="1_mgmnl"]
-[ext_resource type="Texture2D" uid="uid://dqpgpndnt1v6m" path="res://Assets/food1.png" id="2_o6pkk"]
+[ext_resource type="Texture2D" uid="uid://8g3vs2rl5h4h" path="res://Assets/atlas.png" id="2_dutmw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5v8li"]
-atlas = ExtResource("2_o6pkk")
+atlas = ExtResource("2_dutmw")
 region = Rect2(32, 16, 16, 16)
 
 [resource]

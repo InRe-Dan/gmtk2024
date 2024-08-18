@@ -14,16 +14,17 @@ var drag_offset: Vector2i = Vector2i.ZERO
 
 var row_count: int
 var col_count: int
-var matrix
+var matrix = []
+var items: Array[GridItem] = []
 
 var total_price: int = 0
 
-var initialized: bool = false
+var is_ready: bool = false
 
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	initialize(4,4)
+	make_new_grid()
 
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -43,6 +44,16 @@ func _input(event: InputEvent) -> void:
 		trash_item()
 
 
+## Makes a new grid
+func make_new_grid() -> void:
+	initialize(4, 4)
+
+
+## Sets ready status to true
+func make_ready() -> void:
+	is_ready = true
+
+
 ## Trashes held item
 func trash_item() -> void:
 	if held_item and is_instance_valid(held_item):
@@ -55,7 +66,12 @@ func trash_item() -> void:
 
 ## Grid submitted
 func _on_submit() -> void:
-	pass
+	if not is_ready: return
+	is_ready = false
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "position", position + Vector2(0, Globals.cell_size.y * Globals.max_grid_size.y), Globals.grid_tween_time)
+	tween.tween_callback(make_new_grid)
+	tween.play()
 
 
 ## New item selected
@@ -95,8 +111,20 @@ func _on_slot_mouse_exited() -> void:
 
 ## Initializes the grid to be a certain size
 func initialize(columns: int, rows: int) -> void:
-	if initialized: return
-	initialized = true
+	current_slot = null
+	can_place = false
+	drag_offset = Vector2i.ZERO
+	total_price = 0
+	total_price_updated.emit(0)
+	
+	for item: GridItem in items:
+		item.queue_free()
+	
+	items = []
+	
+	for row: Array[GridSlot] in matrix:
+		for slot: GridSlot in row:
+			slot.queue_free()
 	
 	row_count = min(Globals.max_grid_size.y, rows)
 	col_count = min(Globals.max_grid_size.x, columns)
@@ -106,6 +134,14 @@ func initialize(columns: int, rows: int) -> void:
 	custom_minimum_size.x = col_count * Globals.cell_size.x
 	custom_minimum_size.y = row_count * Globals.cell_size.y
 	grid_container.columns = col_count
+	$ColorRect.custom_minimum_size = custom_minimum_size
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "position", Vector2(
+		(Globals.cell_size.x * Globals.max_grid_size.x) / col_count,
+		(Globals.cell_size.y * Globals.max_grid_size.y) / row_count), Globals.grid_tween_time)
+	tween.tween_callback(make_ready)
+	tween.play()
+	
 	
 	# Create empty grid slots
 	for column in range(col_count):
@@ -165,6 +201,7 @@ func place_item() -> void:
 	item.position = root_slot.position
 	total_price += item.item.value
 	total_price_updated.emit(total_price)
+	items.append(item)
 	item.place()
 	
 	drag_offset = Vector2i.ZERO
@@ -196,6 +233,7 @@ func pick_item() -> void:
 	
 	total_price -= held_item.item.value
 	total_price_updated.emit(total_price)
+	items.remove_at(items.find(held_item))
 	
 	_on_slot_mouse_exited()
 	_on_slot_mouse_entered(hovered_slot)

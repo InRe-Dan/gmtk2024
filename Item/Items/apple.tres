@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://na5qygrnj1i2"]
+
+[ext_resource type="Script" path="res://Item/base_item.gd" id="1_0ggps"]
+[ext_resource type="Texture2D" uid="uid://8g3vs2rl5h4h" path="res://Assets/atlas.png" id="2_t8xhn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhkg6"]
+atlas = ExtResource("2_t8xhn")
+region = Rect2(16, 32, 8, 8)
+
+[resource]
+script = ExtResource("1_0ggps")
+item_name = "Apple"
+sprite = SubResource("AtlasTexture_lhkg6")
+value = 3
+types = Array[int]([])

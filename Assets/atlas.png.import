@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://v1vecu853t36"
-path="res://.godot/imported/drumstick.png-9635a3ea4d32b0929cec80996d6e5912.ctex"
+uid="uid://8g3vs2rl5h4h"
+path="res://.godot/imported/atlas.png-9cef794873c0a0de8290cc9de4fefdff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/drumstick.png"
-dest_files=["res://.godot/imported/drumstick.png-9635a3ea4d32b0929cec80996d6e5912.ctex"]
+source_file="res://Assets/atlas.png"
+dest_files=["res://.godot/imported/atlas.png-9cef794873c0a0de8290cc9de4fefdff.ctex"]
 
 [params]
 

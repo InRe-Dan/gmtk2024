@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://in6j2hoh6qys"]
+
+[ext_resource type="Script" path="res://Item/base_item.gd" id="1_cv2kt"]
+[ext_resource type="Texture2D" uid="uid://8g3vs2rl5h4h" path="res://Assets/atlas.png" id="2_phe1y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhkg6"]
+atlas = ExtResource("2_phe1y")
+region = Rect2(16, 48, 16, 16)
+
+[resource]
+script = ExtResource("1_cv2kt")
+item_name = "Croissant"
+sprite = SubResource("AtlasTexture_lhkg6")
+value = 20
+types = Array[int]([])
