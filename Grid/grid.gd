@@ -5,7 +5,7 @@ signal total_price_updated(new_total)
 
 @onready var grid_slot_scene = preload("res://Grid/grid_slot.tscn")
 @onready var grid_item_scene = preload("res://Item/grid_item.tscn")
-@onready var grid_container: GridContainer = $MarginContainer/GridContainer
+@onready var grid_container: GridContainer = $GridContainer
 
 var held_item: GridItem = null
 var current_slot: GridSlot = null
@@ -23,7 +23,7 @@ var initialized: bool = false
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	initialize(8,8)
+	initialize(4,4)
 
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -51,6 +51,11 @@ func trash_item() -> void:
 			drag_offset = Vector2i.ZERO
 			_on_slot_mouse_exited()
 			_on_slot_mouse_entered(current_slot)
+
+
+## Grid submitted
+func _on_submit() -> void:
+	pass
 
 
 ## New item selected
@@ -98,8 +103,8 @@ func initialize(columns: int, rows: int) -> void:
 	matrix = []
 	
 	# Resize grid to fit columns and rows specification
-	size.x = col_count * Globals.cell_size.x
-	size.y = row_count * Globals.cell_size.y
+	custom_minimum_size.x = col_count * Globals.cell_size.x
+	custom_minimum_size.y = row_count * Globals.cell_size.y
 	grid_container.columns = col_count
 	
 	# Create empty grid slots

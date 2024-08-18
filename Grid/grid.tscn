@@ -7,6 +7,8 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 64.0
 offset_bottom = 64.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_filter = 1
 script = ExtResource("1_1tfjm")
 
@@ -20,16 +22,10 @@ grow_vertical = 2
 mouse_filter = 1
 color = Color(0.07, 0.065765, 0.0623, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 2
+offset_right = 64.0
+offset_bottom = 64.0
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 8

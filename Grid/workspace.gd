@@ -9,3 +9,4 @@ func _ready() -> void:
 	
 	item_list.new_item_selected.connect(Callable(grid, "_on_new_item_selected"))
 	grid.total_price_updated.connect(Callable(info_box, "_on_total_price_updated"))
+	info_box.grid_submitted.connect(Callable(grid, "_on_submit"))
