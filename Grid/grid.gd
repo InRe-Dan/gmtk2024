@@ -39,6 +39,7 @@ func _input(event: InputEvent) -> void:
 		if held_item and is_instance_valid(held_item):
 			held_item.queue_free()
 			held_item = null
+			drag_offset = Vector2i.ZERO
 			_on_slot_mouse_exited()
 			_on_slot_mouse_entered(current_slot)
 
@@ -50,6 +51,7 @@ func _on_new_item_selected(item: Item) -> void:
 	held_item = new_item
 	held_item.pickup()
 	add_child(new_item)
+	new_item.position = get_local_mouse_position()
 	if current_slot:
 		_on_slot_mouse_entered(current_slot)
 
@@ -60,12 +62,14 @@ func _on_slot_mouse_entered(slot: GridSlot) -> void:
 	
 	if held_item and is_instance_valid(held_item):
 		can_place = check_slot_availability(get_slot_positions(current_slot, held_item.item))
-	else:
+	elif slot:
 		slot.set_color(GridSlot.State.SELECTED)
 
 	
 ## Mouse hovered off grid slot
 func _on_slot_mouse_exited() -> void:
+	current_slot = null
+	
 	# Clear slot statuses
 	for row: Array[GridSlot] in matrix:
 		for grid_slot: GridSlot in row:
@@ -124,6 +128,7 @@ func place_item() -> void:
 		return
 		
 	var item: GridItem = held_item
+	var hovered_slot: GridSlot = current_slot
 	var slots: Array[GridSlot]
 	
 	held_item = null
@@ -147,15 +152,17 @@ func place_item() -> void:
 	
 	drag_offset = Vector2i.ZERO
 	_on_slot_mouse_exited()
-	_on_slot_mouse_entered(current_slot)
+	_on_slot_mouse_entered(hovered_slot)
 
 
 ## Attempts to pick up an item in the hovered slot
 func pick_item() -> void:
 	if held_item or not current_slot: return
-
-	if is_instance_valid(current_slot.item_stored):
-		held_item = current_slot.item_stored
+	
+	var hovered_slot: GridSlot = current_slot
+	
+	if is_instance_valid(hovered_slot.item_stored):
+		held_item = hovered_slot.item_stored
 		held_item.pickup()
 	else:
 		return
@@ -168,15 +175,17 @@ func pick_item() -> void:
 	for grid_pos in get_slot_positions(root_slot, held_item.item):
 		(matrix[grid_pos.y][grid_pos.x] as GridSlot).item_stored = null
 	
-	drag_offset = current_slot.grid_position - root_slot.grid_position
+	drag_offset = hovered_slot.grid_position - root_slot.grid_position
 	
 	_on_slot_mouse_exited()
-	_on_slot_mouse_entered(current_slot)
+	_on_slot_mouse_entered(hovered_slot)
 	
 
 
 ## Returns a list of slot positions based on the passed slot and passed item
 func get_slot_positions(slot: GridSlot, item: Item) -> Array[Vector2i]:
+	if not slot: return []
+	
 	var positions: Array[Vector2i]
 	
 	# Iterate over all of the cell positions relative to the root (0, 0) cell
