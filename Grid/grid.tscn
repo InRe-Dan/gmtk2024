@@ -12,13 +12,8 @@ script = ExtResource("1_1tfjm")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 mouse_filter = 1
-color = Color(0.07, 0.065765, 0.0623, 1)
+color = Color(0.09, 0.06375, 0.027, 1)
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 0

@@ -46,7 +46,7 @@ func _input(event: InputEvent) -> void:
 
 ## Makes a new grid
 func make_new_grid() -> void:
-	initialize(4, 4)
+	initialize(randi_range(3, Globals.max_grid_size.x), randi_range(3, Globals.max_grid_size.y))
 
 
 ## Sets ready status to true
@@ -134,7 +134,8 @@ func initialize(columns: int, rows: int) -> void:
 	custom_minimum_size.x = col_count * Globals.cell_size.x
 	custom_minimum_size.y = row_count * Globals.cell_size.y
 	grid_container.columns = col_count
-	$ColorRect.custom_minimum_size = custom_minimum_size
+	$ColorRect.custom_minimum_size = Vector2.ZERO
+	$ColorRect.size = custom_minimum_size
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "position", Vector2(
 		(Globals.cell_size.x * Globals.max_grid_size.x) / col_count,
@@ -144,9 +145,9 @@ func initialize(columns: int, rows: int) -> void:
 	
 	
 	# Create empty grid slots
-	for column in range(col_count):
+	for row in range(row_count):
 		var row_data: Array[GridSlot]
-		for row in range(row_count):
+		for column in range(col_count):
 			row_data.append(create_slot(column, row))
 		
 		matrix.append(row_data)
@@ -173,8 +174,8 @@ func place_item() -> void:
 	# Grab slot corresponding to root of the item
 	var root_slot: GridSlot
 	var root_pos: Vector2i = current_slot.grid_position - drag_offset
-	if root_pos.x >= 0 and root_pos.x < col_count and root_pos.y >= 0 and root_pos.y < row_count:
-		root_slot = matrix[root_pos.y][root_pos.x]
+	if root_pos.x >= 0 and root_pos.x < row_count and root_pos.y >= 0 and root_pos.y < col_count:
+		root_slot = matrix[root_pos.x][root_pos.y]
 	else:
 		return
 		
@@ -187,8 +188,8 @@ func place_item() -> void:
 	# Iterate over slot positions
 	for grid_pos in get_slot_positions(current_slot, item.item):
 		# Check if the relative grid position exists outside the grid bounds
-		if grid_pos.x >= 0 and grid_pos.x < col_count and grid_pos.y >= 0 and grid_pos.y < row_count:
-			slots.append(matrix[grid_pos.y][grid_pos.x])
+		if grid_pos.x >= 0 and grid_pos.x < row_count and grid_pos.y >= 0 and grid_pos.y < col_count:
+			slots.append(matrix[grid_pos.x][grid_pos.y])
 		else:
 			return
 	
@@ -227,7 +228,7 @@ func pick_item() -> void:
 	
 	# Iterate over slot positions and nullify respective slot's stored item field
 	for grid_pos in get_slot_positions(root_slot, held_item.item):
-		(matrix[grid_pos.y][grid_pos.x] as GridSlot).item_stored = null
+		(matrix[grid_pos.x][grid_pos.y] as GridSlot).item_stored = null
 	
 	drag_offset = hovered_slot.grid_position - root_slot.grid_position
 	
@@ -248,7 +249,7 @@ func get_slot_positions(slot: GridSlot, item: Item) -> Array[Vector2i]:
 	
 	# Iterate over all of the cell positions relative to the root (0, 0) cell
 	for relative_position: Vector2i in item.relative_cells:
-		positions.append(slot.grid_position + relative_position - drag_offset)
+		positions.append(slot.grid_position + Vector2i(relative_position.y, relative_position.x) - drag_offset)
 
 	return positions
 
@@ -263,14 +264,14 @@ func check_slot_availability(slots: Array[Vector2i]) -> bool:
 		var slot_status: bool = true
 		
 		# Check if the relative grid position exists outside the grid bounds
-		if grid_pos.x < 0 or grid_pos.x > col_count - 1:
+		if grid_pos.x < 0 or grid_pos.x > row_count - 1:
 			slot_status = false
-		if grid_pos.y < 0 or grid_pos.y > row_count - 1:
+		if grid_pos.y < 0 or grid_pos.y > col_count - 1:
 			slot_status = false
 		
 		# Fetch slot at given position
 		if slot_status:
-			slot = matrix[grid_pos.y][grid_pos.x]
+			slot = matrix[grid_pos.x][grid_pos.y]
 
 			# Check if the slot is occupied
 			if slot.item_stored:

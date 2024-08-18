@@ -1,15 +1,15 @@
 [gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://drkiv7udvcxyd"]
 
-[ext_resource type="Script" path="res://Item/base_item.gd" id="1_13wl7"]
-[ext_resource type="Texture2D" uid="uid://8g3vs2rl5h4h" path="res://Assets/atlas.png" id="2_ow3fk"]
+[ext_resource type="Script" path="res://Item/base_item.gd" id="1_xn7im"]
+[ext_resource type="Texture2D" uid="uid://8g3vs2rl5h4h" path="res://Assets/atlas.png" id="2_557s5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lhkg6"]
-atlas = ExtResource("2_ow3fk")
+atlas = ExtResource("2_557s5")
 region = Rect2(0, 32, 16, 8)
 
 [resource]
-script = ExtResource("1_13wl7")
-item_name = "Strawberries"
+script = ExtResource("1_xn7im")
+item_name = "Berries"
 sprite = SubResource("AtlasTexture_lhkg6")
 value = 12
 types = Array[int]([])
