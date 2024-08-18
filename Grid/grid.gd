@@ -39,6 +39,7 @@ func _input(event: InputEvent) -> void:
 		if held_item and is_instance_valid(held_item):
 			held_item.queue_free()
 			held_item = null
+			drag_offset = Vector2i.ZERO
 			_on_slot_mouse_exited()
 			_on_slot_mouse_entered(current_slot)
 
