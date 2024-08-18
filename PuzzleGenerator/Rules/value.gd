@@ -9,7 +9,7 @@ func is_valid(gridsize : Vector2i, placed : Array[Item]) -> bool:
 		value += item.value
 	if min > 0 and value < min:
 		return false
-	if max > 0 and value < max:
+	if max > 0 and value > max:
 		return false
 	return true
 
