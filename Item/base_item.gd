@@ -18,7 +18,27 @@ LEFT = 3}
 @export var value: int = 0
 
 # This might have to be a more complex type than just an enum since foods might have different types.
-@export var type : int # placeholder type
+enum Type {
+	MEAT = 1 << 0,
+	LIQUID = 1 << 1,
+	VEGETARIAN = 1 << 2,
+	FRUIT = 1 << 3,
+	VEGETABLE = 1 << 4,
+	VEGAN = 1 << 5,
+	BAKED_GOODS = 1 << 6,
+	SEAFOOD = 1 << 7,
+	DAIRY = 1 << 8,
+}
+@export var types : Array[Type]:
+	set(a):
+		type = 0
+		for value in a:
+			type = type | value
+		types = a
+var type : int
+
+
+
 # Placement is null for unplaced items
 var placement : Placement
 

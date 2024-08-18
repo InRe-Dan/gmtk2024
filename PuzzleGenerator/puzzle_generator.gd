@@ -44,7 +44,7 @@ static func generate_puzzle(size : Vector2i) -> Array[Rule]:
 			if rule.is_identical_to(new_rule):
 				attempts += 1
 				clash = true
-		if not clash and new_rule.is_compatible_with_puzzle(size, result_rules):
+		if new_rule and not clash and new_rule.is_compatible_with_puzzle(size, result_rules):
 			result_rules.append(new_rule)
 			attempts = 0
 	
