@@ -1,7 +1,7 @@
 extends Control
 
 @onready var grid: Grid = $VBoxContainer/Workspace/Zoner/Grid
-@onready var rule_list: VBoxContainer = $VBoxContainer/View/MarginContainer/NinePatchRect/MarginContainer/RuleList
+@onready var rule_list: RuleList = $VBoxContainer/View/MarginContainer/NinePatchRect/MarginContainer/RuleList
 
 var current_puzzle: Puzzle = null
 
@@ -20,16 +20,7 @@ func generate_puzzle() -> void:
 	current_puzzle = PuzzleGenerator.generate_puzzle(grid_size)
 	grid.initialize(grid_size.x, grid_size.y)
 	
-	# Clear rules
-	for i in range(1, 5):
-		var displayed_rule: DisplayedRule = rule_list.get_node("Rule" + str(i))
-		displayed_rule.update_label("")
-	
-	# Populate rule interface with rule conditions
-	for i in range(1, min(4, current_puzzle.rules.size()) + 1):
-		var displayed_rule: DisplayedRule = rule_list.get_node("Rule" + str(i))
-		if is_instance_valid(displayed_rule):
-			displayed_rule.update_label(current_puzzle.rules[i - 1].get_dragon_request())
+	rule_list.new_rules(current_puzzle.rules)
 
 
 ## Grid cleared
@@ -44,6 +35,7 @@ func _on_solution_submitted(grid_items: Array[GridItem], gridsize: Vector2i) -> 
 	for item: GridItem in grid_items:
 		# Determine placement based on root position
 		item.item.placement = item.item.get_placement(Vector2i(item.root_slot.grid_position.y, item.root_slot.grid_position.x), Item.Rotation.NONE)
+		print(item.item.item_name, " ", item.item.placement.actual_cells)
 		items.append(item.item)
 	
 	if items.size() == 0: return

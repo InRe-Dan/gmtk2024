@@ -40,6 +40,9 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("cancel"):
 		trash_item()
+	
+	if event.is_action_pressed("solve"):
+		_on_submit()
 
 
 ## Sets ready status to true
@@ -70,7 +73,7 @@ func _on_submit() -> void:
 	solution_submitted.emit(items, Vector2i(col_count, row_count))
 	
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "position", position + Vector2(0, Globals.cell_size.y * Globals.max_grid_size.y), Globals.grid_tween_time)
+	tween.tween_property(self, "position", position + Vector2(0, Globals.cell_size.y * Globals.max_grid_size.y * 2), Globals.grid_tween_time)
 	tween.tween_callback(_on_cleared)
 	tween.play()
 
@@ -140,8 +143,8 @@ func initialize(columns: int, rows: int) -> void:
 	$ColorRect.size = custom_minimum_size
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "position", Vector2(
-		(Globals.max_grid_size.x - col_count) * Globals.cell_size_half.x,
-		(Globals.max_grid_size.y - row_count) * Globals.cell_size_half.y), Globals.grid_tween_time)
+		(Globals.max_grid_size.x - col_count) * Globals.cell_size.x,
+		(Globals.max_grid_size.y - row_count) * Globals.cell_size.y), Globals.grid_tween_time)
 	tween.tween_callback(make_ready)
 	tween.play()
 	

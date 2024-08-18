@@ -40,7 +40,7 @@ static func generate_puzzle(size : Vector2i) -> Puzzle:
 	var result_rules : Array[Rule]
 	var max_attempts : int = 5
 	var attempts : int = 0
-	while result_rules.size() < 4 and attempts < max_attempts:
+	while result_rules.size() < Globals.max_rule_count and attempts < max_attempts:
 		var new_rule : Rule = generate_random_rule(size, items_placed)
 		var clash : bool = false
 		for rule : Rule in result_rules:

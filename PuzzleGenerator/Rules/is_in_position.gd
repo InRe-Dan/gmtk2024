@@ -4,9 +4,15 @@ class_name IsInPositionRule extends Rule
 @export var item_name : String = "*"
 @export var position : Vector2i = Vector2i.ZERO
 
+
+## Formats the item to a BBCode item name
+static func format(item: Item) -> String:
+	return "[color=" + item.text_colour.to_html() + "]" + item.item_name + "[/color]"
+
+
 func is_valid(gridsize : Vector2i, placed : Array[Item]) -> bool:
 	for item: Item in placed:
-		if position in item.placement.actual_cells and (item.item_name == item_name or item_name == "*"):
+		if position in item.placement.actual_cells and (format(item) == item_name or item_name == "*"):
 			return true
 	return false
 
@@ -31,7 +37,7 @@ static func generate_valid_rule(gridsize : Vector2i, items : Array[Item]) -> Rul
 	var random_item : Item = items.pick_random()
 	var random_position : Vector2i = random_item.placement.actual_cells.pick_random()
 	var rule : IsInPositionRule = IsInPositionRule.new()
-	rule.item_name = random_item.item_name
+	rule.item_name = format(random_item)
 	rule.position = random_position
 	return rule
 	

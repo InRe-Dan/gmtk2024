@@ -14,7 +14,14 @@ func is_valid(gridsize : Vector2i, placed : Array[Item]) -> bool:
 	return true
 
 func get_dragon_request() -> String:
-	return get_debug_request()
+	if min == max:
+		return "Cost [color=ffe600]$%s[/color]" % [min]
+	elif min > 0 and max > 0:
+		return "Cost between [color=ffe600]$%s[/color] and [color=ffe600]$%s[/color]!" % [min, max]
+	elif min > 0:
+		return "Cost more than [color=ffe600]$%s[/color]" % [min]
+	else:
+		return "Cost less than [color=ffe600]$%s[/color]" % [max]
 
 func get_debug_request() -> String:
 	if min == max:

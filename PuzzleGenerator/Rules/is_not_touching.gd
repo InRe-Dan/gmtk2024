@@ -12,14 +12,19 @@ static func check_touch(one : Item, two : Item) -> bool:
 			if cell.distance_squared_to(other_cell) <= 1:
 				return true
 	return false
-	
+
+
+## Formats the item to a BBCode item name
+static func format(item: Item) -> String:
+	return "[color=" + item.text_colour.to_html() + "]" + item.item_name + "[/color]"
+
 
 func is_valid(gridsize : Vector2i, placed : Array[Item]) -> bool:
 	for one in placed:
 		for two in placed: 
 			if one.item_name == two.item_name:
 				continue
-			if check_touch(one, two) and one in item_names and two in item_names:
+			if check_touch(one, two) and format(one) in item_names and format(two) in item_names:
 				return false
 	return true
 
@@ -52,6 +57,6 @@ static func generate_valid_rule(gridsize : Vector2i, items : Array[Item]) -> Rul
 			elif check_touch(one, two):
 				continue
 			else:
-				rule.item_names = [one.item_name, two.item_name]
+				rule.item_names = [format(one), format(two)]
 				return rule
 	return null

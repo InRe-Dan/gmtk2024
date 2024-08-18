@@ -40,15 +40,15 @@ var type : int
 
 # Should be formatted in such a way that "I want NO x" makes sense
 static var lookup_table : Dictionary = { # Type -> BBCode String
-	Type.MEAT: "[color=#00FF00]Meat[/color]",
-	Type.LIQUID: "[color=#00FF00]Drinks[/color]",
-	Type.VEGETARIAN:  "[color=#00FF00]Vegetarian Food[/color]",
-	Type.FRUIT: "[color=#00FF00]Fruits[/color]",
-	Type.VEGETABLE: "[color=#00FF00]Vegetables[/color]",
-	Type.VEGAN: "[color=#00FF00]Vegan Food[/color]",
-	Type.BAKED_GOODS: "[color=#00FF00]Baked Goods[/color]",
-	Type.SEAFOOD: "[color=#00FF00]Seafood[/color]",
-	Type.DAIRY: "[color=#00FF00]Dairy[/color]",
+	Type.MEAT: "[color=#c23616]Meat[/color]",
+	Type.LIQUID: "[color=#273c75]Drinks[/color]",
+	Type.VEGETARIAN:  "[color=#44bd32]Vegetarian Food[/color]",
+	Type.FRUIT: "[color=#9c88ff]Fruits[/color]",
+	Type.VEGETABLE: "[color=#6ab04c]Vegetables[/color]",
+	Type.VEGAN: "[color=#badc58]Vegan Food[/color]",
+	Type.BAKED_GOODS: "[color=#ffbe76]Baked Goods[/color]",
+	Type.SEAFOOD: "[color=#30336b]Seafood[/color]",
+	Type.DAIRY: "[color=#dff9fb]Dairy[/color]",
 }
 
 

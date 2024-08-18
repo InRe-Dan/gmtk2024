@@ -4,10 +4,16 @@ class_name AmountRule extends Rule
 @export var max : int = -1
 @export var item_name : String
 
+
+## Formats the item to a BBCode item name
+static func format(item: Item) -> String:
+	return "[color=" + item.text_colour.to_html() + "]" + item.item_name + "[/color]"
+
+
 func is_valid(gridsize : Vector2i, placed : Array[Item]) -> bool:
 	var count : int = 0
 	for item : Item in placed:
-		if item.item_name == item_name:
+		if format(item) == item_name:
 			count += 1
 	if max >= 0 and count > max:
 		return false
@@ -47,7 +53,7 @@ func is_identical_to(other : Rule) -> bool:
 
 static func generate_valid_rule(gridsize : Vector2i, items : Array[Item]) -> Rule:
 	var rule : AmountRule = AmountRule.new()
-	var names : Array = items.map(func (v): return v.item_name)
+	var names : Array = items.map(func (v: Item): return format(v))
 	names.shuffle()
 	var chosen : String = names.pick_random()
 	var number : int = names.count(chosen)

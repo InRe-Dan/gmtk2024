@@ -12,4 +12,5 @@ script = ExtResource("1_mgmnl")
 item_name = "Fish"
 sprite = SubResource("AtlasTexture_5v8li")
 value = 24
+text_colour = Color(0.25098, 0.45098, 0.619608, 1)
 types = Array[int]([1, 128])
