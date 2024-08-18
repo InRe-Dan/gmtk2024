@@ -1,10 +1,10 @@
 class_name Item extends Resource
 
 # Default rotation is UP
-enum Rotation {NONE = 3, 
-RIGHT = 0, 
-DOWN = 1, 
-LEFT = 2}
+enum Rotation {NONE = 0, 
+RIGHT = 1, 
+DOWN = 2, 
+LEFT = 3}
 
 @export var item_name : String
 @export var sprite : Texture2D:
@@ -49,11 +49,14 @@ func try_place(grid_size : Vector2i, placed : Array[Item], placement : Placement
 	return false
 
 func get_sprite(position : Vector2i) -> ImageTexture:
-	if placement:
-		pass
-	# If placement is null, return null
-	# Otherwise, use placement data and sprite to return the 16x16 image that should be placed on position
-	# So for a drumstick this can be called by user twice to get the texture corresponding to the bone and the meat
+	if not placement:
+		return null
+	if not position in placement.actual_cells:
+		return null
+
+	var index : int = placement.actual_cells.find(position)
+	var region : Rect2i = Rect2i(placement.relative_cells[index], Globals.cell_size)
+	var cut : Image = sprite.get_image().get_region(region)
 	return null
 	
 func init_relative_cells() -> void:
