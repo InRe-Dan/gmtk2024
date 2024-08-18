@@ -10,13 +10,17 @@ static func generate_random_rule(size : Vector2i, placed : Array[Item]) -> Rule:
 	var max_attempts : int = 5
 	var attempts = 0
 	while not rule and attempts < max_attempts:
-		var r : int = randi_range(0, 1)
+		var r : int = randi_range(0, 3)
 		attempts += 1
 		match r:
 			0:
 				rule = IsInPositionRule.generate_valid_rule(size, placed)
 			1:
 				rule = IsNotTouchingRule.generate_valid_rule(size, placed)
+			2:
+				rule = EmptyCellRule.generate_valid_rule(size, placed)
+			3:
+				rule = AmountRule.generate_valid_rule(size, placed)
 	return rule
 
 static func generate_puzzle(size : Vector2i) -> Array[Rule]:

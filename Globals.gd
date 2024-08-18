@@ -12,3 +12,13 @@ const cell_size_half: Vector2 = Vector2(cell_size) / 2.0
 
 ## Item drag speed
 const drag_speed: float = 24.0
+
+
+func _ready() -> void:
+	debug_printout()
+
+
+func debug_printout() -> void:
+	await get_tree().get_root().ready
+	for i in range(3):
+		PuzzleGenerator.generate_puzzle(Vector2i.ONE * 4)
