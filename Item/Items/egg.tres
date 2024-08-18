@@ -1,17 +1,17 @@
-[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://dgfg2atghhw70"]
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://c23d4gqvtvayb"]
 
-[ext_resource type="Script" path="res://Item/base_item.gd" id="1_1e4df"]
+[ext_resource type="Script" path="res://Item/base_item.gd" id="1_7n63m"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_a3rjh"]
 load_path = "res://.godot/imported/food1.png-7c97eaa225a708f57be987c9624d7322.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lhkg6"]
 atlas = SubResource("CompressedTexture2D_a3rjh")
-region = Rect2(32, 32, 16, 8)
+region = Rect2(16, 16, 16, 16)
 
 [resource]
-script = ExtResource("1_1e4df")
-item_name = "Bread"
+script = ExtResource("1_7n63m")
+item_name = "Steak"
 sprite = SubResource("AtlasTexture_lhkg6")
-value = 10
-types = Array[int]([64, 32])
+value = 28
+types = Array[int]([1])
