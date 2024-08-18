@@ -22,6 +22,8 @@ static func generate_random_rule(size : Vector2i, placed : Array[Item]) -> Rule:
 				rule = EmptyCellRule.generate_valid_rule(size, placed)
 			3:
 				rule = AmountRule.generate_valid_rule(size, placed)
+			4:
+				rule = TypeRule.generate_valid_rule(size, placed)
 	return rule
 
 static func generate_puzzle(size : Vector2i) -> Array[Rule]:

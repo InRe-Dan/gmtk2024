@@ -39,7 +39,7 @@ enum Type {
 var type : int
 
 # Should be formatted in such a way that "I want NO x" makes sense
-var lookup_table : Dictionary = { # Type -> BBCode String
+static var lookup_table : Dictionary = { # Type -> BBCode String
 	Type.MEAT: "[color=#00FF00]Meat[/color]",
 	Type.LIQUID: "[color=#00FF00]Drinks[/color]",
 	Type.VEGETARIAN:  "[color=#00FF00]Vegetarian Food[/color]",

@@ -36,7 +36,6 @@ func is_identical_to(other : Rule) -> bool:
 	if other is not AmountRule:
 		return false
 	var o : AmountRule = other as AmountRule
-	# Since arrays are sorted on set, this comparison is fine.
 	if item_name == o.item_name:
 		return true
 	return false
