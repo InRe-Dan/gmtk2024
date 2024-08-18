@@ -25,3 +25,8 @@ static func generate_valid_rule(gridsize : Vector2i, items : Array[Item]) -> Rul
 func is_identical_to(other : Rule) -> bool:
 	push_error("Unimplemented Rule.is_identical_to")
 	return false
+	
+# Returns true if the rule should be compatible with puzzle parameters
+# Default implementation returns true
+func is_compatible_with_puzzle(gridsize : Vector2i, rules : Array[Rule]) -> bool:
+	return true
