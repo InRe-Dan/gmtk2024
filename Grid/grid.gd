@@ -8,6 +8,7 @@ extends Control
 var held_item: GridItem = null
 var current_slot: GridSlot = null
 var can_place: bool = false
+var drag_offset: Vector2i = Vector2i.ZERO
 
 var row_count: int
 var col_count: int
@@ -24,7 +25,7 @@ func _ready() -> void:
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if held_item:
-		held_item.drag(delta)
+		held_item.drag(drag_offset, delta)
 
 
 func _input(event: InputEvent) -> void:
@@ -103,15 +104,21 @@ func place_item() -> void:
 	if not held_item or not is_instance_valid(held_item): return
 	if not can_place or not current_slot: return
 	
+	# Grab slot corresponding to root of the item
+	var root_slot: GridSlot
+	var root_pos: Vector2i = current_slot.grid_position - drag_offset
+	if root_pos.x >= 0 and root_pos.x < col_count and root_pos.y >= 0 and root_pos.y < row_count:
+		root_slot = matrix[root_pos.y][root_pos.x]
+	else:
+		return
+		
 	var item: GridItem = held_item
-	var root_slot: GridSlot = current_slot
 	var slots: Array[GridSlot]
 	
 	held_item = null
-	current_slot = null
 	
 	# Iterate over slot positions
-	for grid_pos in get_slot_positions(root_slot, item.item):
+	for grid_pos in get_slot_positions(current_slot, item.item):
 		var slot: GridSlot = null
 		
 		# Check if the relative grid position exists outside the grid bounds
@@ -128,8 +135,9 @@ func place_item() -> void:
 	item.root_slot = root_slot
 	item.position = root_slot.position
 	
+	drag_offset = Vector2i.ZERO
 	_on_slot_mouse_exited()
-	_on_slot_mouse_entered(root_slot)
+	_on_slot_mouse_entered(current_slot)
 
 
 ## Attempts to pick up an item in the hovered slot
@@ -144,9 +152,14 @@ func pick_item() -> void:
 	var root_slot: GridSlot = held_item.root_slot
 	var slots: Array[GridSlot]
 	
+	drag_offset = Vector2i.ZERO
+	
 	# Iterate over slot positions and nullify respective slot's stored item field
 	for grid_pos in get_slot_positions(root_slot, held_item.item):
 		(matrix[grid_pos.y][grid_pos.x] as GridSlot).item_stored = null
+	
+	drag_offset = current_slot.grid_position - root_slot.grid_position
+	print(current_slot.grid_position, root_slot.grid_position)
 	
 	_on_slot_mouse_exited()
 	_on_slot_mouse_entered(current_slot)
@@ -159,7 +172,7 @@ func get_slot_positions(slot: GridSlot, item: Item) -> Array[Vector2i]:
 	
 	# Iterate over all of the cell positions relative to the root (0, 0) cell
 	for relative_position: Vector2i in item.relative_cells:
-		positions.append(slot.grid_position + relative_position)
+		positions.append(slot.grid_position + relative_position - drag_offset)
 
 	return positions
 

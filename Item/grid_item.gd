@@ -16,8 +16,8 @@ func _ready() -> void:
 
 
 ## Called every frame to drag the food to the cursor
-func drag(delta: float) -> void:
-	global_position = lerp(global_position, get_global_mouse_position() - Globals.cell_size_half, delta * Globals.drag_speed)
+func drag(drag_offset: Vector2i, delta: float) -> void:
+	global_position = lerp(global_position, get_global_mouse_position() - Globals.cell_size_half - Vector2(drag_offset * Globals.cell_size), delta * Globals.drag_speed)
 
 
 ## Initializes this item
