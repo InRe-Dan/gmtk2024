@@ -33,7 +33,7 @@ func initialize(new_item: Item) -> void:
 ## Item is picked up
 func pickup() -> void:
 	z_index = 100
-	scale = Vector2(1.1, 1.1)
+	scale = Vector2(1.125, 1.125)
 	highlight(true)
 	
 	
