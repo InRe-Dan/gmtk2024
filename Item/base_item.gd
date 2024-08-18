@@ -16,6 +16,7 @@ LEFT = 3}
 		
 ## Monetary value of the item
 @export var value: int = 0
+@export var text_colour : Color = Color.BLACK
 
 # This might have to be a more complex type than just an enum since foods might have different types.
 enum Type {
@@ -37,6 +38,18 @@ enum Type {
 		types = a
 var type : int
 
+# Should be formatted in such a way that "I want NO x" makes sense
+var lookup_table : Dictionary = { # Type -> BBCode String
+	Type.MEAT: "[color=#00FF00]Meat[/color]",
+	Type.LIQUID: "[color=#00FF00]Drinks[/color]",
+	Type.VEGETARIAN:  "[color=#00FF00]Vegetarian Food[/color]",
+	Type.FRUIT: "[color=#00FF00]Fruits[/color]",
+	Type.VEGETABLE: "[color=#00FF00]Vegetables[/color]",
+	Type.VEGAN: "[color=#00FF00]Vegan Food[/color]",
+	Type.BAKED_GOODS: "[color=#00FF00]Baked Goods[/color]",
+	Type.SEAFOOD: "[color=#00FF00]Seafood[/color]",
+	Type.DAIRY: "[color=#00FF00]Dairy[/color]",
+}
 
 
 # Placement is null for unplaced items
