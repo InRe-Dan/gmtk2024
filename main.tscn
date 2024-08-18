@@ -1,5 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bsne7661tkcrm"]
 
+[ext_resource type="Script" path="res://main.gd" id="1_gcs5n"]
 [ext_resource type="Script" path="res://Item/item_list.gd" id="1_eu7ty"]
 [ext_resource type="PackedScene" uid="uid://gn35k16s7xxk" path="res://Grid/grid.tscn" id="1_mxj2h"]
 
@@ -33,6 +34,7 @@ theme_override_constants/separation = 0
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_eu7ty")
+script = ExtResource("1_gcs5n")
 
 [node name="Grid" parent="VBoxContainer/Workspace" instance=ExtResource("1_mxj2h")]
 custom_minimum_size = Vector2(64, 64)

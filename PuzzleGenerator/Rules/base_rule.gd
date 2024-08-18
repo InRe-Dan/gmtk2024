@@ -22,3 +22,6 @@ static func generate_valid_rule(gridsize : Vector2i, items : Array[Item]) -> Rul
 	push_error("Unimplemented Rule.Generate_valid_rule")
 	return null
 	
+func is_identical_to(other : Rule) -> bool:
+	push_error("Unimplemented Rule.is_identical_to")
+	return false

@@ -18,9 +18,19 @@ func get_dragon_request() -> Control:
 func get_debug_request() -> String:
 	return "%s expected in position (%s, %s)" % [item_name, position.x, position.y]
 	
+func is_identical_to(other : Rule) -> bool:
+	if other is not IsInPositionRule:
+		return false
+	var o : IsInPositionRule = other as IsInPositionRule
+	if position != o.position:
+		return false
+	if item_name != o.item_name:
+		return false
+	return true
+	
 static func generate_valid_rule(gridsize : Vector2i, items : Array[Item]) -> Rule:
 	var random_item : Item = items.pick_random()
-	var random_position : Vector2i = random_item.placement.get_tiles().pick_random()
+	var random_position : Vector2i = random_item.placement.actual_cells.pick_random()
 	var rule : IsInPositionRule = IsInPositionRule.new()
 	rule.item_name = random_item.item_name
 	rule.position = random_position
