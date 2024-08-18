@@ -22,7 +22,7 @@ ItemLoader="*res://item_loader.gd"
 
 [display]
 
-window/size/viewport_width=128
+window/size/viewport_width=227
 window/size/viewport_height=128
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_width"
@@ -42,11 +42,20 @@ folder_colors={
 "res://PuzzleGenerator/": "blue"
 }
 
+[gui]
+
+theme/custom_font="res://Assets/Font/undead11.ttf"
+
 [input]
 
 submit={
 "deadzone": 0.5,
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(223, 26),"global_position":Vector2(239, 106),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+cancel={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(302, 6),"global_position":Vector2(318, 86),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
 spawn_item={

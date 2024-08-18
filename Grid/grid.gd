@@ -24,21 +24,28 @@ func _ready() -> void:
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if held_item:
+	if held_item and is_instance_valid(held_item):
 		held_item.drag(drag_offset, delta)
 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("submit"):
-		if held_item:
+		if held_item and is_instance_valid(held_item):
 			place_item()
 		else:
 			pick_item()
 	
+	if event.is_action_pressed("cancel"):
+		if held_item and is_instance_valid(held_item):
+			held_item.queue_free()
+			held_item = null
+			_on_slot_mouse_exited()
+			_on_slot_mouse_entered(current_slot)
+	
 	# TODO: REMOVE (testing stuff)
 	if event.is_action_pressed("spawn_item"):
 		var new_item: GridItem = grid_item_scene.instantiate()
-		new_item.initialize(load("res://Item/Items/drumstick.tres"))
+		new_item.initialize(load("res://Item/Items/cherry.tres"))
 		held_item = new_item
 		held_item.pickup()
 		add_child(new_item)
@@ -50,7 +57,7 @@ func _input(event: InputEvent) -> void:
 func _on_slot_mouse_entered(slot: GridSlot) -> void:
 	current_slot = slot
 	
-	if held_item:
+	if held_item and is_instance_valid(held_item):
 		can_place = check_slot_availability(get_slot_positions(current_slot, held_item.item))
 	else:
 		slot.set_color(GridSlot.State.SELECTED)
@@ -62,6 +69,8 @@ func _on_slot_mouse_exited() -> void:
 	for row: Array[GridSlot] in matrix:
 		for grid_slot: GridSlot in row:
 			grid_slot.set_color(GridSlot.State.DEFAULT)
+			if is_instance_valid(grid_slot.item_stored):
+				grid_slot.item_stored.highlight(false)
 
 
 ## Initializes the grid to be a certain size
@@ -69,8 +78,8 @@ func initialize(columns: int, rows: int) -> void:
 	if initialized: return
 	initialized = true
 	
-	row_count = rows
-	col_count = columns
+	row_count = min(Globals.max_grid_size.y, rows)
+	col_count = min(Globals.max_grid_size.x, columns)
 	matrix = []
 	
 	# Resize grid to fit columns and rows specification
@@ -120,8 +129,6 @@ func place_item() -> void:
 	
 	# Iterate over slot positions
 	for grid_pos in get_slot_positions(current_slot, item.item):
-		var slot: GridSlot = null
-		
 		# Check if the relative grid position exists outside the grid bounds
 		if grid_pos.x >= 0 and grid_pos.x < col_count and grid_pos.y >= 0 and grid_pos.y < row_count:
 			slots.append(matrix[grid_pos.y][grid_pos.x])
@@ -153,7 +160,6 @@ func pick_item() -> void:
 		return
 	
 	var root_slot: GridSlot = held_item.root_slot
-	var slots: Array[GridSlot]
 	
 	drag_offset = Vector2i.ZERO
 	

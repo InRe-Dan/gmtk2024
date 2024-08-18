@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://bux77i7hj3wfr"]
+
+[ext_resource type="Script" path="res://Item/list_item.gd" id="1_bjjaf"]
+[ext_resource type="Texture2D" uid="uid://bv55l0m1j1lcb" path="res://icon.svg" id="1_g5iib"]
+[ext_resource type="FontFile" uid="uid://d0g7r7ojp0qqk" path="res://Assets/Font/undead11.ttf" id="2_xl3kf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xq4vk"]
+bg_color = Color(0.31, 0.31, 0.31, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gr8g7"]
+bg_color = Color(0.16, 0.16, 0.16, 1)
+
+[node name="ListItem" type="Button"]
+custom_minimum_size = Vector2(0, 13)
+size_flags_horizontal = 3
+theme_override_styles/hover = SubResource("StyleBoxFlat_xq4vk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gr8g7")
+script = ExtResource("1_bjjaf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 13)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 1
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(13, 0)
+layout_mode = 2
+texture = ExtResource("1_g5iib")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ItemName" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_xl3kf")
+theme_override_font_sizes/font_size = 11
+text = "Item Name"

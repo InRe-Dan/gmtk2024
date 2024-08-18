@@ -3,8 +3,8 @@ extends Node
 # To prevent program-wide state changes, this always returns a duplicate.
 var items : Array[Item]:
 	get:
-		var copy : Array[Item]
-		for item :Item in items:
+		var copy: Array[Item]
+		for item: Item in items:
 			copy.append(item.duplicate())
 		return copy
 

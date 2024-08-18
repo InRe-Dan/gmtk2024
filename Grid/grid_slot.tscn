@@ -3,10 +3,8 @@
 [ext_resource type="Script" path="res://Grid/grid_slot.gd" id="1_cfmii"]
 
 [node name="GridSlot" type="TextureRect"]
-custom_minimum_size = Vector2(16, 16)
 offset_right = 40.0
 offset_bottom = 40.0
-expand_mode = 1
 script = ExtResource("1_cfmii")
 
 [node name="Status" type="ColorRect" parent="."]
