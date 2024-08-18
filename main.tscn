@@ -80,9 +80,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -1.0
-offset_top = -16.0
+offset_top = -89.0
 offset_right = 15.0
-offset_bottom = -16.0
+offset_bottom = -73.0
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("2_egt1c")
@@ -136,13 +136,15 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
 [node name="Zoner" type="Control" parent="VBoxContainer/Workspace"]
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 
 [node name="Grid" parent="VBoxContainer/Workspace/Zoner" instance=ExtResource("1_mxj2h")]
 layout_mode = 0
+scale = Vector2(2, 2)
 
 [node name="InfoBox" type="VBoxContainer" parent="VBoxContainer/Workspace"]
+z_index = 5
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 theme_override_constants/separation = 1
@@ -168,6 +170,7 @@ text = "Price: [color=ffe600]$0[/color]"
 fit_content = true
 
 [node name="Submit" type="Button" parent="VBoxContainer/Workspace/InfoBox"]
+z_index = 6
 layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("2_jskw5")
@@ -177,6 +180,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_h4x35")
 text = "Submit"
 
 [node name="Dragon" parent="." instance=ExtResource("8_prxji")]
-position = Vector2(209, 67)
+position = Vector2(443, 119)
+scale = Vector2(2, 2)
 
 [connection signal="pressed" from="VBoxContainer/Workspace/InfoBox/Submit" to="VBoxContainer/Workspace/InfoBox" method="_on_submit_pressed"]

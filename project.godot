@@ -22,10 +22,10 @@ ItemLoader="*res://item_loader.gd"
 
 [display]
 
-window/size/viewport_width=227
-window/size/viewport_height=128
-window/size/window_width_override=1362
-window/size/window_height_override=768
+window/size/viewport_width=480
+window/size/viewport_height=270
+window/size/window_width_override=1440
+window/size/window_height_override=810
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_width"
 window/vsync/vsync_mode=0
