@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="PuzzleList" load_steps=9 format=3 uid="uid://dg1y345lqtryf"]
+
+[ext_resource type="Script" path="res://FixedPuzzles/puzzle.gd" id="1_m4aa0"]
+[ext_resource type="Script" path="res://FixedPuzzles/puzzle_list.gd" id="2_heqo0"]
+[ext_resource type="Script" path="res://PuzzleGenerator/Rules/base_rule.gd" id="2_jfvm1"]
+[ext_resource type="Script" path="res://PuzzleGenerator/Rules/amount.gd" id="3_1510o"]
+[ext_resource type="Script" path="res://PuzzleGenerator/Rules/is_in_position.gd" id="4_3yyor"]
+
+[sub_resource type="Resource" id="Resource_0c6pa"]
+script = ExtResource("3_1510o")
+min = 1
+max = -1
+item_name = "Drumstick"
+
+[sub_resource type="Resource" id="Resource_yp7yg"]
+script = ExtResource("4_3yyor")
+item_name = "Drumstick"
+position = Vector2i(1, 1)
+
+[sub_resource type="Resource" id="Resource_qcxip"]
+script = ExtResource("1_m4aa0")
+tray_width = 3
+tray_height = 3
+rules = Array[ExtResource("2_jfvm1")]([SubResource("Resource_0c6pa"), SubResource("Resource_yp7yg")])
+
+[resource]
+script = ExtResource("2_heqo0")
+list = Array[ExtResource("1_m4aa0")]([SubResource("Resource_qcxip")])

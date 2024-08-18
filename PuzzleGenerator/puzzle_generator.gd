@@ -4,6 +4,7 @@ class_name PuzzleGenerator extends RefCounted
 
 func _init() -> void:
 	push_error("PuzzleGenerator._init was called. Class is expected to be used statically.")
+	assert(false)
 
 static func generate_random_rule(size : Vector2i, placed : Array[Item]) -> Rule:
 	var rule : Rule
