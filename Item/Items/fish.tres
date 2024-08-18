@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://djimfhnfnd5rq"]
+
+[ext_resource type="Script" path="res://Item/base_item.gd" id="1_mgmnl"]
+[ext_resource type="Texture2D" uid="uid://dqpgpndnt1v6m" path="res://Assets/food1.png" id="2_o6pkk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5v8li"]
+atlas = ExtResource("2_o6pkk")
+region = Rect2(32, 16, 16, 16)
+
+[resource]
+script = ExtResource("1_mgmnl")
+item_name = "Fish"
+sprite = SubResource("AtlasTexture_5v8li")
+value = 24
+types = Array[int]([1, 128])
