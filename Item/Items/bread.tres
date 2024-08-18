@@ -8,4 +8,4 @@ script = ExtResource("1_1e4df")
 item_name = "Bread"
 sprite = ExtResource("2_clus4")
 value = 12
-type = 0
+types = Array[int]([64, 32, 4])
