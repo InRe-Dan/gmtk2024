@@ -36,7 +36,12 @@ func _input(event: InputEvent) -> void:
 			pick_item()
 	
 	if event.is_action_pressed("cancel"):
-		if held_item and is_instance_valid(held_item):
+		trash_item()
+
+
+## Trashes held item
+func trash_item() -> void:
+	if held_item and is_instance_valid(held_item):
 			held_item.queue_free()
 			held_item = null
 			drag_offset = Vector2i.ZERO
@@ -46,6 +51,7 @@ func _input(event: InputEvent) -> void:
 
 ## New item selected
 func _on_new_item_selected(item: Item) -> void:
+	trash_item()
 	var new_item: GridItem = grid_item_scene.instantiate()
 	new_item.initialize(item)
 	held_item = new_item
