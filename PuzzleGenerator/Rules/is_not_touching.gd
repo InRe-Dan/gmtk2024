@@ -19,7 +19,7 @@ func is_valid(gridsize : Vector2i, placed : Array[Item]) -> bool:
 		for two in placed: 
 			if one.item_name == two.item_name:
 				continue
-			if check_touch(one, two):
+			if check_touch(one, two) and one in item_names and two in item_names:
 				return false
 	return true
 
