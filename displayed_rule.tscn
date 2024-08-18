@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbueu0drsq8jr"]
+[gd_scene load_steps=3 format=3 uid="uid://c3t44a26mblyp"]
 
 [ext_resource type="FontFile" uid="uid://d0g7r7ojp0qqk" path="res://Assets/Font/undead11.ttf" id="1_066qa"]
 [ext_resource type="Script" path="res://displayed_rule.gd" id="1_oc5xl"]
