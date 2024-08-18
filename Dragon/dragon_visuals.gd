@@ -10,7 +10,7 @@ var time : float = 0
 func _ready() -> void:
 	var first_neck : Sprite2D = $Node2D/Neck
 	neck_pieces = [first_neck]
-	for i in range(16):
+	for i in range(24):
 		var new : Sprite2D = first_neck.duplicate()
 		new.position.y += 4 * i
 		neck_pieces.append(new)
