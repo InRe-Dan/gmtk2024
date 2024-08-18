@@ -8,4 +8,4 @@ script = ExtResource("1_icoew")
 item_name = "Cherry"
 sprite = ExtResource("2_83kys")
 value = 4
-type = 0
+types = Array[int]([])
