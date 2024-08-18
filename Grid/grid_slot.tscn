@@ -1,10 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqqymjitdg3j6"]
+[gd_scene load_steps=3 format=3 uid="uid://dqqymjitdg3j6"]
 
 [ext_resource type="Script" path="res://Grid/grid_slot.gd" id="1_cfmii"]
+[ext_resource type="Texture2D" uid="uid://bip2f6sim8658" path="res://Assets/grid_slot.png" id="1_g4rbd"]
 
 [node name="GridSlot" type="TextureRect"]
+texture_filter = 1
 offset_right = 40.0
 offset_bottom = 40.0
+texture = ExtResource("1_g4rbd")
 script = ExtResource("1_cfmii")
 
 [node name="Status" type="ColorRect" parent="."]
