@@ -29,9 +29,9 @@ func get_debug_request() -> String:
 # Slightly different here. There shouldn't be more than two rules involving the same item 
 # so we return true in that case so that the other rule gets discarded.
 func is_identical_to(other : Rule) -> bool:
-	if other is not AmountRule:
-		return false
-	return true
+	if other is ValueRule:
+		return true
+	return false
 
 static func generate_valid_rule(gridsize : Vector2i, items : Array[Item]) -> Rule:
 	var rule : ValueRule = ValueRule.new()
