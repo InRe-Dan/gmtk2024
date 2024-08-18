@@ -20,4 +20,4 @@ func _on_submit_pressed() -> void:
 
 ## Slot coordinate changed
 func _on_slot_coordinate_changed(pos: Vector2i) -> void:
-	coordinate_label.text = str(pos)
+	coordinate_label.text = str(Vector2i(pos.y, pos.x))
