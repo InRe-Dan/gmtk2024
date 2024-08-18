@@ -27,3 +27,15 @@ func initialize(new_item: Item) -> void:
 	
 	item = new_item
 	name = item.item_name
+	
+
+## Item is picked up
+func pickup() -> void:
+	z_index = 100
+	scale = Vector2(1.1, 1.1)
+	
+	
+## Item is placed down
+func place() -> void:
+	z_index = 0
+	scale = Vector2(1, 1)

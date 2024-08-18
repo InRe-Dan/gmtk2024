@@ -40,6 +40,7 @@ func _input(event: InputEvent) -> void:
 		var new_item: GridItem = grid_item_scene.instantiate()
 		new_item.initialize(load("res://Item/Items/drumstick.tres"))
 		held_item = new_item
+		held_item.pickup()
 		add_child(new_item)
 		if current_slot:
 			_on_slot_mouse_entered(current_slot)
@@ -134,6 +135,7 @@ func place_item() -> void:
 	# Submit item at position
 	item.root_slot = root_slot
 	item.position = root_slot.position
+	item.place()
 	
 	drag_offset = Vector2i.ZERO
 	_on_slot_mouse_exited()
@@ -146,6 +148,7 @@ func pick_item() -> void:
 
 	if is_instance_valid(current_slot.item_stored):
 		held_item = current_slot.item_stored
+		held_item.pickup()
 	else:
 		return
 	
@@ -159,7 +162,6 @@ func pick_item() -> void:
 		(matrix[grid_pos.y][grid_pos.x] as GridSlot).item_stored = null
 	
 	drag_offset = current_slot.grid_position - root_slot.grid_position
-	print(current_slot.grid_position, root_slot.grid_position)
 	
 	_on_slot_mouse_exited()
 	_on_slot_mouse_entered(current_slot)
