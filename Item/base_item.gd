@@ -1,6 +1,10 @@
 class_name Item extends Resource
 
-enum Rotation {NONE, RIGHT, DOWN, LEFT}
+# Default rotation is UP
+enum Rotation {NONE = 3, 
+RIGHT = 0, 
+DOWN = 1, 
+LEFT = 2}
 
 @export var item_name : String
 @export var sprite : Texture2D:
@@ -12,22 +16,31 @@ enum Rotation {NONE, RIGHT, DOWN, LEFT}
 @export var type : int # placeholder type
 var placement : Placement
 
-# TODO: REMOVE (used for testing until later)
-# TODO: following above ^, set texture size to match placement size
 var relative_cells: Array[Vector2i]
+
+static func rotate_clockwise(v : Vector2i) -> Vector2i:
+	# Matrix multiplication
+	#  0 1 * x =  0 * x + 1 * y
+	# -1 0   y   -1 * x + 0 * y
+	return Vector2i(v.y, -v.x)
 
 class Placement extends RefCounted:
 	var relative_cells: Array[Vector2i]
+	var actual_cells : Array[Vector2i]
 	var item : Item
-	func get_cell() -> Array[Vector2i]:
-		# TODO return all cell positions on the grid used by this placement
-		return []
+	var rotation : Item.Rotation
+	var position : Vector2i
+	func _init(i : Item, pos : Vector2i, rot : Item.Rotation) -> void:
+		item = i
+		position = pos
+		for cell : Vector2i in item.relative_cells:
+			for r in range(rotation):
+				cell = Item.rotate_clockwise(cell)
+			relative_cells.append(cell)
+			actual_cells.append(cell + position)
 
-func get_placement(rotation : Rotation, position : Vector2i) -> Placement:
-	
-	# Generate placement object for this item, taking size/shape into account
-	# Just return it
-	return null
+func get_placement(position : Vector2i, rotation : Rotation) -> Placement:
+	return Placement.new(self, position, rotation)
 
 func try_place(grid_size : Vector2i, placed : Array[Item], placement : Placement) -> bool:
 	# Assess grid to see if object can be placed here
