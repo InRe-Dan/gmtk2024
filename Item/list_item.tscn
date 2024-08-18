@@ -13,6 +13,7 @@ bg_color = Color(0.16, 0.16, 0.16, 1)
 [node name="ListItem" type="Button"]
 custom_minimum_size = Vector2(0, 13)
 size_flags_horizontal = 3
+focus_mode = 0
 theme_override_styles/hover = SubResource("StyleBoxFlat_xq4vk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gr8g7")
 script = ExtResource("1_bjjaf")
@@ -25,7 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 1
+theme_override_constants/separation = 4
 
 [node name="Icon" type="TextureRect" parent="HBoxContainer"]
 custom_minimum_size = Vector2(13, 0)
@@ -40,3 +41,5 @@ size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("2_xl3kf")
 theme_override_font_sizes/font_size = 11
 text = "Item Name"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -29,6 +29,7 @@ func is_identical_to(other : Rule) -> bool:
 	return true
 	
 static func generate_valid_rule(gridsize : Vector2i, items : Array[Item]) -> Rule:
+	if items.size() == 0: return null 
 	var random_item : Item = items.pick_random()
 	var random_position : Vector2i = random_item.placement.actual_cells.pick_random()
 	var rule : IsInPositionRule = IsInPositionRule.new()

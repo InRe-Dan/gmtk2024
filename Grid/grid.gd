@@ -41,16 +41,17 @@ func _input(event: InputEvent) -> void:
 			held_item = null
 			_on_slot_mouse_exited()
 			_on_slot_mouse_entered(current_slot)
-	
-	# TODO: REMOVE (testing stuff)
-	if event.is_action_pressed("spawn_item"):
-		var new_item: GridItem = grid_item_scene.instantiate()
-		new_item.initialize(load("res://Item/Items/cherry.tres"))
-		held_item = new_item
-		held_item.pickup()
-		add_child(new_item)
-		if current_slot:
-			_on_slot_mouse_entered(current_slot)
+
+
+## New item selected
+func _on_new_item_selected(item: Item) -> void:
+	var new_item: GridItem = grid_item_scene.instantiate()
+	new_item.initialize(item)
+	held_item = new_item
+	held_item.pickup()
+	add_child(new_item)
+	if current_slot:
+		_on_slot_mouse_entered(current_slot)
 
 
 ## Mouse hovered grid slot

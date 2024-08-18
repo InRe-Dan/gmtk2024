@@ -35,6 +35,7 @@ static func generate_puzzle(size : Vector2i) -> Array[Rule]:
 		var new_rule : Rule = generate_random_rule(size, items_placed)
 		var clash : bool = false
 		for rule : Rule in result_rules:
+			if not rule: continue
 			if rule.is_identical_to(new_rule):
 				attempts += 1
 				clash = true
@@ -47,6 +48,7 @@ static func generate_puzzle(size : Vector2i) -> Array[Rule]:
 	print("Items   : ", items_placed.map(func (i): return i.item_name))
 	print("Rules   :")
 	for rule : Rule in result_rules:
+		if not rule: continue
 		print("    ", rule.get_debug_request())
 	print("==========================")
 	
