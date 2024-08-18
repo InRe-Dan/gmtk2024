@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbueu0drsq8jr"]
+
+[ext_resource type="FontFile" uid="uid://d0g7r7ojp0qqk" path="res://Assets/Font/undead11.ttf" id="1_066qa"]
+[ext_resource type="Script" path="res://displayed_rule.gd" id="1_oc5xl"]
+
+[node name="Rule" type="ColorRect"]
+custom_minimum_size = Vector2(0, 11)
+color = Color(0.32, 0.32, 0.32, 0.552941)
+script = ExtResource("1_oc5xl")
+
+[node name="Condition" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_066qa")
+theme_override_font_sizes/normal_font_size = 11
+bbcode_enabled = true
+text = "Condition"
+fit_content = true

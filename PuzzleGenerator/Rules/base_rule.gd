@@ -7,9 +7,9 @@ func is_valid(gridsize : Vector2i, placed : Array[Item]) -> bool:
 
 # Return a node representing the request for this rule
 # Node type TBD, Control is a placeholder
-func get_dragon_request() -> Control:
+func get_dragon_request() -> String:
 	push_error("Unimplemented Rule.get_dragon_request")
-	return null
+	return ""
 
 # Similar to get_dragon_request, but instead returns in a string
 # format to be used in debug and development

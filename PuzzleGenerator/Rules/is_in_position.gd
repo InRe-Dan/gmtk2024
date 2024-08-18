@@ -10,10 +10,8 @@ func is_valid(gridsize : Vector2i, placed : Array[Item]) -> bool:
 			return true
 	return false
 
-func get_dragon_request() -> Control:
-	var label : Label = Label.new()
-	label.text = get_debug_request()
-	return label
+func get_dragon_request() -> String:
+	return "%s at [color=black](%s, %s)[/color]" % [item_name, position.x, position.y]
 
 func get_debug_request() -> String:
 	return "%s expected in position (%s, %s)" % [item_name, position.x, position.y]

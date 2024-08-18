@@ -1,6 +1,7 @@
 extends Control
 
 @onready var grid: Grid = $VBoxContainer/Workspace/Zoner/Grid
+@onready var rule_list: VBoxContainer = $VBoxContainer/View/MarginContainer/NinePatchRect/MarginContainer/RuleList
 
 var current_puzzle: Puzzle = null
 
@@ -18,6 +19,17 @@ func generate_puzzle() -> void:
 	var grid_size: Vector2i = Vector2i(randi_range(3, Globals.max_grid_size.x), randi_range(3, Globals.max_grid_size.y))
 	current_puzzle = PuzzleGenerator.generate_puzzle(grid_size)
 	grid.initialize(grid_size.x, grid_size.y)
+	
+	# Clear rules
+	for i in range(1, 5):
+		var displayed_rule: DisplayedRule = rule_list.get_node("Rule" + str(i))
+		displayed_rule.update_label("")
+	
+	# Populate rule interface with rule conditions
+	for i in range(1, min(4, current_puzzle.rules.size()) + 1):
+		var displayed_rule: DisplayedRule = rule_list.get_node("Rule" + str(i))
+		if is_instance_valid(displayed_rule):
+			displayed_rule.update_label(current_puzzle.rules[i - 1].get_dragon_request())
 
 
 ## Grid cleared

@@ -8,10 +8,8 @@ func is_valid(gridsize : Vector2i, placed : Array[Item]) -> bool:
 			return false
 	return true
 
-func get_dragon_request() -> Control:
-	var label : Label = Label.new()
-	label.text = get_debug_request()
-	return label
+func get_dragon_request() -> String:
+	return "Give %s [color=red]ONLY[/color]" % [Item.lookup_table[type]]
 
 func get_debug_request() -> String:
 	return "I want only %s" % [Item.lookup_table[type]]

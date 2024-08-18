@@ -15,10 +15,15 @@ func is_valid(gridsize : Vector2i, placed : Array[Item]) -> bool:
 		return false
 	return true
 
-func get_dragon_request() -> Control:
-	var label : Label = Label.new()
-	label.text = get_debug_request()
-	return label
+func get_dragon_request() -> String:
+	if min == max:
+		return "%s exactly [color=black]%s[/color]" % [item_name, min]
+	elif min > 0 and max > 0:
+		return "%s between [color=black]%s[/color] and [color=black]%s[/color]" % [item_name, min, max]
+	elif min > 0:
+		return "%s more than [color=black]%s[/color]" % [item_name, max]
+	else:
+		return "%s less than [color=black]%s[/color]" % [item_name, max]
 
 func get_debug_request() -> String:
 	if min == max:
