@@ -81,7 +81,7 @@ class Placement extends RefCounted:
 			for r in range(rotation):
 				cell = Item.rotate_clockwise(cell)
 			relative_cells.append(cell)
-			actual_cells.append(cell + position)
+			actual_cells.append(Vector2i(cell.y + position.y, cell.x+ position.x))
 
 # Gets a possible placement for the current item with a given position and rotation
 # Does not do any validation. This should be done with Item.try_place
