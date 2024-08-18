@@ -1,6 +1,12 @@
 extends Node
 
-var items : Array[Item]
+# To prevent program-wide state changes, this always returns a duplicate.
+var items : Array[Item]:
+	get:
+		var copy : Array[Item]
+		for item :Item in items:
+			copy.append(item.duplicate())
+		return copy
 
 
 ## Called when the node enters the scene tree for the first time.
