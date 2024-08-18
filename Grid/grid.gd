@@ -138,8 +138,8 @@ func initialize(columns: int, rows: int) -> void:
 	$ColorRect.size = custom_minimum_size
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "position", Vector2(
-		(Globals.cell_size.x * Globals.max_grid_size.x) / col_count,
-		(Globals.cell_size.y * Globals.max_grid_size.y) / row_count), Globals.grid_tween_time)
+		(Globals.max_grid_size.x - col_count) * Globals.cell_size_half.x,
+		(Globals.max_grid_size.y - row_count) * Globals.cell_size_half.y), Globals.grid_tween_time)
 	tween.tween_callback(make_ready)
 	tween.play()
 	

@@ -18,7 +18,7 @@ func _ready() -> void:
 
 ## Called every frame to drag the food to the cursor
 func drag(drag_offset: Vector2i, delta: float) -> void:
-	global_position = lerp(global_position, get_global_mouse_position() - Globals.cell_size_half - Vector2(drag_offset * Globals.cell_size), delta * Globals.drag_speed)
+	global_position = lerp(global_position, get_global_mouse_position() - Globals.cell_size_half - Vector2(Vector2i(drag_offset.y, drag_offset.x) * Globals.cell_size), delta * Globals.drag_speed)
 
 
 ## Initializes this item
@@ -33,7 +33,7 @@ func initialize(new_item: Item) -> void:
 ## Item is picked up
 func pickup() -> void:
 	z_index = 100
-	scale = Vector2(1.1, 1.1)
+	scale = Vector2(1.125, 1.125)
 	highlight(true)
 	
 	
