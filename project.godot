@@ -24,6 +24,8 @@ ItemLoader="*res://item_loader.gd"
 
 window/size/viewport_width=227
 window/size/viewport_height=128
+window/size/window_width_override=1362
+window/size/window_height_override=768
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_width"
 window/vsync/vsync_mode=0
