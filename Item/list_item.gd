@@ -5,6 +5,7 @@ signal item_pressed(list_item)
 
 @onready var item_name_label: Label = $HBoxContainer/ItemName
 @onready var item_icon_rect: TextureRect = $HBoxContainer/Icon
+@onready var item_price_label: Label = $HBoxContainer/Price
 
 var item: Item
 
@@ -20,6 +21,7 @@ func initialize(new_item: Item) -> void:
 	
 	item_name_label.text = item.item_name
 	item_icon_rect.texture = item.sprite
+	item_price_label.text = "$" + str(item.value)
 
 
 ## Item was pressed

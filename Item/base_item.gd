@@ -13,6 +13,9 @@ LEFT = 3}
 	set(value):
 		sprite = value
 		init_relative_cells()
+		
+## Monetary value of the item
+@export var value: int = 0
 
 # This might have to be a more complex type than just an enum since foods might have different types.
 @export var type : int # placeholder type
