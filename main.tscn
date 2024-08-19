@@ -187,7 +187,7 @@ size_flags_vertical = 4
 theme_override_fonts/normal_font = ExtResource("2_jskw5")
 theme_override_font_sizes/normal_font_size = 11
 bbcode_enabled = true
-text = " Points: [color=gold]0[/color]"
+text = "Points: [color=gold]0[/color]"
 fit_content = true
 autowrap_mode = 0
 
@@ -211,7 +211,7 @@ size_flags_vertical = 4
 theme_override_fonts/normal_font = ExtResource("2_jskw5")
 theme_override_font_sizes/normal_font_size = 11
 bbcode_enabled = true
-text = " Items: [color=gray]0[/color]"
+text = "Items: [color=gray]0[/color]"
 fit_content = true
 autowrap_mode = 0
 
@@ -234,7 +234,7 @@ size_flags_vertical = 4
 theme_override_fonts/normal_font = ExtResource("2_jskw5")
 theme_override_font_sizes/normal_font_size = 11
 bbcode_enabled = true
-text = " Price: [color=ffe600]$0[/color]"
+text = "Price: [color=ffe600]$0[/color]"
 fit_content = true
 autowrap_mode = 0
 

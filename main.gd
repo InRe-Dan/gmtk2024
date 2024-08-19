@@ -5,10 +5,12 @@ extends Control
 @onready var puzzle_timer: Timer = $PuzzleTimer
 @onready var timer_label: RichTextLabel = $VBoxContainer/Workspace/HBoxContainer/ColorRect/InfoBox/TimerLabel
 @onready var dragon: Dragon = $VBoxContainer/Dragon
+@onready var info_box: InfoBox = $VBoxContainer/Workspace/HBoxContainer/InfoBox
 
 var current_puzzle: Puzzle = null
 
 var anger: int = 0
+var points: int = 0
 
 
 ## Node entered the scene tree for the first time
@@ -75,13 +77,27 @@ func _on_solution_submitted(grid_items: Array[GridItem], gridsize: Vector2i) -> 
 	
 	rule_list.mark_failed(fail_list)
 	
-	if fail_list.size() == 0: anger -= 1
-	elif fail_list.size() == 1: anger = 0
-	elif fail_list.size() == 2: anger += 1
-	elif fail_list.size() > 4: anger += 5
-	elif fail_list.size() > 2: anger += 3
+	var multiplier: int = 0
+	if fail_list.size() == 0:
+		anger -= 1
+		multiplier = 2
+	elif fail_list.size() == 1:
+		anger = 0
+		multiplier = 1
+	elif fail_list.size() == 2:
+		anger += 1
+		multiplier = 1
+	elif fail_list.size() > 4:
+		anger += 5
+		multiplier = 0
+	elif fail_list.size() > 2:
+		anger += 3
+		multiplier = 0
 	anger = max(0, anger)
 	dragon.change_anger(anger + 1)
+	
+	points += (current_puzzle.rules.size() - fail_list.size()) * multiplier
+	info_box._on_points_changed(points)
 
 
 ## Out of time
