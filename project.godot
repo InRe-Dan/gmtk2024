@@ -47,6 +47,7 @@ folder_colors={
 
 [gui]
 
+timers/tooltip_delay_sec=0.1
 theme/custom_font="res://Assets/Font/undead11.ttf"
 
 [input]

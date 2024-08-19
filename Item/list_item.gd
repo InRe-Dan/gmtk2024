@@ -22,8 +22,20 @@ func initialize(new_item: Item) -> void:
 	item_name_label.text = item.item_name
 	item_icon_rect.texture = item.sprite
 	item_price_label.text = "$" + str(item.value)
+	
+	for type: Item.Type in item.types:
+		tooltip_text += Item.lookup_table[type]
+		tooltip_text += "  "
 
 
 ## Item was pressed
 func _on_pressed() -> void:
 	item_pressed.emit(self)
+
+
+## Custom tooltip ref
+func _make_custom_tooltip(for_text: String) -> Object:
+	var tooltip = preload("res://Item/list_tool_tip.tscn").instantiate()
+	tooltip.text = for_text
+	tooltip.modulate = Color(Color.WHITE, 1.1)
+	return tooltip

@@ -40,7 +40,7 @@ static var lookup_table : Dictionary = { # Type -> BBCode String
 	Type.MEAT: "[color=#c23616]Meat[/color]",
 	Type.FRUIT: "[color=#8e44ad]Fruit[/color]",
 	Type.VEGETABLE: "[color=#009432]Vegetable[/color]",
-	Type.SEAFOOD: "[color=#1B1464]Seafood[/color]",
+	Type.SEAFOOD: "[color=#3498db]Seafood[/color]",
 	Type.PASTRY: "[color=#f7d794]Pastry[/color]",
 	Type.DAIRY: "[color=#dff9fb]Dairy[/color]"
 }
