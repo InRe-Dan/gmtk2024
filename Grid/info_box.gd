@@ -12,7 +12,7 @@ signal grid_submitted
 
 ## Total grid price changed
 func _on_total_price_updated(price: int) -> void:
-	total_price_label.text = "Price: [color=ffe600]$" + str(price) + "[/color]"
+	total_price_label.text = "[center]Price: [color=ffe600]$" + str(price) + "[/color][/center]"
 
 
 ## Submit button pressed
@@ -27,9 +27,9 @@ func _on_slot_coordinate_changed(pos: Vector2i) -> void:
 
 ## Item count changed
 func _on_item_count_changed(amount: int) -> void:
-	item_count_label.text = "Items: [color=gray]" + str(amount) + "[/color]"
+	item_count_label.text = "[center]Items: [color=gray]" + str(amount) + "[/color][/center]"
 	
 
 ## Update point count
 func _on_points_changed(point_count: int) -> void:
-	point_count_label.text = "Points: [color=gold]" + str(point_count) + "[/color]"
+	point_count_label.text = "[center]Points: [color=gold]" + str(point_count) + "[/color][/center]"

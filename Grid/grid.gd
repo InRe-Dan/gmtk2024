@@ -145,7 +145,7 @@ func initialize(columns: int, rows: int, rules: Array[Rule]) -> void:
 	$Texture.size = custom_minimum_size + Vector2(16, 16)
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "position", Vector2(
-		(Globals.max_grid_size.x - col_count) * Globals.cell_size.x + 16,
+		(Globals.max_grid_size.x - col_count) * Globals.cell_size.x + 14,
 		(Globals.max_grid_size.y - row_count) * Globals.cell_size.y + 16), Globals.grid_tween_time)
 	tween.tween_callback(make_ready)
 	tween.play()
