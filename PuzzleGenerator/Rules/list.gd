@@ -3,6 +3,8 @@ class_name ListRule extends Rule
 @export var types : Array[int]
 @export var amounts : Array[int]
 
+func _init() -> void:
+	priority = 100
 
 func is_valid(gridsize : Vector2i, placed : Array[Item]) -> bool:
 	assert(types.size() == amounts.size())

@@ -1,5 +1,8 @@
 class_name IsNotTouchingRule extends Rule
 
+func _init() -> void:
+	priority = 10
+
 @export var item_names : Array[String]:
 	set(v):
 		item_names = v

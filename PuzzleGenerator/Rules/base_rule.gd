@@ -1,5 +1,7 @@
 class_name Rule extends Resource
 
+var priority : int = 0
+
 # Analyze a grid and arrangement of items to see if this rule is valid
 func is_valid(gridsize : Vector2i, placed : Array[Item]) -> bool:
 	push_error("Unimplemented Rule.is_valid")

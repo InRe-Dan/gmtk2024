@@ -1,5 +1,8 @@
 class_name EmptyCellRule extends Rule
 
+func _init() -> void:
+	priority = 1
+
 @export var positions : Array[Vector2i]
 
 func is_valid(gridsize : Vector2i, placed : Array[Item]) -> bool:

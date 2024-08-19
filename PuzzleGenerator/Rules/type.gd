@@ -2,6 +2,9 @@ class_name TypeRule extends Rule
 
 @export var type : Item.Type
 
+func _init() -> void:
+	priority = 50
+
 func is_valid(gridsize : Vector2i, placed : Array[Item]) -> bool:
 	for item : Item in placed:
 		if not (item.type & type):

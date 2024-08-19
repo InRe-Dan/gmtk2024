@@ -1,5 +1,8 @@
 class_name IsInPositionRule extends Rule
 
+func _init() -> void:
+	priority = 10
+
 # * is a wildcard: means that any food can be in this position
 @export var item_name : String = "*"
 @export var position : Vector2i = Vector2i.ZERO

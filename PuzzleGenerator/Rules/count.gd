@@ -2,6 +2,9 @@ class_name CountRule extends Rule
 
 @export var max : int
 
+func _init() -> void:
+	priority = 3
+
 func is_valid(gridsize : Vector2i, placed : Array[Item]) -> bool:
 	if placed.size() <= max:
 		return true

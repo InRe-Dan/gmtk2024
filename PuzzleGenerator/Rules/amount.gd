@@ -4,6 +4,8 @@ class_name AmountRule extends Rule
 @export var max : int = -1
 @export var item_name : String
 
+func _init() -> void:
+	priority = 90
 
 ## Formats the item to a BBCode item name
 static func format(item: Item) -> String:

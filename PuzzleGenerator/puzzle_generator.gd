@@ -1,7 +1,6 @@
 class_name PuzzleGenerator extends RefCounted
 
 # API example functions
-
 func _init() -> void:
 	push_error("PuzzleGenerator._init was called. Class is expected to be used statically.")
 	assert(false)
@@ -95,5 +94,9 @@ static func generate_puzzle_v2(size : Vector2i) -> Puzzle:
 			attempts = 0
 	
 	puzzle.rules = rules
+	puzzle.rules.sort_custom(rule_sorter)
 	puzzle.time = 60
 	return puzzle
+
+static func rule_sorter(a : Rule, b : Rule) -> bool:
+	return a.priority >= b.priority

@@ -3,6 +3,9 @@ class_name ValueRule extends Rule
 @export var min : int = 0
 @export var max : int = -1
 
+func _init() -> void:
+	priority = 4
+
 func is_valid(gridsize : Vector2i, placed : Array[Item]) -> bool:
 	var value : int = 0
 	for item : Item in placed:
