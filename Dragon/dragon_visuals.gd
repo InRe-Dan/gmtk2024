@@ -1,6 +1,8 @@
 class_name Dragon
 extends Node2D
 
+@export var menu_mode : bool = false
+
 @onready var head : Sprite2D = $Head
 @onready var eyes: Sprite2D = $Head/Eyes
 @onready var chewing: Sprite2D = $Head/Chewing
@@ -17,10 +19,11 @@ var speed: int = 1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	offset = head.position.x
-	
+	if menu_mode:
+		speed = 0.05
 	var first_neck : Sprite2D = $Node2D/Neck
 	neck_pieces = [first_neck]
-	for i in range(24):
+	for i in range(36):
 		var new : Sprite2D = first_neck.duplicate()
 		new.position.y += 4 * i
 		neck_pieces.append(new)
@@ -50,7 +53,15 @@ func progress_chew() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	time += 0.0075 + delta * speed * speed_coeff
+	if menu_mode:
+		chewing.visible = true
+		time += delta
+		head.position.x = sin(time) * (1 + speed / 10) + offset
+		for neck : Sprite2D in neck_pieces:
+			neck.position.x = sin(time + neck.position.y / 16.) * (1 + speed / 10)
+		
+		return
+	time += 0.0075 * delta * speed * speed_coeff
 	head.position.x = sin(time) * (1 + speed / 10) + offset
 	for neck : Sprite2D in neck_pieces:
 		neck.position.x = sin(time + neck.position.y / 16.) * (1 + speed / 10)

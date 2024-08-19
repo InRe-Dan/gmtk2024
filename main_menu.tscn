@@ -1,0 +1,122 @@
+[gd_scene load_steps=12 format=3 uid="uid://tkmvdau3nlmd"]
+
+[ext_resource type="PackedScene" uid="uid://deukgqgqggkkj" path="res://Dragon/dragon_visuals.tscn" id="1_6ax61"]
+[ext_resource type="Script" path="res://main_menu.gd" id="1_opooy"]
+[ext_resource type="AudioStream" uid="uid://vr8wneerxfdh" path="res://Assets/Audio/Harvesting SeasonMixedMastered.mp3" id="2_rnvqp"]
+[ext_resource type="FontFile" uid="uid://d0g7r7ojp0qqk" path="res://Assets/Font/undead11.ttf" id="3_2b8dv"]
+
+[sub_resource type="Gradient" id="Gradient_udl7u"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8qr7l"]
+gradient = SubResource("Gradient_udl7u")
+width = 3
+height = 3
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_67akj"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_e6xwt"]
+colors = PackedColorArray(1, 0.301961, 0, 1, 1, 1, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_edq02"]
+colors = PackedColorArray(1, 0.729412, 0.74902, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_em6mu"]
+gradient = SubResource("Gradient_edq02")
+width = 500
+height = 500
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ol7vo"]
+font = ExtResource("3_2b8dv")
+
+[node name="Menu" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+script = ExtResource("1_opooy")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.607843, 0.607843, 0.607843, 1)
+
+[node name="Dragon" parent="." instance=ExtResource("1_6ax61")]
+position = Vector2(302, 157)
+scale = Vector2(2, 2)
+menu_mode = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+bbcode_enabled = true
+text = "[wave amp=10.0 freq=3.0 connected=1][font_size=40]Made for Scales[/font_size][/wave]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Play"
+
+[node name="BottomPadding" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_rnvqp")
+autoplay = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -1
+position = Vector2(181, 270)
+amount = 300
+lifetime = 3.0
+preprocess = 2.0
+lifetime_randomness = 1.0
+texture = SubResource("GradientTexture2D_8qr7l")
+emission_shape = 3
+emission_rect_extents = Vector2(300, 0)
+direction = Vector2(2, -1)
+gravity = Vector2(0, -50)
+initial_velocity_max = 167.46
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 0.5
+scale_amount_max = 3.0
+color_ramp = SubResource("Gradient_67akj")
+color_initial_ramp = SubResource("Gradient_e6xwt")
+hue_variation_max = 0.31
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(97, 57)
+texture = SubResource("GradientTexture2D_em6mu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Volume"
+label_settings = SubResource("LabelSettings_ol7vo")
+
+[node name="HSlider" type="HSlider" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.0
+value = 0.2
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="value_changed" from="HBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
