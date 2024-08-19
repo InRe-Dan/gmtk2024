@@ -81,7 +81,6 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -1.0
-offset_top = -89.0
 offset_right = 15.0
 offset_bottom = -16.0
 grow_horizontal = 0
@@ -150,7 +149,14 @@ grow_vertical = 2
 theme_override_constants/separation = 1
 script = ExtResource("2_auo4a")
 
-[node name="Control" type="Control" parent="VBoxContainer/Workspace/InfoBox"]
+[node name="Coordinate" type="Label" parent="VBoxContainer/Workspace/ColorRect/InfoBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jskw5")
+theme_override_font_sizes/font_size = 11
+text = "(0, 0)"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="VBoxContainer/Workspace/ColorRect/InfoBox"]
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -173,8 +179,12 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_uii85")
 theme_override_styles/normal = SubResource("StyleBoxFlat_h4x35")
 text = "Submit"
 
+[node name="Control" type="Control" parent="VBoxContainer/Workspace"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+
 [node name="Dragon" parent="." instance=ExtResource("8_prxji")]
 position = Vector2(443, 119)
 scale = Vector2(2, 2)
 
-[connection signal="pressed" from="VBoxContainer/Workspace/InfoBox/Submit" to="VBoxContainer/Workspace/InfoBox" method="_on_submit_pressed"]
+[connection signal="pressed" from="VBoxContainer/Workspace/ColorRect/InfoBox/Submit" to="VBoxContainer/Workspace/ColorRect/InfoBox" method="_on_submit_pressed"]
