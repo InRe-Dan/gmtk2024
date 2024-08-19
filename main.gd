@@ -17,7 +17,7 @@ func _ready() -> void:
 ## Generate new puzzle and blank grid
 func generate_puzzle() -> void:
 	var grid_size: Vector2i = Vector2i(randi_range(Globals.min_grid_size.x, Globals.max_grid_size.x), randi_range(Globals.min_grid_size.y, Globals.max_grid_size.y))
-	current_puzzle = PuzzleGenerator.generate_puzzle(grid_size)
+	current_puzzle = PuzzleGenerator.generate_puzzle_v2(grid_size)
 	grid.initialize(grid_size.x, grid_size.y)
 	
 	rule_list.new_rules(current_puzzle.rules)
