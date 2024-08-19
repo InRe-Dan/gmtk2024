@@ -16,7 +16,7 @@ func _ready() -> void:
 
 ## Generate new puzzle and blank grid
 func generate_puzzle() -> void:
-	var grid_size: Vector2i = Vector2i(randi_range(3, Globals.max_grid_size.x), randi_range(3, Globals.max_grid_size.y))
+	var grid_size: Vector2i = Vector2i(randi_range(Globals.min_grid_size.x, Globals.max_grid_size.x), randi_range(Globals.min_grid_size.y, Globals.max_grid_size.y))
 	current_puzzle = PuzzleGenerator.generate_puzzle(grid_size)
 	grid.initialize(grid_size.x, grid_size.y)
 	
@@ -36,16 +36,18 @@ func _on_solution_submitted(grid_items: Array[GridItem], gridsize: Vector2i) -> 
 		# Determine placement based on root position
 		item.item.placement = item.item.get_placement(Vector2i(item.root_slot.grid_position.y, item.root_slot.grid_position.x), Item.Rotation.NONE)
 		items.append(item.item)
-	
-	if items.size() == 0: return
+
 	if not current_puzzle: return
 	
 	# Check solution
 	var valid: bool = true
-
+	
+	var fail_list: Array[Rule] = []
 	for rule: Rule in current_puzzle.rules:
 		if not rule.is_valid(gridsize, items):
+			fail_list.append(rule)
 			valid = false
 			print(rule.get_debug_request() + " FAILED")
 	
+	rule_list.mark_failed(fail_list)
 	print("solution is " + str(valid))

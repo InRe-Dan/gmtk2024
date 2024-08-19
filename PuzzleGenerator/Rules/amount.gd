@@ -27,9 +27,12 @@ func get_dragon_request() -> String:
 	elif min > 0 and max > 0:
 		return "%s between [color=black]%s[/color] and [color=black]%s[/color]" % [item_name, min, max]
 	elif min > 0:
-		return "%s more than [color=black]%s[/color]" % [item_name, max]
+		return "%s [color=black]%s[/color] or more" % [item_name, min]
 	else:
-		return "%s less than [color=black]%s[/color]" % [item_name, max]
+		if max == 1:
+			return "Only [color=black]1[/color] %s" % [item_name]
+		else:
+			return "%s [color=black]%s[/color] or less" % [item_name, max]
 
 func get_debug_request() -> String:
 	if min == max:
@@ -58,6 +61,10 @@ static func generate_valid_rule(gridsize : Vector2i, items : Array[Item]) -> Rul
 	var chosen : String = names.pick_random()
 	var number : int = names.count(chosen)
 	rule.item_name = chosen
-	rule.min = number
-	rule.max = number
+	rule.min = randi_range(0, number)
+	rule.max = randi_range(0, number)
+	if rule.max == 0 and rule.min == 0:
+		rule.max = randi_range(1, number)
+	if rule.min > rule.max:
+		rule.max = -1
 	return rule

@@ -30,14 +30,14 @@ static func generate_random_rule(size : Vector2i, placed : Array[Item]) -> Rule:
 
 static func generate_puzzle(size : Vector2i) -> Puzzle:
 	var items_placed : Array[Item]
-	for i in range(20):
+	for i in range(40):
 		var random_item : Item = ItemLoader.items.pick_random()
 		var position : Vector2i = Vector2i(randi_range(0, size.x), randi_range(0, size.y))
 		var placement : Item.Placement = random_item.get_placement(position, Item.Rotation.NONE)
 		random_item.try_place(size, items_placed, placement)
 	
 	
-	var result_rules : Array[Rule]
+	var result_rules : Array[Rule] = [AmountRule.generate_valid_rule(size, items_placed), IsInPositionRule.generate_valid_rule(size, items_placed)]
 	var max_attempts : int = 5
 	var attempts : int = 0
 	while result_rules.size() < Globals.max_rule_count and attempts < max_attempts:
@@ -47,7 +47,7 @@ static func generate_puzzle(size : Vector2i) -> Puzzle:
 			if rule.is_identical_to(new_rule):
 				attempts += 1
 				clash = true
-		if (new_rule) and (not clash) and new_rule.is_compatible_with_puzzle(size, result_rules):
+		if (new_rule) and (not clash) and new_rule.is_compatible_with_puzzle(size, result_rules) and new_rule.is_valid(size, items_placed):
 			result_rules.append(new_rule)
 			attempts = 0
 	

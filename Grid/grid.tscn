@@ -22,3 +22,9 @@ offset_bottom = 64.0
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 8
+
+[node name="ClearDelay" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="timeout" from="ClearDelay" to="." method="_on_clear_delay_timeout"]

@@ -6,6 +6,9 @@ const items_directory: String = "res://Item/Items"
 ## Maximum number of rules
 const max_rule_count: int = 8
 
+## Minimum grid dimension in cells
+const min_grid_size: Vector2i = Vector2i(4, 4)
+
 ## Maximum grid dimensions in cells
 const max_grid_size: Vector2i = Vector2i(8, 8)
 

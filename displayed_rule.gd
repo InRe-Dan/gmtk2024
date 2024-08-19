@@ -17,6 +17,6 @@ func update_condition(new_rule: Rule) -> void:
 ## Marks this rule as either success or failure
 func mark_success(success: bool) -> void:
 	if success:
-		color = Color(Color.GREEN, 0.1)
+		color = Color(Color.DARK_GREEN, 0.2)
 	else:
-		color = Color(Color.RED, 0.1)
+		color = Color(Color.DARK_RED, 0.2)

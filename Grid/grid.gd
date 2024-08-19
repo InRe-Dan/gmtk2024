@@ -9,6 +9,7 @@ signal selected_slot_changed(grid_position)
 @onready var grid_slot_scene = preload("res://Grid/grid_slot.tscn")
 @onready var grid_item_scene = preload("res://Item/grid_item.tscn")
 @onready var grid_container: GridContainer = $GridContainer
+@onready var clear_delay_timer: Timer = $ClearDelay
 
 var held_item: GridItem = null
 var current_slot: GridSlot = null
@@ -72,10 +73,7 @@ func _on_submit() -> void:
 
 	solution_submitted.emit(items, Vector2i(col_count, row_count))
 	
-	var tween = get_tree().create_tween()
-	tween.tween_property(self, "position", position + Vector2(0, Globals.cell_size.y * Globals.max_grid_size.y * 2), Globals.grid_tween_time)
-	tween.tween_callback(_on_cleared)
-	tween.play()
+	clear_delay_timer.start()
 
 
 ## New item selected
@@ -293,3 +291,11 @@ func check_slot_availability(slots: Array[Vector2i]) -> bool:
 				slot.set_color(GridSlot.State.AVAILABLE)
 	
 	return available
+
+
+## Clear the board finally
+func _on_clear_delay_timeout() -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "position", position + Vector2(0, Globals.cell_size.y * Globals.max_grid_size.y * 2), Globals.grid_tween_time)
+	tween.tween_callback(_on_cleared)
+	tween.play()
