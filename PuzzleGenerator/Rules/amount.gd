@@ -23,16 +23,16 @@ func is_valid(gridsize : Vector2i, placed : Array[Item]) -> bool:
 
 func get_dragon_request() -> String:
 	if min == max:
-		return "%s exactly [color=black]%s[/color]" % [item_name, min]
+		return "Exactly [color=black]%s[/color] %s" % [min, item_name]
 	elif min > 0 and max > 0:
-		return "%s between [color=black]%s[/color] and [color=black]%s[/color]" % [item_name, min, max]
+		return "Between [color=black]%s[/color] and [color=black]%s[/color] %s" % [min, max, item_name]
 	elif min > 0:
-		return "%s [color=black]%s[/color] or more" % [item_name, min]
+		return "[color=black]%s[/color] or more %s" % [min, item_name]
 	else:
 		if max == 1:
-			return "Only [color=black]1[/color] %s" % [item_name]
+			return "Exactly [color=black]1[/color] %s" % [item_name]
 		else:
-			return "%s [color=black]%s[/color] or less" % [item_name, max]
+			return "[color=black]%s[/color] or less %s" % [max, item_name]
 
 func get_debug_request() -> String:
 	if min == max:

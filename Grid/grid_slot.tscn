@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqqymjitdg3j6"]
+[gd_scene load_steps=5 format=3 uid="uid://dqqymjitdg3j6"]
 
 [ext_resource type="Script" path="res://Grid/grid_slot.gd" id="1_cfmii"]
 [ext_resource type="Texture2D" uid="uid://bip2f6sim8658" path="res://Assets/grid_slot.png" id="1_g4rbd"]
+[ext_resource type="Texture2D" uid="uid://d2a0m783211gd" path="res://Assets/slot_cover.png" id="3_npbiw"]
+[ext_resource type="Texture2D" uid="uid://cpq7civi4m05o" path="res://Assets/slot_embroidery.png" id="4_13uv4"]
 
 [node name="GridSlot" type="TextureRect"]
 texture_filter = 1
@@ -11,6 +13,7 @@ texture = ExtResource("1_g4rbd")
 script = ExtResource("1_cfmii")
 
 [node name="Status" type="ColorRect" parent="."]
+z_index = 5
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,6 +22,28 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 color = Color(1, 1, 1, 0)
+
+[node name="Cover" type="TextureRect" parent="."]
+visible = false
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_npbiw")
+
+[node name="Embroidery" type="TextureRect" parent="."]
+visible = false
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_13uv4")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
