@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://deukgqgqggkkj"]
+[gd_scene load_steps=4 format=3 uid="uid://deukgqgqggkkj"]
 
 [ext_resource type="Script" path="res://Dragon/dragon_visuals.gd" id="1_l7n2f"]
 [ext_resource type="Texture2D" uid="uid://byamphs50nsg3" path="res://Assets/dragon.png" id="2_lilmv"]
+[ext_resource type="Texture2D" uid="uid://dh5nb84fu13vi" path="res://Assets/Dragon_Chewing_anim-Sheet.png" id="3_p3jx1"]
 
 [node name="Dragon" type="Node2D"]
 script = ExtResource("1_l7n2f")
@@ -19,3 +20,22 @@ position = Vector2(-3.5, -17.5)
 texture = ExtResource("2_lilmv")
 region_enabled = true
 region_rect = Rect2(2, 0, 35, 20)
+
+[node name="Chewing" type="Sprite2D" parent="Head"]
+visible = false
+z_index = 1
+texture = ExtResource("3_p3jx1")
+hframes = 4
+region_rect = Rect2(0, 0, 141, 20)
+
+[node name="Timer" type="Timer" parent="Head/Chewing"]
+wait_time = 0.15
+autostart = true
+
+[node name="Eyes" type="Sprite2D" parent="Head"]
+z_index = 5
+texture = ExtResource("2_lilmv")
+region_enabled = true
+region_rect = Rect2(45, 24, 10, 4)
+
+[connection signal="timeout" from="Head/Chewing/Timer" to="." method="progress_chew"]

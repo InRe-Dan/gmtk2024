@@ -2,6 +2,8 @@ class_name Dragon
 extends Node2D
 
 @onready var head : Sprite2D = $Head
+@onready var eyes: Sprite2D = $Head/Eyes
+@onready var chewing: Sprite2D = $Head/Chewing
 
 var neck_pieces : Array[Sprite2D]
 var time : float = 0
@@ -28,20 +30,30 @@ func _ready() -> void:
 ## Sets anger to passed amount
 func change_anger(anger: int) -> void:
 	speed = anger
-	if anger > 20:
-		head.region_rect = Rect2i(2, 96, 35, 21)
-	elif anger > 10:
-		head.region_rect = Rect2i(2, 72, 35, 21)
+	if anger > 24:
+		head.region_rect = Rect2i(2, 96, 35, 20)
+		eyes.region_rect = Rect2i(43, 56, 14, 6)
+	elif anger > 12:
+		head.region_rect = Rect2i(2, 72, 35, 20)
+		eyes.region_rect = Rect2i(45, 48, 10, 5)
 	else:
 		head.region_rect = Rect2i(2, 0, 35, 20)
+		eyes.region_rect = Rect2i(45, 24, 10, 4)
+
+
+## Progress chew animation
+func progress_chew() -> void:
+	chewing.frame += 1
+	if chewing.frame == chewing.hframes - 1:
+		chewing.frame = 0
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	time += 0.0075 + delta * speed * speed_coeff
-	head.position.x = sin(time) + offset
+	head.position.x = sin(time) * (1 + speed / 10) + offset
 	for neck : Sprite2D in neck_pieces:
-		neck.position.x = sin(time + neck.position.y / 16.)
+		neck.position.x = sin(time + neck.position.y / 16.) * (1 + speed / 10)
 		
 	if time >= PI * 32: time -= PI * 32
 	

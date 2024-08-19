@@ -36,6 +36,8 @@ func _process(delta: float) -> void:
 
 ## Generate new puzzle and blank grid
 func generate_puzzle() -> void:
+	dragon.chewing.visible = false
+	
 	var grid_size: Vector2i = Vector2i(randi_range(Globals.min_grid_size.x, Globals.max_grid_size.x), randi_range(Globals.min_grid_size.y, Globals.max_grid_size.y))
 	current_puzzle = PuzzleGenerator.generate_puzzle_v2(grid_size)
 	grid.initialize(grid_size.x, grid_size.y, current_puzzle.rules)
@@ -54,6 +56,7 @@ func _on_grid_cleared() -> void:
 ## Grid submitted solution
 func _on_solution_submitted(grid_items: Array[GridItem], gridsize: Vector2i) -> void:
 	puzzle_timer.stop()
+	dragon.chewing.visible = true
 	
 	# Process grid item data into list of valid items
 	var items: Array[Item] = []
