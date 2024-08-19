@@ -1,9 +1,18 @@
-[gd_scene load_steps=13 format=3 uid="uid://tkmvdau3nlmd"]
+[gd_scene load_steps=14 format=3 uid="uid://bbqf5y46js4hk"]
 
 [ext_resource type="PackedScene" uid="uid://deukgqgqggkkj" path="res://Dragon/dragon_visuals.tscn" id="1_6ax61"]
 [ext_resource type="Script" path="res://main_menu.gd" id="1_opooy"]
 [ext_resource type="AudioStream" uid="uid://vr8wneerxfdh" path="res://Assets/Audio/Harvesting SeasonMixedMastered.mp3" id="2_rnvqp"]
 [ext_resource type="FontFile" uid="uid://d0g7r7ojp0qqk" path="res://Assets/Font/undead11.ttf" id="3_2b8dv"]
+
+[sub_resource type="Gradient" id="Gradient_r8me8"]
+offsets = PackedFloat32Array(0, 0.847584)
+colors = PackedColorArray(1, 0.4, 0, 0.298039, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u4qrk"]
+gradient = SubResource("Gradient_r8me8")
+fill = 1
+fill_from = Vector2(0.307087, 0.990814)
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_fal0y"]
 stream_count = 1
@@ -35,53 +44,71 @@ height = 500
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="LabelSettings" id="LabelSettings_ol7vo"]
-font = ExtResource("3_2b8dv")
-
-[node name="Menu" type="VBoxContainer"]
+[node name="Menu" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
 script = ExtResource("1_opooy")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
+[node name="Underglow" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_u4qrk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasModulate" type="CanvasModulate" parent="VBoxContainer"]
 color = Color(0.607843, 0.607843, 0.607843, 1)
 
-[node name="Dragon" parent="." instance=ExtResource("1_6ax61")]
+[node name="Dragon" parent="VBoxContainer" instance=ExtResource("1_6ax61")]
 position = Vector2(302, 157)
 scale = Vector2(2, 2)
 menu_mode = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/normal_font = ExtResource("3_2b8dv")
+theme_override_font_sizes/normal_font_size = 33
 bbcode_enabled = true
-text = "[wave amp=10.0 freq=3.0 connected=1][font_size=40]Made for Scales[/font_size][/wave]"
+text = "[wave amp=10.0 freq=3.0 connected=1]Made for Scales[/wave]"
 fit_content = true
 autowrap_mode = 0
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(50, 30)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_2b8dv")
+theme_override_font_sizes/font_size = 22
 text = "Play"
 
-[node name="BottomPadding" type="Control" parent="."]
+[node name="BottomPadding" type="Control" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="VBoxContainer"]
 stream = SubResource("AudioStreamPlaylist_fal0y")
 autoplay = true
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="VBoxContainer"]
 z_index = -1
 position = Vector2(181, 270)
 amount = 300
@@ -102,25 +129,26 @@ color_ramp = SubResource("Gradient_67akj")
 color_initial_ramp = SubResource("Gradient_e6xwt")
 hue_variation_max = 0.31
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="VBoxContainer"]
 position = Vector2(97, 57)
 texture = SubResource("GradientTexture2D_em6mu")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_2b8dv")
+theme_override_font_sizes/font_size = 22
 text = "Volume"
-label_settings = SubResource("LabelSettings_ol7vo")
 
-[node name="HSlider" type="HSlider" parent="HBoxContainer"]
+[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 max_value = 1.0
 step = 0.0
 value = 0.2
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="value_changed" from="HBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
