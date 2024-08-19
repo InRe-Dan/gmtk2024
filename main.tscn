@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bsne7661tkcrm"]
+[gd_scene load_steps=25 format=3 uid="uid://bsne7661tkcrm"]
 
 [ext_resource type="Texture2D" uid="uid://ctai1fmqwymwc" path="res://Assets/Speech/bubble.png" id="1_dnwtq"]
 [ext_resource type="Script" path="res://Item/item_list.gd" id="1_eu7ty"]
@@ -9,11 +9,18 @@
 [ext_resource type="Texture2D" uid="uid://c8oga2p40x8g2" path="res://Assets/Speech/arrow.png" id="2_egt1c"]
 [ext_resource type="FontFile" uid="uid://d0g7r7ojp0qqk" path="res://Assets/Font/undead11.ttf" id="2_jskw5"]
 [ext_resource type="Script" path="res://rule_list.gd" id="4_143o4"]
+[ext_resource type="AudioStream" uid="uid://h1gn8aks1edu" path="res://Assets/Audio/textscroll.mp3" id="5_pw8fh"]
 [ext_resource type="Texture2D" uid="uid://dcfgvdo2fo11m" path="res://Assets/old_softwood.png" id="6_7p2h1"]
 [ext_resource type="PackedScene" uid="uid://deukgqgqggkkj" path="res://Dragon/dragon_visuals.tscn" id="8_prxji"]
 [ext_resource type="Texture2D" uid="uid://ccvb1v6kgafqx" path="res://Assets/Timer/below.png" id="11_nvb8w"]
 [ext_resource type="Texture2D" uid="uid://obmievdgu7t4" path="res://Assets/Timer/above.png" id="12_wbel3"]
 [ext_resource type="Texture2D" uid="uid://cujrr82hre1pv" path="res://Assets/Timer/progress.png" id="13_jx8jg"]
+[ext_resource type="AudioStream" uid="uid://c6k1jgka5lfg3" path="res://Assets/Audio/Glutton One.mp3" id="15_5jd2w"]
+[ext_resource type="AudioStream" uid="uid://bcbwun6fhfyk" path="res://Assets/Audio/pickup.mp3" id="15_cahbc"]
+[ext_resource type="AudioStream" uid="uid://dougyg7cb8gja" path="res://Assets/Audio/sucess1(1).mp3" id="15_gtyev"]
+[ext_resource type="AudioStream" uid="uid://ddihcq00jhnej" path="res://Assets/Audio/failure1(1).mp3" id="15_ho4lw"]
+[ext_resource type="AudioStream" uid="uid://sn7dq2ncukgt" path="res://Assets/Audio/drop1(1).mp3" id="15_no8t7"]
+[ext_resource type="AudioStream" uid="uid://ckt3q0vebj0et" path="res://Assets/Audio/sucesss2(1).mp3" id="15_nou8i"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gqly2"]
 load_path = "res://.godot/imported/stonebrick.jpg-9d98909f44f2a758921f2d4b684a2381.ctex"
@@ -110,10 +117,14 @@ theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
 
-[node name="RuleList" type="VBoxContainer" parent="VBoxContainer/View/MarginContainer/NinePatchRect/MarginContainer"]
+[node name="RuleList" type="VBoxContainer" parent="VBoxContainer/View/MarginContainer/NinePatchRect/MarginContainer" node_paths=PackedStringArray("audio")]
 layout_mode = 2
 theme_override_constants/separation = 1
 script = ExtResource("4_143o4")
+audio = NodePath("../Refresh")
+
+[node name="Refresh" type="AudioStreamPlayer" parent="VBoxContainer/View/MarginContainer/NinePatchRect/MarginContainer"]
+stream = ExtResource("5_pw8fh")
 
 [node name="Control" type="Control" parent="VBoxContainer/View"]
 layout_mode = 2
@@ -148,12 +159,13 @@ grow_vertical = 2
 theme_override_constants/separation = 4
 script = ExtResource("2_d3txm")
 
-[node name="ItemsList" type="ScrollContainer" parent="VBoxContainer/Workspace/HBoxContainer"]
+[node name="ItemsList" type="ScrollContainer" parent="VBoxContainer/Workspace/HBoxContainer" node_paths=PackedStringArray("pick_sound")]
 layout_mode = 2
 size_flags_horizontal = 3
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 script = ExtResource("1_eu7ty")
+pick_sound = NodePath("../../../../Pickup")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Workspace/HBoxContainer/ItemsList"]
 layout_mode = 2
@@ -212,9 +224,11 @@ autowrap_mode = 0
 custom_minimum_size = Vector2(160, 100)
 layout_mode = 2
 
-[node name="Grid" parent="VBoxContainer/Workspace/HBoxContainer/InfoBox/Zoner" instance=ExtResource("1_mxj2h")]
+[node name="Grid" parent="VBoxContainer/Workspace/HBoxContainer/InfoBox/Zoner" node_paths=PackedStringArray("pickup_sound", "drop_sound") instance=ExtResource("1_mxj2h")]
 layout_mode = 0
 scale = Vector2(2, 2)
+pickup_sound = NodePath("../../../../../../Pickup")
+drop_sound = NodePath("../../../../../../Drop")
 
 [node name="Bottom" type="HBoxContainer" parent="VBoxContainer/Workspace/HBoxContainer/InfoBox"]
 custom_minimum_size = Vector2(0, 30)
@@ -269,6 +283,25 @@ color = Color(0, 0, 0, 1)
 
 [node name="PuzzleTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_5jd2w")
+autoplay = true
+
+[node name="Bad" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_ho4lw")
+
+[node name="Good" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_gtyev")
+
+[node name="Great" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_nou8i")
+
+[node name="Pickup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_cahbc")
+
+[node name="Drop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_no8t7")
 
 [connection signal="pressed" from="VBoxContainer/Workspace/HBoxContainer/InfoBox/Bottom/Submit" to="VBoxContainer/Workspace/HBoxContainer/InfoBox/Zoner/Grid" method="_on_submit"]
 [connection signal="timeout" from="PuzzleTimer" to="." method="_on_puzzle_timer_timeout"]
