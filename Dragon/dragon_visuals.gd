@@ -21,4 +21,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	time += delta
 	for neck : Sprite2D in neck_pieces:
-		neck.position.x = sin(time + neck.position.y / 16.) 
+		neck.position.x = sin(time + neck.position.y / 16.)
+		
+	if time >= PI * 32: time -= PI * 32
+	
+	

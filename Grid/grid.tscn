@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://gn35k16s7xxk"]
+[gd_scene load_steps=3 format=3 uid="uid://gn35k16s7xxk"]
 
 [ext_resource type="Script" path="res://Grid/grid.gd" id="1_1tfjm"]
+[ext_resource type="Texture2D" uid="uid://cdbdt3dby23g7" path="res://Assets/tray.png" id="2_rsv8a"]
 
 [node name="Grid" type="Control"]
 layout_mode = 3
@@ -10,10 +11,17 @@ size_flags_vertical = 4
 mouse_filter = 1
 script = ExtResource("1_1tfjm")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Texture" type="NinePatchRect" parent="."]
 layout_mode = 1
-mouse_filter = 1
-color = Color(0.09, 0.06375, 0.027, 1)
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+texture = ExtResource("2_rsv8a")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 0

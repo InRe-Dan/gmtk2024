@@ -125,7 +125,7 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
 [node name="Zoner" type="Control" parent="VBoxContainer/Workspace"]
-custom_minimum_size = Vector2(160, 160)
+custom_minimum_size = Vector2(144, 144)
 layout_mode = 2
 
 [node name="Grid" parent="VBoxContainer/Workspace/Zoner" instance=ExtResource("1_mxj2h")]

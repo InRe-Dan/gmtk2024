@@ -138,12 +138,12 @@ func initialize(columns: int, rows: int) -> void:
 	custom_minimum_size.x = col_count * Globals.cell_size.x
 	custom_minimum_size.y = row_count * Globals.cell_size.y
 	grid_container.columns = col_count
-	$ColorRect.custom_minimum_size = Vector2.ZERO
-	$ColorRect.size = custom_minimum_size
+	$Texture.custom_minimum_size = Vector2.ZERO
+	$Texture.size = custom_minimum_size + Vector2(16, 16)
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "position", Vector2(
-		(Globals.max_grid_size.x - col_count) * Globals.cell_size.x,
-		(Globals.max_grid_size.y - row_count) * Globals.cell_size.y), Globals.grid_tween_time)
+		(Globals.max_grid_size.x - col_count) * Globals.cell_size.x + 16,
+		(Globals.max_grid_size.y - row_count) * Globals.cell_size.y + 16), Globals.grid_tween_time)
 	tween.tween_callback(make_ready)
 	tween.play()
 	
@@ -296,6 +296,6 @@ func check_slot_availability(slots: Array[Vector2i]) -> bool:
 ## Clear the board finally
 func _on_clear_delay_timeout() -> void:
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "position", position + Vector2(0, Globals.cell_size.y * Globals.max_grid_size.y * 2), Globals.grid_tween_time)
+	tween.tween_property(self, "position", position + Vector2(0, Globals.cell_size.y * Globals.max_grid_size.y * 2 + 32), Globals.grid_tween_time)
 	tween.tween_callback(_on_cleared)
 	tween.play()
