@@ -163,19 +163,20 @@ func initialize(columns: int, rows: int, rules: Array[Rule]) -> void:
 		
 		matrix.append(row_data)
 	
-	# Color forbidden slots
+	# Apply hints to slots
 	for rule: Rule in rules:
+		# Cover forbidden slots
 		if rule is EmptyCellRule:
 			for pos: Vector2i in (rule as EmptyCellRule).positions:
 				var slot: GridSlot = matrix[pos.y][pos.x]
-				slot.self_modulate = Color.RED
-	
-	# Color favorable slots
-	for rule: Rule in rules:
-		if rule is IsInPositionRule:
+				slot.cover()
+				slot.forbidden = true
+
+		# Color favorable slots
+		elif rule is IsInPositionRule:
 			rule = rule as IsInPositionRule
 			var slot: GridSlot = matrix[rule.position.y][rule.position.x]
-			slot.self_modulate = Color.LIGHT_GREEN
+			slot.embroid()
 
 
 ## Creates a grid slot at the specified column and row
@@ -303,7 +304,7 @@ func check_slot_availability(slots: Array[Vector2i]) -> bool:
 			slot = matrix[grid_pos.x][grid_pos.y]
 
 			# Check if the slot is occupied
-			if slot.item_stored:
+			if slot.item_stored or slot.forbidden:
 				slot_status = false
 		
 		# Change slot status appearance based on availability report

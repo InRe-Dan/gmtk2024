@@ -78,11 +78,11 @@ func _on_solution_submitted(grid_items: Array[GridItem], gridsize: Vector2i) -> 
 	
 	var multiplier: int = 0
 	if fail_list.size() == 0:
-		anger -= 1
+		anger += -2
 		multiplier = 2
 		$Great.play()
 	elif fail_list.size() == 1:
-		anger = 0
+		anger += 0
 		multiplier = 1
 		$Good.play()
 	elif fail_list.size() == 2:

@@ -39,7 +39,7 @@ func pickup() -> void:
 	
 ## Item is placed down
 func place() -> void:
-	z_index = 0
+	z_index = 10
 	scale = Vector2(1, 1)
 	
 
