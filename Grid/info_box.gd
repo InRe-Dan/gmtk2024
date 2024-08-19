@@ -3,10 +3,10 @@ extends VBoxContainer
 
 signal grid_submitted
 
-@onready var total_price_label: RichTextLabel = $TotalPrice
-@onready var submit_button: Button = $Submit
-@onready var coordinate_label: Label = $Coordinate
-@onready var item_count_label: RichTextLabel = $ItemCount
+@onready var total_price_label: RichTextLabel = $Bottom/TotalPrice
+@onready var submit_button: Button = $Bottom/Submit
+@onready var coordinate_label: Label = $Top/Coordinate
+@onready var item_count_label: RichTextLabel = $Bottom/ItemCount
 
 
 ## Total grid price changed

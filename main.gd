@@ -1,6 +1,6 @@
 extends Control
 
-@onready var grid: Grid = $VBoxContainer/Workspace/HBoxContainer/Zoner/Grid
+@onready var grid: Grid = $VBoxContainer/Workspace/HBoxContainer/InfoBox/Zoner/Grid
 @onready var rule_list: RuleList = $VBoxContainer/View/MarginContainer/NinePatchRect/MarginContainer/RuleList
 @onready var puzzle_timer: Timer = $PuzzleTimer
 @onready var timer_label: RichTextLabel = $VBoxContainer/Workspace/HBoxContainer/ColorRect/InfoBox/TimerLabel
@@ -21,6 +21,7 @@ func _ready() -> void:
 
 ## Called every frame
 func _process(delta: float) -> void:
+	return
 	if puzzle_timer.is_stopped(): return
 	
 	var remaining_time: float = floor(puzzle_timer.time_left)
