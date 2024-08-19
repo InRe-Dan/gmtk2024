@@ -4,6 +4,7 @@ extends Control
 @onready var rule_list: RuleList = $VBoxContainer/View/MarginContainer/NinePatchRect/MarginContainer/RuleList
 @onready var puzzle_timer: Timer = $PuzzleTimer
 @onready var timer_label: RichTextLabel = $VBoxContainer/Workspace/HBoxContainer/ColorRect/InfoBox/TimerLabel
+@onready var dragon: Dragon = $VBoxContainer/Dragon
 
 var current_puzzle: Puzzle = null
 
@@ -75,6 +76,8 @@ func _on_solution_submitted(grid_items: Array[GridItem], gridsize: Vector2i) -> 
 	elif fail_list.size() == 2: anger += 1
 	elif fail_list.size() > 4: anger += 5
 	elif fail_list.size() > 2: anger += 3
+	anger = max(0, anger)
+	dragon.speed = 1 + anger
 
 
 ## Out of time

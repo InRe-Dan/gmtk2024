@@ -1,3 +1,4 @@
+class_name Dragon
 extends Node2D
 
 @onready var top : Sprite2D = $HeadTop
@@ -8,6 +9,10 @@ var time : float = 0
 
 var top_offset: float
 var bottom_offset: float
+
+const speed_coeff: float = 0.25
+var speed: int = 1
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,7 +30,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	time += delta
+	time += delta * speed * speed_coeff
 	top.position.x = sin(time) + top_offset
 	bottom.position.x = sin(time) + bottom_offset
 	for neck : Sprite2D in neck_pieces:
