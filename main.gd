@@ -1,6 +1,6 @@
 extends Control
 
-@onready var grid: Grid = $VBoxContainer/Workspace/Zoner/Grid
+@onready var grid: Grid = $VBoxContainer/Workspace/HBoxContainer/Zoner/Grid
 @onready var rule_list: RuleList = $VBoxContainer/View/MarginContainer/NinePatchRect/MarginContainer/RuleList
 
 var current_puzzle: Puzzle = null

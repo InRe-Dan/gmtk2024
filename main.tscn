@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bsne7661tkcrm"]
+[gd_scene load_steps=15 format=3 uid="uid://bsne7661tkcrm"]
 
 [ext_resource type="Texture2D" uid="uid://ctai1fmqwymwc" path="res://Assets/Speech/bubble.png" id="1_dnwtq"]
 [ext_resource type="Script" path="res://Item/item_list.gd" id="1_eu7ty"]
@@ -8,7 +8,9 @@
 [ext_resource type="Script" path="res://Grid/workspace.gd" id="2_d3txm"]
 [ext_resource type="Texture2D" uid="uid://c8oga2p40x8g2" path="res://Assets/Speech/arrow.png" id="2_egt1c"]
 [ext_resource type="FontFile" uid="uid://d0g7r7ojp0qqk" path="res://Assets/Font/undead11.ttf" id="2_jskw5"]
+[ext_resource type="Texture2D" uid="uid://f4ndjffmb58g" path="res://Assets/stonebrick.jpg" id="2_ws2i2"]
 [ext_resource type="Script" path="res://rule_list.gd" id="4_143o4"]
+[ext_resource type="Texture2D" uid="uid://ttvalcimutvi" path="res://Assets/woodtexture.png" id="6_68lrd"]
 [ext_resource type="PackedScene" uid="uid://deukgqgqggkkj" path="res://Dragon/dragon_visuals.tscn" id="8_prxji"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uii85"]
@@ -27,7 +29,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xysnu")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Backdrop" type="TextureRect" parent="."]
+self_modulate = Color(0.22, 0.22, 0.22, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,7 +39,9 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-color = Color(0.0627597, 0.075346, 0.116007, 1)
+texture = ExtResource("2_ws2i2")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -57,7 +62,7 @@ custom_minimum_size = Vector2(144, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 6
+theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
@@ -108,36 +113,55 @@ script = ExtResource("4_143o4")
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Workspace" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Dragon" parent="VBoxContainer" instance=ExtResource("8_prxji")]
+position = Vector2(330, 60)
+scale = Vector2(2, 2)
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Workspace" type="TextureRect" parent="VBoxContainer"]
+self_modulate = Color(0.39, 0.39, 0.39, 1)
 custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
+texture = ExtResource("6_68lrd")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Workspace"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/separation = 4
 script = ExtResource("2_d3txm")
 
-[node name="ItemsList" type="ScrollContainer" parent="VBoxContainer/Workspace"]
+[node name="ItemsList" type="ScrollContainer" parent="VBoxContainer/Workspace/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_eu7ty")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Workspace/ItemsList"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Workspace/HBoxContainer/ItemsList"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="Zoner" type="Control" parent="VBoxContainer/Workspace"]
+[node name="Zoner" type="Control" parent="VBoxContainer/Workspace/HBoxContainer"]
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 
-[node name="Grid" parent="VBoxContainer/Workspace/Zoner" instance=ExtResource("1_mxj2h")]
+[node name="Grid" parent="VBoxContainer/Workspace/HBoxContainer/Zoner" instance=ExtResource("1_mxj2h")]
 layout_mode = 0
 scale = Vector2(2, 2)
 
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/Workspace"]
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/Workspace/HBoxContainer"]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 color = Color(1, 1, 1, 0.0431373)
 
-[node name="InfoBox" type="VBoxContainer" parent="VBoxContainer/Workspace/ColorRect"]
+[node name="InfoBox" type="VBoxContainer" parent="VBoxContainer/Workspace/HBoxContainer/ColorRect"]
 z_index = 5
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 1
@@ -149,27 +173,27 @@ grow_vertical = 2
 theme_override_constants/separation = 1
 script = ExtResource("2_auo4a")
 
-[node name="Coordinate" type="Label" parent="VBoxContainer/Workspace/ColorRect/InfoBox"]
+[node name="Coordinate" type="Label" parent="VBoxContainer/Workspace/HBoxContainer/ColorRect/InfoBox"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_jskw5")
 theme_override_font_sizes/font_size = 11
 text = "(0, 0)"
 horizontal_alignment = 1
 
-[node name="Control" type="Control" parent="VBoxContainer/Workspace/ColorRect/InfoBox"]
+[node name="Control" type="Control" parent="VBoxContainer/Workspace/HBoxContainer/ColorRect/InfoBox"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TotalPrice" type="RichTextLabel" parent="VBoxContainer/Workspace/ColorRect/InfoBox"]
+[node name="TotalPrice" type="RichTextLabel" parent="VBoxContainer/Workspace/HBoxContainer/ColorRect/InfoBox"]
 custom_minimum_size = Vector2(0, 11)
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("2_jskw5")
 theme_override_font_sizes/normal_font_size = 11
 bbcode_enabled = true
-text = "Price: [color=ffe600]$0[/color]"
+text = " Price: [color=ffe600]$0[/color]"
 fit_content = true
 
-[node name="Submit" type="Button" parent="VBoxContainer/Workspace/ColorRect/InfoBox"]
+[node name="Submit" type="Button" parent="VBoxContainer/Workspace/HBoxContainer/ColorRect/InfoBox"]
 z_index = 6
 layout_mode = 2
 focus_mode = 0
@@ -179,12 +203,4 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_uii85")
 theme_override_styles/normal = SubResource("StyleBoxFlat_h4x35")
 text = "Submit"
 
-[node name="Control" type="Control" parent="VBoxContainer/Workspace"]
-custom_minimum_size = Vector2(128, 0)
-layout_mode = 2
-
-[node name="Dragon" parent="." instance=ExtResource("8_prxji")]
-position = Vector2(443, 119)
-scale = Vector2(2, 2)
-
-[connection signal="pressed" from="VBoxContainer/Workspace/ColorRect/InfoBox/Submit" to="VBoxContainer/Workspace/ColorRect/InfoBox" method="_on_submit_pressed"]
+[connection signal="pressed" from="VBoxContainer/Workspace/HBoxContainer/ColorRect/InfoBox/Submit" to="VBoxContainer/Workspace/HBoxContainer/ColorRect/InfoBox" method="_on_submit_pressed"]
