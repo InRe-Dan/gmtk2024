@@ -1,9 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://tkmvdau3nlmd"]
+[gd_scene load_steps=13 format=3 uid="uid://tkmvdau3nlmd"]
 
 [ext_resource type="PackedScene" uid="uid://deukgqgqggkkj" path="res://Dragon/dragon_visuals.tscn" id="1_6ax61"]
 [ext_resource type="Script" path="res://main_menu.gd" id="1_opooy"]
 [ext_resource type="AudioStream" uid="uid://vr8wneerxfdh" path="res://Assets/Audio/Harvesting SeasonMixedMastered.mp3" id="2_rnvqp"]
 [ext_resource type="FontFile" uid="uid://d0g7r7ojp0qqk" path="res://Assets/Font/undead11.ttf" id="3_2b8dv"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_fal0y"]
+stream_count = 1
+stream_0 = ExtResource("2_rnvqp")
 
 [sub_resource type="Gradient" id="Gradient_udl7u"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 0)
@@ -74,7 +78,7 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_rnvqp")
+stream = SubResource("AudioStreamPlaylist_fal0y")
 autoplay = true
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]

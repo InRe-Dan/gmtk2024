@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bsne7661tkcrm"]
+[gd_scene load_steps=17 format=3 uid="uid://bsne7661tkcrm"]
 
 [ext_resource type="Texture2D" uid="uid://ctai1fmqwymwc" path="res://Assets/Speech/bubble.png" id="1_dnwtq"]
 [ext_resource type="Script" path="res://Item/item_list.gd" id="1_eu7ty"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://rule_list.gd" id="4_143o4"]
 [ext_resource type="Texture2D" uid="uid://dcfgvdo2fo11m" path="res://Assets/old_softwood.png" id="6_7p2h1"]
 [ext_resource type="PackedScene" uid="uid://deukgqgqggkkj" path="res://Dragon/dragon_visuals.tscn" id="8_prxji"]
+[ext_resource type="AudioStream" uid="uid://c6k1jgka5lfg3" path="res://Assets/Audio/Glutton One.mp3" id="12_fmxl0"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gqly2"]
 load_path = "res://.godot/imported/stonebrick.jpg-9d98909f44f2a758921f2d4b684a2381.ctex"
@@ -20,6 +21,10 @@ bg_color = Color(0.24, 0.24, 0.24, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h4x35"]
 bg_color = Color(0.12, 0.12, 0.12, 1)
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_3oacu"]
+stream_count = 1
+stream_0 = ExtResource("12_fmxl0")
 
 [node name="Main" type="Control"]
 texture_filter = 1
@@ -252,5 +257,9 @@ color = Color(0, 0, 0, 1)
 
 [node name="PuzzleTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPlaylist_3oacu")
+autoplay = true
 
 [connection signal="timeout" from="PuzzleTimer" to="." method="_on_puzzle_timer_timeout"]
