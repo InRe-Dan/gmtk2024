@@ -23,7 +23,7 @@ func is_valid(gridsize : Vector2i, placed : Array[Item]) -> bool:
 	return true
 
 func get_dragon_request() -> String:
-	var req : String = ""
+	var req : String = "Exactly "
 	for i : int in range(types.size()):
 		req += "[color=black]%s[/color] %s" % [amounts[i], Item.lookup_table[types[i]]]
 		if i < types.size() - 1:

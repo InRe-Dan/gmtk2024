@@ -115,7 +115,7 @@ func _on_slot_mouse_exited() -> void:
 
 
 ## Initializes the grid to be a certain size
-func initialize(columns: int, rows: int) -> void:
+func initialize(columns: int, rows: int, rules: Array[Rule]) -> void:
 	current_slot = null
 	can_place = false
 	drag_offset = Vector2i.ZERO
@@ -128,6 +128,7 @@ func initialize(columns: int, rows: int) -> void:
 	
 	items = []
 	
+	# Free previous slots
 	for row: Array[GridSlot] in matrix:
 		for slot: GridSlot in row:
 			slot.queue_free()
@@ -149,7 +150,6 @@ func initialize(columns: int, rows: int) -> void:
 	tween.tween_callback(make_ready)
 	tween.play()
 	
-	
 	# Create empty grid slots
 	for row in range(row_count):
 		var row_data: Array[GridSlot]
@@ -157,6 +157,20 @@ func initialize(columns: int, rows: int) -> void:
 			row_data.append(create_slot(column, row))
 		
 		matrix.append(row_data)
+	
+	# Color forbidden slots
+	for rule: Rule in rules:
+		if rule is EmptyCellRule:
+			for pos: Vector2i in (rule as EmptyCellRule).positions:
+				var slot: GridSlot = matrix[pos.y][pos.x]
+				slot.self_modulate = Color.RED
+	
+	# Color favorable slots
+	for rule: Rule in rules:
+		if rule is IsInPositionRule:
+			rule = rule as IsInPositionRule
+			var slot: GridSlot = matrix[rule.position.y][rule.position.x]
+			slot.self_modulate = Color.LIGHT_GREEN
 
 
 ## Creates a grid slot at the specified column and row

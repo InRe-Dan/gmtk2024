@@ -17,12 +17,12 @@ func _ready() -> void:
 func new_rules(new_list: Array[Rule]) -> void:
 	for display: DisplayedRule in get_children():
 		display.label.text = ""
+		display.color = Color.DARK_GRAY
 	
 	rules = new_list
 	for i in range(min(rules.size(), get_child_count())):
 		var display: DisplayedRule = get_node("Rule" + str(i))
 		display.update_condition(rules[i])
-		display.color = Color.DARK_GRAY
 
 
 ## Marks passed rules as failed
