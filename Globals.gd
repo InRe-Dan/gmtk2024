@@ -10,7 +10,7 @@ const max_rule_count: int = 8
 const min_grid_size: Vector2i = Vector2i(4, 4)
 
 ## Maximum grid dimensions in cells
-const max_grid_size: Vector2i = Vector2i(8, 8)
+const max_grid_size: Vector2i = Vector2i(8, 4)
 
 ## Grid slot cell size in pixels
 const cell_size: Vector2i = Vector2i(8, 8)
