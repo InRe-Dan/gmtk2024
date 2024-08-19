@@ -11,7 +11,7 @@ static func generate_random_rule(size : Vector2i, placed : Array[Item]) -> Rule:
 	var max_attempts : int = 5
 	var attempts = 0
 	while not rule and attempts < max_attempts:
-		var r : int = randi_range(0, 5)
+		var r : int = randi_range(0, 6)
 		attempts += 1
 		match r:
 			0:
@@ -19,7 +19,7 @@ static func generate_random_rule(size : Vector2i, placed : Array[Item]) -> Rule:
 			1:
 				rule = IsNotTouchingRule.generate_valid_rule(size, placed)
 			2:
-				rule = EmptyCellRule.generate_valid_rule(size, placed)
+				rule = BlankRule.generate_valid_rule(size, placed)
 			3:
 				rule = CountRule.generate_valid_rule(size, placed)
 			4:
@@ -27,6 +27,8 @@ static func generate_random_rule(size : Vector2i, placed : Array[Item]) -> Rule:
 			5:
 				rule = AmountRule.generate_valid_rule(size, placed)
 			6:
+				rule = EmptyCellRule.generate_valid_rule(size, placed)
+			7:
 				rule = ListRule.generate_valid_rule(size, placed)
 	return rule
 
