@@ -80,18 +80,23 @@ func _on_solution_submitted(grid_items: Array[GridItem], gridsize: Vector2i) -> 
 	if fail_list.size() == 0:
 		anger -= 1
 		multiplier = 2
+		$Great.play()
 	elif fail_list.size() == 1:
 		anger = 0
 		multiplier = 1
+		$Good.play()
 	elif fail_list.size() == 2:
 		anger += 1
 		multiplier = 1
+		$Good.play()
 	elif fail_list.size() > 4:
 		anger += 5
 		multiplier = 0
+		$Bad.play()
 	elif fail_list.size() > 2:
 		anger += 3
 		multiplier = 0
+		$Bad.play()
 	anger = max(0, anger)
 	dragon.change_anger(anger + 1)
 	

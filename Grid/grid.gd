@@ -7,6 +7,9 @@ signal solution_submitted(items)
 signal total_price_updated(new_total)
 signal selected_slot_changed(grid_position)
 
+@export var pickup_sound : AudioStreamPlayer
+@export var drop_sound : AudioStreamPlayer
+
 @onready var grid_slot_scene = preload("res://Grid/grid_slot.tscn")
 @onready var grid_item_scene = preload("res://Item/grid_item.tscn")
 @onready var grid_container: GridContainer = $GridContainer
@@ -204,6 +207,7 @@ func place_item() -> void:
 	var slots: Array[GridSlot]
 	
 	held_item = null
+	drop_sound.play()
 	
 	# Iterate over slot positions
 	for grid_pos in get_slot_positions(current_slot, item.item):
@@ -260,6 +264,7 @@ func pick_item() -> void:
 	
 	_on_slot_mouse_exited()
 	_on_slot_mouse_entered(hovered_slot)
+	pickup_sound.play()
 	
 
 

@@ -3,6 +3,7 @@ extends ScrollContainer
 
 signal new_item_selected(item)
 
+@export var pick_sound : AudioStreamPlayer
 @onready var list_item_scene: PackedScene = preload("res://Item/list_item.tscn")
 
 
@@ -21,3 +22,4 @@ func _ready() -> void:
 ## Item was pressed
 func _on_item_pressed(list_item: ListItem) -> void:
 	new_item_selected.emit(list_item.item)
+	pick_sound.play()

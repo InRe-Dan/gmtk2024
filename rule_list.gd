@@ -2,6 +2,7 @@ class_name RuleList
 extends VBoxContainer
 
 @onready var rule_display_scene: PackedScene = preload("res://displayed_rule.tscn")
+@export var audio : AudioStreamPlayer
 
 var rules: Array[Rule]
 
@@ -23,6 +24,7 @@ func new_rules(new_list: Array[Rule]) -> void:
 	for i in range(min(rules.size(), get_child_count())):
 		var display: DisplayedRule = get_node("Rule" + str(i))
 		display.update_condition(rules[i])
+	audio.play()
 
 
 ## Marks passed rules as failed
