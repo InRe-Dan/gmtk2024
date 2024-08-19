@@ -142,6 +142,8 @@ script = ExtResource("2_d3txm")
 [node name="ItemsList" type="ScrollContainer" parent="VBoxContainer/Workspace/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
 script = ExtResource("1_eu7ty")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Workspace/HBoxContainer/ItemsList"]
@@ -185,6 +187,15 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="TimerLabel" type="RichTextLabel" parent="VBoxContainer/Workspace/HBoxContainer/ColorRect/InfoBox"]
+custom_minimum_size = Vector2(0, 11)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_jskw5")
+theme_override_font_sizes/normal_font_size = 11
+bbcode_enabled = true
+text = " Time: [color=green]0[/color]"
+fit_content = true
+
 [node name="ItemCount" type="RichTextLabel" parent="VBoxContainer/Workspace/HBoxContainer/ColorRect/InfoBox"]
 custom_minimum_size = Vector2(0, 11)
 layout_mode = 2
@@ -213,4 +224,8 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_uii85")
 theme_override_styles/normal = SubResource("StyleBoxFlat_h4x35")
 text = "Submit"
 
+[node name="PuzzleTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="pressed" from="VBoxContainer/Workspace/HBoxContainer/ColorRect/InfoBox/Submit" to="VBoxContainer/Workspace/HBoxContainer/ColorRect/InfoBox" method="_on_submit_pressed"]
+[connection signal="timeout" from="PuzzleTimer" to="." method="_on_puzzle_timer_timeout"]

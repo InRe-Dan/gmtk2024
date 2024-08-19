@@ -95,4 +95,5 @@ static func generate_puzzle_v2(size : Vector2i) -> Puzzle:
 			attempts = 0
 	
 	puzzle.rules = rules
+	puzzle.time = items_placed.size() * 5
 	return puzzle
