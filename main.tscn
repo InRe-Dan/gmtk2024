@@ -188,13 +188,13 @@ offset_top = 4.0
 offset_right = 26.0
 offset_bottom = 20.0
 scale = Vector2(1.5, 1.5)
+step = 0.0
 value = 33.0
-rounded = true
 fill_mode = 5
 texture_under = ExtResource("11_nvb8w")
 texture_over = ExtResource("12_wbel3")
 texture_progress = ExtResource("13_jx8jg")
-tint_progress = Color(0.32, 1, 0.2, 1)
+tint_under = Color(0.66, 0.66, 0.66, 1)
 
 [node name="PointsLabel" type="RichTextLabel" parent="VBoxContainer/Workspace/HBoxContainer/InfoBox/Top"]
 custom_minimum_size = Vector2(0, 11)

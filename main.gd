@@ -28,11 +28,11 @@ func _process(delta: float) -> void:
 	var remaining_time: float = puzzle_timer.time_left
 	timer_label.value = remaining_time
 	if remaining_time > 20:
-		timer_label.tint_progress = Color.GREEN
+		timer_label.tint_progress = Color.from_string("#4cd137", Color.GREEN)
 	elif remaining_time > 10:
-		timer_label.tint_progress = Color.YELLOW
+		timer_label.tint_progress = Color.from_string("#f9ca24", Color.YELLOW)
 	else:
-		timer_label.tint_progress = Color.RED
+		timer_label.tint_progress = Color.from_string("#e84118", Color.RED)
 
 
 ## Generate new puzzle and blank grid
