@@ -7,6 +7,8 @@ extends Control
 
 var current_puzzle: Puzzle = null
 
+var anger: int = 0
+
 
 ## Node entered the scene tree for the first time
 func _ready() -> void:
@@ -61,18 +63,19 @@ func _on_solution_submitted(grid_items: Array[GridItem], gridsize: Vector2i) -> 
 
 	if not current_puzzle: return
 	
-	# Check solution
-	var valid: bool = true
-	
 	var fail_list: Array[Rule] = []
 	for rule: Rule in current_puzzle.rules:
 		if not rule.is_valid(gridsize, items):
 			fail_list.append(rule)
-			valid = false
-			print(rule.get_debug_request() + " FAILED")
 	
 	rule_list.mark_failed(fail_list)
-	print("solution is " + str(valid))
+	
+	if fail_list.size() == 0: anger -= 1
+	elif fail_list.size() == 1: anger = 0
+	elif fail_list.size() == 2: anger += 1
+	elif fail_list.size() > 4: anger += 5
+	elif fail_list.size() > 2: anger += 3
+	print(anger)
 
 
 ## Out of time
