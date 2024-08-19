@@ -1,23 +1,20 @@
 class_name Dragon
 extends Node2D
 
-@onready var top : Sprite2D = $HeadTop
-@onready var bottom : Sprite2D = $HeadBottom
+@onready var head : Sprite2D = $Head
 
 var neck_pieces : Array[Sprite2D]
 var time : float = 0
 
-var top_offset: float
-var bottom_offset: float
+var offset: float
 
-const speed_coeff: float = 0.25
+const speed_coeff: float = 0.5
 var speed: int = 1
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	top_offset = top.position.x
-	bottom_offset = bottom.position.x
+	offset = head.position.x
 	
 	var first_neck : Sprite2D = $Node2D/Neck
 	neck_pieces = [first_neck]
@@ -28,11 +25,21 @@ func _ready() -> void:
 		$Node2D.add_child(new)
 
 
+## Sets anger to passed amount
+func change_anger(anger: int) -> void:
+	speed = anger
+	if anger > 20:
+		head.region_rect = Rect2i(2, 96, 35, 21)
+	elif anger > 10:
+		head.region_rect = Rect2i(2, 72, 35, 21)
+	else:
+		head.region_rect = Rect2i(2, 0, 35, 20)
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	time += delta * speed * speed_coeff
-	top.position.x = sin(time) + top_offset
-	bottom.position.x = sin(time) + bottom_offset
+	time += 0.0075 + delta * speed * speed_coeff
+	head.position.x = sin(time) + offset
 	for neck : Sprite2D in neck_pieces:
 		neck.position.x = sin(time + neck.position.y / 16.)
 		

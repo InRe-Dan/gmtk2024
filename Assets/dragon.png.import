@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ttvalcimutvi"
-path="res://.godot/imported/woodtexture.png-fa38273ae6391a40fb4460c481196539.ctex"
+uid="uid://byamphs50nsg3"
+path="res://.godot/imported/dragon.png-867800763b204b1888d70668e33b3465.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/woodtexture.png"
-dest_files=["res://.godot/imported/woodtexture.png-fa38273ae6391a40fb4460c481196539.ctex"]
+source_file="res://Assets/dragon.png"
+dest_files=["res://.godot/imported/dragon.png-867800763b204b1888d70668e33b3465.ctex"]
 
 [params]
 

@@ -77,7 +77,7 @@ func _on_solution_submitted(grid_items: Array[GridItem], gridsize: Vector2i) -> 
 	elif fail_list.size() > 4: anger += 5
 	elif fail_list.size() > 2: anger += 3
 	anger = max(0, anger)
-	dragon.speed = 1 + anger
+	dragon.change_anger(anger + 1)
 
 
 ## Out of time

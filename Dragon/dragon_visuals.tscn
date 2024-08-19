@@ -1,22 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://deukgqgqggkkj"]
+[gd_scene load_steps=3 format=3 uid="uid://deukgqgqggkkj"]
 
-[ext_resource type="Texture2D" uid="uid://dpyxielecai6h" path="res://Assets/Dragon_Sprite-Sheet1.png" id="1_17ugk"]
 [ext_resource type="Script" path="res://Dragon/dragon_visuals.gd" id="1_l7n2f"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6iaey"]
-load_path = "res://.godot/imported/Dragon_Sprite-Sheet1.png-dc1514038640d45c7a5713919d5cffbc.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o42bq"]
-atlas = SubResource("CompressedTexture2D_6iaey")
-region = Rect2(176, 44, 16, 4)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2tf4s"]
-atlas = ExtResource("1_17ugk")
-region = Rect2(52, 15, 49, 28)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uoso1"]
-atlas = ExtResource("1_17ugk")
-region = Rect2(0, 0, 55, 38)
+[ext_resource type="Texture2D" uid="uid://byamphs50nsg3" path="res://Assets/dragon.png" id="2_lilmv"]
 
 [node name="Dragon" type="Node2D"]
 script = ExtResource("1_l7n2f")
@@ -24,14 +9,13 @@ script = ExtResource("1_l7n2f")
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="Neck" type="Sprite2D" parent="Node2D"]
-texture = SubResource("AtlasTexture_o42bq")
+texture = ExtResource("2_lilmv")
+region_enabled = true
+region_rect = Rect2(45, 2, 16, 16)
 
-[node name="HeadBottom" type="Sprite2D" parent="."]
+[node name="Head" type="Sprite2D" parent="."]
 z_index = 1
-position = Vector2(-11.5, -4)
-texture = SubResource("AtlasTexture_2tf4s")
-
-[node name="HeadTop" type="Sprite2D" parent="."]
-z_index = 2
-position = Vector2(-12.5, -14)
-texture = SubResource("AtlasTexture_uoso1")
+position = Vector2(-3.5, -17.5)
+texture = ExtResource("2_lilmv")
+region_enabled = true
+region_rect = Rect2(2, 0, 35, 20)

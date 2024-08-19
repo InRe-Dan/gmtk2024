@@ -8,10 +8,12 @@
 [ext_resource type="Script" path="res://Grid/workspace.gd" id="2_d3txm"]
 [ext_resource type="Texture2D" uid="uid://c8oga2p40x8g2" path="res://Assets/Speech/arrow.png" id="2_egt1c"]
 [ext_resource type="FontFile" uid="uid://d0g7r7ojp0qqk" path="res://Assets/Font/undead11.ttf" id="2_jskw5"]
-[ext_resource type="Texture2D" uid="uid://f4ndjffmb58g" path="res://Assets/stonebrick.jpg" id="2_ws2i2"]
 [ext_resource type="Script" path="res://rule_list.gd" id="4_143o4"]
-[ext_resource type="Texture2D" uid="uid://ttvalcimutvi" path="res://Assets/woodtexture.png" id="6_68lrd"]
+[ext_resource type="Texture2D" uid="uid://dcfgvdo2fo11m" path="res://Assets/old_softwood.png" id="6_7p2h1"]
 [ext_resource type="PackedScene" uid="uid://deukgqgqggkkj" path="res://Dragon/dragon_visuals.tscn" id="8_prxji"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gqly2"]
+load_path = "res://.godot/imported/stonebrick.jpg-9d98909f44f2a758921f2d4b684a2381.ctex"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uii85"]
 bg_color = Color(0.24, 0.24, 0.24, 1)
@@ -30,7 +32,7 @@ grow_vertical = 2
 script = ExtResource("1_xysnu")
 
 [node name="Backdrop" type="TextureRect" parent="."]
-self_modulate = Color(0.22, 0.22, 0.22, 1)
+self_modulate = Color(0.18, 0.18, 0.18, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,7 +41,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("2_ws2i2")
+texture = SubResource("CompressedTexture2D_gqly2")
 expand_mode = 1
 stretch_mode = 6
 
@@ -115,7 +117,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Dragon" parent="VBoxContainer" instance=ExtResource("8_prxji")]
-position = Vector2(330, 60)
+position = Vector2(330, 90)
 scale = Vector2(2, 2)
 
 [node name="ColorRect" type="ColorRect" parent="VBoxContainer"]
@@ -124,10 +126,12 @@ layout_mode = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Workspace" type="TextureRect" parent="VBoxContainer"]
-self_modulate = Color(0.39, 0.39, 0.39, 1)
+self_modulate = Color(0.4, 0.4, 0.4, 1)
 custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
-texture = ExtResource("6_68lrd")
+texture = ExtResource("6_7p2h1")
+expand_mode = 3
+stretch_mode = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Workspace"]
 layout_mode = 1
