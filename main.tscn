@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bsne7661tkcrm"]
+[gd_scene load_steps=18 format=3 uid="uid://bsne7661tkcrm"]
 
 [ext_resource type="Texture2D" uid="uid://ctai1fmqwymwc" path="res://Assets/Speech/bubble.png" id="1_dnwtq"]
 [ext_resource type="Script" path="res://Item/item_list.gd" id="1_eu7ty"]
@@ -11,6 +11,9 @@
 [ext_resource type="Script" path="res://rule_list.gd" id="4_143o4"]
 [ext_resource type="Texture2D" uid="uid://dcfgvdo2fo11m" path="res://Assets/old_softwood.png" id="6_7p2h1"]
 [ext_resource type="PackedScene" uid="uid://deukgqgqggkkj" path="res://Dragon/dragon_visuals.tscn" id="8_prxji"]
+[ext_resource type="Texture2D" uid="uid://ccvb1v6kgafqx" path="res://Assets/Timer/below.png" id="11_nvb8w"]
+[ext_resource type="Texture2D" uid="uid://obmievdgu7t4" path="res://Assets/Timer/above.png" id="12_wbel3"]
+[ext_resource type="Texture2D" uid="uid://cujrr82hre1pv" path="res://Assets/Timer/progress.png" id="13_jx8jg"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gqly2"]
 load_path = "res://.godot/imported/stonebrick.jpg-9d98909f44f2a758921f2d4b684a2381.ctex"
@@ -174,10 +177,24 @@ theme_override_font_sizes/font_size = 11
 text = "(0, 0)"
 horizontal_alignment = 1
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="VBoxContainer/Workspace/HBoxContainer/InfoBox/Top"]
+[node name="Control" type="Control" parent="VBoxContainer/Workspace/HBoxContainer/InfoBox/Top"]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
+
+[node name="TimerLabel" type="TextureProgressBar" parent="VBoxContainer/Workspace/HBoxContainer/InfoBox/Top/Control"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 4.0
+offset_right = 26.0
+offset_bottom = 20.0
+scale = Vector2(1.5, 1.5)
+value = 33.0
+rounded = true
 fill_mode = 5
+texture_under = ExtResource("11_nvb8w")
+texture_over = ExtResource("12_wbel3")
+texture_progress = ExtResource("13_jx8jg")
+tint_progress = Color(0.32, 1, 0.2, 1)
 
 [node name="PointsLabel" type="RichTextLabel" parent="VBoxContainer/Workspace/HBoxContainer/InfoBox/Top"]
 custom_minimum_size = Vector2(0, 11)
@@ -187,7 +204,7 @@ size_flags_vertical = 4
 theme_override_fonts/normal_font = ExtResource("2_jskw5")
 theme_override_font_sizes/normal_font_size = 11
 bbcode_enabled = true
-text = "Points: [color=gold]0[/color]"
+text = "[center]Points: [color=gold]0[/color][/center]"
 fit_content = true
 autowrap_mode = 0
 
@@ -211,7 +228,7 @@ size_flags_vertical = 4
 theme_override_fonts/normal_font = ExtResource("2_jskw5")
 theme_override_font_sizes/normal_font_size = 11
 bbcode_enabled = true
-text = "Items: [color=gray]0[/color]"
+text = "[center]Items: [color=gray]0[/color][/center]"
 fit_content = true
 autowrap_mode = 0
 
@@ -234,7 +251,7 @@ size_flags_vertical = 4
 theme_override_fonts/normal_font = ExtResource("2_jskw5")
 theme_override_font_sizes/normal_font_size = 11
 bbcode_enabled = true
-text = "Price: [color=ffe600]$0[/color]"
+text = "[center]Price: [color=ffe600]$0[/color][/center]"
 fit_content = true
 autowrap_mode = 0
 
@@ -253,4 +270,5 @@ color = Color(0, 0, 0, 1)
 [node name="PuzzleTimer" type="Timer" parent="."]
 one_shot = true
 
+[connection signal="pressed" from="VBoxContainer/Workspace/HBoxContainer/InfoBox/Bottom/Submit" to="VBoxContainer/Workspace/HBoxContainer/InfoBox/Zoner/Grid" method="_on_submit"]
 [connection signal="timeout" from="PuzzleTimer" to="." method="_on_puzzle_timer_timeout"]

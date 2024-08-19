@@ -3,7 +3,7 @@ extends Control
 @onready var grid: Grid = $VBoxContainer/Workspace/HBoxContainer/InfoBox/Zoner/Grid
 @onready var rule_list: RuleList = $VBoxContainer/View/MarginContainer/NinePatchRect/MarginContainer/RuleList
 @onready var puzzle_timer: Timer = $PuzzleTimer
-@onready var timer_label: RichTextLabel = $VBoxContainer/Workspace/HBoxContainer/ColorRect/InfoBox/TimerLabel
+@onready var timer_label: TextureProgressBar = $VBoxContainer/Workspace/HBoxContainer/InfoBox/Top/Control/TimerLabel
 @onready var dragon: Dragon = $VBoxContainer/Dragon
 @onready var info_box: InfoBox = $VBoxContainer/Workspace/HBoxContainer/InfoBox
 
@@ -23,18 +23,16 @@ func _ready() -> void:
 
 ## Called every frame
 func _process(delta: float) -> void:
-	return
 	if puzzle_timer.is_stopped(): return
 	
-	var remaining_time: float = floor(puzzle_timer.time_left)
-	timer_label.text = " Time: "
+	var remaining_time: float = puzzle_timer.time_left
+	timer_label.value = remaining_time
 	if remaining_time > 20:
-		timer_label.text += "[color=green]"
+		timer_label.tint_progress = Color.GREEN
 	elif remaining_time > 10:
-		timer_label.text += "[color=yellow]"
+		timer_label.tint_progress = Color.YELLOW
 	else:
-		timer_label.text += "[color=red]"
-	timer_label.text += str(remaining_time) + "[/color]"
+		timer_label.tint_progress = Color.RED
 
 
 ## Generate new puzzle and blank grid
@@ -48,6 +46,7 @@ func generate_puzzle() -> void:
 	rule_list.new_rules(current_puzzle.rules)
 	
 	puzzle_timer.wait_time = current_puzzle.time
+	timer_label.max_value = puzzle_timer.wait_time
 	puzzle_timer.start()
 
 
