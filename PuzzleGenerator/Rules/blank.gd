@@ -1,5 +1,7 @@
 class_name BlankRule extends Rule
 
+func _init() -> void:
+	priority = 1
 
 func is_valid(gridsize : Vector2i, placed : Array[Item]) -> bool:
 	return true
