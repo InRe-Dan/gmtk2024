@@ -13,4 +13,4 @@ item_name = "Crab"
 sprite = SubResource("AtlasTexture_41tfc")
 value = 36
 text_colour = Color(0.435294, 0.117647, 0.317647, 1)
-types = Array[int]([1, 128])
+types = Array[int]([16, 1])

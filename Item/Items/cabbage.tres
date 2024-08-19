@@ -13,4 +13,4 @@ item_name = "Cabbage"
 sprite = SubResource("AtlasTexture_lhkg6")
 value = 14
 text_colour = Color(0, 0.580392, 0.196078, 1)
-types = Array[int]([])
+types = Array[int]([4])

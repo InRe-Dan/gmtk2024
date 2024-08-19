@@ -13,4 +13,4 @@ item_name = "Bread"
 sprite = SubResource("AtlasTexture_lhkg6")
 value = 10
 text_colour = Color(0.992157, 0.796078, 0.431373, 1)
-types = Array[int]([])
+types = Array[int]([8])

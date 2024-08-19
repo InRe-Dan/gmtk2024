@@ -11,3 +11,4 @@ func _ready() -> void:
 	grid.total_price_updated.connect(Callable(info_box, "_on_total_price_updated"))
 	info_box.grid_submitted.connect(Callable(grid, "_on_submit"))
 	grid.selected_slot_changed.connect(Callable(info_box, "_on_slot_coordinate_changed"))
+	grid.item_count_changed.connect(Callable(info_box, "_on_item_count_changed"))

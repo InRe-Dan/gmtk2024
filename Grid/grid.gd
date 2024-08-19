@@ -2,6 +2,7 @@ class_name Grid
 extends Control
 
 signal grid_cleared()
+signal item_count_changed(count)
 signal solution_submitted(items)
 signal total_price_updated(new_total)
 signal selected_slot_changed(grid_position)
@@ -120,6 +121,7 @@ func initialize(columns: int, rows: int) -> void:
 	drag_offset = Vector2i.ZERO
 	total_price = 0
 	total_price_updated.emit(0)
+	item_count_changed.emit(0)
 	
 	for item: GridItem in items:
 		item.queue_free()
@@ -207,6 +209,7 @@ func place_item() -> void:
 	total_price += item.item.value
 	total_price_updated.emit(total_price)
 	items.append(item)
+	item_count_changed.emit(items.size())
 	item.place()
 	
 	drag_offset = Vector2i.ZERO
@@ -239,6 +242,7 @@ func pick_item() -> void:
 	total_price -= held_item.item.value
 	total_price_updated.emit(total_price)
 	items.remove_at(items.find(held_item))
+	item_count_changed.emit(items.size())
 	
 	_on_slot_mouse_exited()
 	_on_slot_mouse_entered(hovered_slot)

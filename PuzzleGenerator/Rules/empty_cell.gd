@@ -1,25 +1,27 @@
 class_name EmptyCellRule extends Rule
 
-@export var position : Vector2i
+@export var positions : Array[Vector2i]
 
 func is_valid(gridsize : Vector2i, placed : Array[Item]) -> bool:
 	for item : Item in placed:
-		if position in item.placement.actual_cells:
-			return false
+		for position: Vector2i in positions:
+			if position in item.placement.actual_cells:
+				return false
 	return true
 
 func get_dragon_request() -> String:
-	return "[color=grey]Nothing[/color] at [color=black](%s, %s)[/color]" % [position.x, position.y]
+	var req : String = "[color=grey]Nothing[/color] at "
+	for i : int in range(positions.size()):
+		req += "[color=black](%s, %s)[/color]" % [positions[i].x, positions[i].y]
+		if i < positions.size() - 1:
+			req += ", "
+	return req
 
 func get_debug_request() -> String:
-	return "There should be no item at (%s, %s)" % [position.x, position.y]
+	return "There should be no items at %s" % [positions]
 
 func is_identical_to(other : Rule) -> bool:
-	if other is not EmptyCellRule:
-		return false
-	var o : EmptyCellRule = other as EmptyCellRule
-	# Since arrays are sorted on set, this comparison is fine.
-	if position == o.position:
+	if other is EmptyCellRule:
 		return true
 	return false
 
@@ -35,5 +37,6 @@ static func generate_valid_rule(gridsize : Vector2i, items : Array[Item]) -> Rul
 	if spaces_available.size() == 0:
 		return null
 	spaces_available.shuffle()
-	rule.position = spaces_available.pick_random()
+	for i in range(min(spaces_available.size(), randi_range(3,4))):
+		rule.positions.append(spaces_available[i])
 	return rule

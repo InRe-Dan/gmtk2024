@@ -13,4 +13,4 @@ item_name = "Drumstick"
 sprite = SubResource("AtlasTexture_lhkg6")
 value = 20
 text_colour = Color(0.827451, 0.329412, 0, 1)
-types = Array[int]([])
+types = Array[int]([1])

@@ -21,14 +21,11 @@ LEFT = 3}
 # This might have to be a more complex type than just an enum since foods might have different types.
 enum Type {
 	MEAT = 1 << 0,
-	LIQUID = 1 << 1,
-	VEGETARIAN = 1 << 2,
-	FRUIT = 1 << 3,
-	VEGETABLE = 1 << 4,
-	VEGAN = 1 << 5,
-	BAKED_GOODS = 1 << 6,
-	SEAFOOD = 1 << 7,
-	DAIRY = 1 << 8,
+	FRUIT = 1 << 1,
+	VEGETABLE = 1 << 2,
+	PASTRY = 1 << 3,
+	SEAFOOD = 1 << 4,
+	DAIRY = 1 << 5
 }
 @export var types : Array[Type]:
 	set(a):
@@ -41,14 +38,11 @@ var type : int
 # Should be formatted in such a way that "I want NO x" makes sense
 static var lookup_table : Dictionary = { # Type -> BBCode String
 	Type.MEAT: "[color=#c23616]Meat[/color]",
-	Type.LIQUID: "[color=#273c75]Drinks[/color]",
-	Type.VEGETARIAN:  "[color=#44bd32]Vegetarian Food[/color]",
-	Type.FRUIT: "[color=#9c88ff]Fruits[/color]",
-	Type.VEGETABLE: "[color=#6ab04c]Vegetables[/color]",
-	Type.VEGAN: "[color=#badc58]Vegan Food[/color]",
-	Type.BAKED_GOODS: "[color=#ffbe76]Baked Goods[/color]",
+	Type.FRUIT: "[color=#9c88ff]Fruit[/color]",
+	Type.VEGETABLE: "[color=#6ab04c]Vegetable[/color]",
 	Type.SEAFOOD: "[color=#30336b]Seafood[/color]",
-	Type.DAIRY: "[color=#dff9fb]Dairy[/color]",
+	Type.PASTRY: "[color=#f8c291]Pastry[/color]",
+	Type.DAIRY: "[color=#dff9fb]Dairy[/color]"
 }
 
 
