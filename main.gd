@@ -75,7 +75,6 @@ func _on_solution_submitted(grid_items: Array[GridItem], gridsize: Vector2i) -> 
 	elif fail_list.size() == 2: anger += 1
 	elif fail_list.size() > 4: anger += 5
 	elif fail_list.size() > 2: anger += 3
-	print(anger)
 
 
 ## Out of time
