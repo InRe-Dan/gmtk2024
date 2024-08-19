@@ -51,15 +51,6 @@ static func generate_puzzle(size : Vector2i) -> Puzzle:
 			result_rules.append(new_rule)
 			attempts = 0
 	
-	print("PUZZLE GENERATED =========")
-	print("Size    : ", size)
-	print("Items   : ", items_placed.map(func (i): return i.item_name))
-	print("Rules   :")
-	for rule : Rule in result_rules:
-		if not rule: continue
-		print("    ", rule.get_debug_request())
-	print("==========================")
-	
 	var puzzle: Puzzle = Puzzle.new()
 	puzzle.rules = result_rules
 	puzzle.tray_width = size.x

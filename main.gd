@@ -35,7 +35,6 @@ func _on_solution_submitted(grid_items: Array[GridItem], gridsize: Vector2i) -> 
 	for item: GridItem in grid_items:
 		# Determine placement based on root position
 		item.item.placement = item.item.get_placement(Vector2i(item.root_slot.grid_position.y, item.root_slot.grid_position.x), Item.Rotation.NONE)
-		print(item.item.item_name, " ", item.item.placement.actual_cells)
 		items.append(item.item)
 	
 	if items.size() == 0: return
@@ -43,6 +42,7 @@ func _on_solution_submitted(grid_items: Array[GridItem], gridsize: Vector2i) -> 
 	
 	# Check solution
 	var valid: bool = true
+
 	for rule: Rule in current_puzzle.rules:
 		if not rule.is_valid(gridsize, items):
 			valid = false

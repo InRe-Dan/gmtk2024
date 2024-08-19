@@ -69,7 +69,7 @@ func _on_cleared() -> void:
 func _on_submit() -> void:
 	if not is_ready: return
 	is_ready = false
-	
+
 	solution_submitted.emit(items, Vector2i(col_count, row_count))
 	
 	var tween = get_tree().create_tween()
@@ -81,6 +81,7 @@ func _on_submit() -> void:
 ## New item selected
 func _on_new_item_selected(item: Item) -> void:
 	trash_item()
+	item = item.duplicate()
 	var new_item: GridItem = grid_item_scene.instantiate()
 	new_item.initialize(item)
 	held_item = new_item
