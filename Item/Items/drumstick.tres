@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://b5tqtrrbfxrgb"]
+
+[ext_resource type="Script" path="res://Item/base_item.gd" id="1_lbht1"]
+[ext_resource type="Texture2D" uid="uid://8g3vs2rl5h4h" path="res://Assets/atlas.png" id="2_aty3x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhkg6"]
+atlas = ExtResource("2_aty3x")
+region = Rect2(0, 72, 24, 8)
+
+[resource]
+script = ExtResource("1_lbht1")
+item_name = "Drumstick"
+sprite = SubResource("AtlasTexture_lhkg6")
+value = 20
+text_colour = Color(0.827451, 0.329412, 0, 1)
+types = Array[int]([])
