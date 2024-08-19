@@ -41,7 +41,9 @@ func _input(event: InputEvent) -> void:
 			pick_item()
 	
 	if event.is_action_pressed("cancel"):
+		pick_item()
 		trash_item()
+		
 	
 	if event.is_action_pressed("solve"):
 		_on_submit()
