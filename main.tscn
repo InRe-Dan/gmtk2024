@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://ccvb1v6kgafqx" path="res://Assets/Timer/below.png" id="11_nvb8w"]
 [ext_resource type="Texture2D" uid="uid://obmievdgu7t4" path="res://Assets/Timer/above.png" id="12_wbel3"]
 [ext_resource type="Texture2D" uid="uid://cujrr82hre1pv" path="res://Assets/Timer/progress.png" id="13_jx8jg"]
-[ext_resource type="AudioStream" uid="uid://c6k1jgka5lfg3" path="res://Assets/Audio/Glutton One.mp3" id="15_5jd2w"]
+[ext_resource type="AudioStream" uid="uid://blor68x8b14qa" path="res://Assets/Audio/GluttonFull.mp3" id="15_5jd2w"]
 [ext_resource type="AudioStream" uid="uid://bcbwun6fhfyk" path="res://Assets/Audio/pickup.mp3" id="15_cahbc"]
 [ext_resource type="AudioStream" uid="uid://dougyg7cb8gja" path="res://Assets/Audio/sucess1(1).mp3" id="15_gtyev"]
 [ext_resource type="AudioStream" uid="uid://ddihcq00jhnej" path="res://Assets/Audio/failure1(1).mp3" id="15_ho4lw"]
