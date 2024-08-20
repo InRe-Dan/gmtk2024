@@ -49,7 +49,6 @@ func _input(event: InputEvent) -> void:
 		
 	
 	if event.is_action_pressed("solve"):
-		print("solve")
 		_on_submit()
 
 
@@ -75,7 +74,6 @@ func _on_cleared() -> void:
 
 ## Grid submitted
 func _on_submit() -> void:
-	print("submit")
 	if not is_ready: return
 	is_ready = false
 

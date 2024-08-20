@@ -1,3 +1,4 @@
+class_name MainScene
 extends Control
 
 @onready var grid: Grid = $VBoxContainer/Workspace/HBoxContainer/InfoBox/Zoner/Grid
@@ -14,6 +15,7 @@ var current_puzzle: Puzzle = null
 
 var anger: int = 0
 var points: int = 0
+var total_expected_cost: int = 0
 
 var tutorial: int = 0
 
@@ -55,7 +57,8 @@ func generate_puzzle(puzzle: Puzzle = null) -> void:
 	else:
 		grid_size = Vector2i(randi_range(Globals.min_grid_size.x, Globals.max_grid_size.x), randi_range(Globals.min_grid_size.y, Globals.max_grid_size.y))
 		current_puzzle = PuzzleGenerator.generate_puzzle_v2(grid_size)
-		
+	
+	total_expected_cost += current_puzzle.expected_cost
 	grid.initialize(grid_size.x, grid_size.y, current_puzzle.rules)
 	
 	rule_list.new_rules(current_puzzle.rules)
@@ -122,7 +125,11 @@ func _on_solution_submitted(grid_items: Array[GridItem], gridsize: Vector2i) -> 
 	
 	dragon.change_anger(anger + 1, tint_bar())
 	
-	points += (current_puzzle.rules.size() - fail_list.size()) * multiplier
+	var budget: int = 0
+	for item: Item in items:
+		budget += item.value
+	
+	points += ((current_puzzle.rules.size() - fail_list.size()) + floor(max(0, current_puzzle.expected_cost - budget) / 4.0)) * multiplier
 	info_box._on_points_changed(points)
 	if anger >= anger_bar.max_value or Input.is_action_pressed("restart"):
 		$LossScreen.start(self)
