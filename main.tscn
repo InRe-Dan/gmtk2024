@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bsne7661tkcrm"]
+[gd_scene load_steps=31 format=3 uid="uid://bsne7661tkcrm"]
 
 [ext_resource type="Texture2D" uid="uid://ctai1fmqwymwc" path="res://Assets/Speech/bubble.png" id="1_dnwtq"]
 [ext_resource type="Script" path="res://Item/item_list.gd" id="1_eu7ty"]
@@ -31,6 +31,10 @@
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gqly2"]
 load_path = "res://.godot/imported/stonebrick.jpg-9d98909f44f2a758921f2d4b684a2381.ctex"
+
+[sub_resource type="LabelSettings" id="LabelSettings_ibd7b"]
+shadow_color = Color(0, 0, 0, 0.701961)
+shadow_offset = Vector2(-1, 1)
 
 [node name="Main" type="Control"]
 texture_filter = 1
@@ -304,10 +308,25 @@ offset_right = 358.0
 offset_bottom = 112.0
 size_flags_horizontal = 3
 
+[node name="Label" type="Label" parent="VBoxContainer/Workspace/Anger"]
+z_index = 5
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.783
+anchor_bottom = 0.16
+offset_left = 10.0
+offset_top = 28.0
+offset_right = 6.152
+offset_bottom = 30.92
+text = "Anger"
+label_settings = SubResource("LabelSettings_ibd7b")
+
 [node name="TextureProgressBar" type="TextureProgressBar" parent="VBoxContainer/Workspace/Anger"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -1.0
+offset_top = 46.0
+offset_right = 55.0
+offset_bottom = 134.0
 fill_mode = 3
 texture_under = ExtResource("18_fmh6s")
 texture_over = ExtResource("19_uiud6")
@@ -337,6 +356,7 @@ stream = ExtResource("15_cahbc")
 stream = ExtResource("15_no8t7")
 
 [node name="Texture" type="NinePatchRect" parent="."]
+visible = false
 modulate = Color(0.392157, 0.32549, 0.329412, 1)
 z_index = 9
 layout_mode = 0
@@ -351,6 +371,7 @@ patch_margin_right = 8
 patch_margin_bottom = 8
 
 [node name="LossScreen" parent="." node_paths=PackedStringArray("background") instance=ExtResource("27_6c2mn")]
+visible = false
 z_index = 10
 layout_mode = 0
 anchors_preset = 0

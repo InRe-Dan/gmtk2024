@@ -10,13 +10,14 @@ script = ExtResource("1_l7n2f")
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="Neck" type="Sprite2D" parent="Node2D"]
+position = Vector2(3, -4)
 texture = ExtResource("2_lilmv")
 region_enabled = true
-region_rect = Rect2(45, 2, 16, 16)
+region_rect = Rect2(45, 2, 16, 4)
 
 [node name="Head" type="Sprite2D" parent="."]
 z_index = 1
-position = Vector2(-3.5, -17.5)
+position = Vector2(-3, -16)
 texture = ExtResource("2_lilmv")
 region_enabled = true
 region_rect = Rect2(2, 0, 35, 20)

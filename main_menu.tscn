@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bbqf5y46js4hk"]
+[gd_scene load_steps=18 format=3 uid="uid://bbqf5y46js4hk"]
 
 [ext_resource type="PackedScene" uid="uid://deukgqgqggkkj" path="res://Dragon/dragon_visuals.tscn" id="1_6ax61"]
 [ext_resource type="Script" path="res://main_menu.gd" id="1_opooy"]
@@ -6,6 +6,9 @@
 [ext_resource type="FontFile" uid="uid://d0g7r7ojp0qqk" path="res://Assets/Font/undead11.ttf" id="3_2b8dv"]
 [ext_resource type="Shader" path="res://main_menu.gdshader" id="5_0v5c7"]
 [ext_resource type="Texture2D" uid="uid://2j101es7lhp4" path="res://Assets/skqRzbXb.png" id="5_spo5y"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3mwt7"]
+blend_mode = 1
 
 [sub_resource type="Gradient" id="Gradient_r8me8"]
 offsets = PackedFloat32Array(0, 0.847584)
@@ -25,13 +28,14 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_8qr7l"]
 gradient = SubResource("Gradient_udl7u")
-width = 3
-height = 3
+width = 6
+height = 6
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Gradient" id="Gradient_67akj"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 0)
+offsets = PackedFloat32Array(0, 0.625641, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.158974, 0.158974, 0.158974, 1, 0, 0, 0)
 
 [sub_resource type="Gradient" id="Gradient_e6xwt"]
 colors = PackedColorArray(1, 0.301961, 0, 1, 1, 1, 0, 1)
@@ -59,6 +63,7 @@ grow_vertical = 2
 script = ExtResource("1_opooy")
 
 [node name="Underglow" type="TextureRect" parent="."]
+material = SubResource("CanvasItemMaterial_3mwt7")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -83,6 +88,7 @@ layout_mode = 2
 color = Color(0.607843, 0.607843, 0.607843, 1)
 
 [node name="Dragon" parent="VBoxContainer" instance=ExtResource("1_6ax61")]
+z_index = -6
 position = Vector2(302, 157)
 scale = Vector2(2, 2)
 menu_mode = true
@@ -119,11 +125,10 @@ autoplay = true
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="VBoxContainer"]
 z_index = -1
-position = Vector2(181, 270)
+position = Vector2(181, 279)
 amount = 300
 lifetime = 3.0
 preprocess = 2.0
-lifetime_randomness = 1.0
 texture = SubResource("GradientTexture2D_8qr7l")
 emission_shape = 3
 emission_rect_extents = Vector2(300, 0)
@@ -132,8 +137,8 @@ gravity = Vector2(0, -50)
 initial_velocity_max = 167.46
 angle_min = -720.0
 angle_max = 720.0
-scale_amount_min = 0.5
-scale_amount_max = 3.0
+scale_amount_min = 0.25
+scale_amount_max = 1.5
 color_ramp = SubResource("Gradient_67akj")
 color_initial_ramp = SubResource("Gradient_e6xwt")
 hue_variation_max = 0.31

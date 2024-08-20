@@ -51,7 +51,10 @@ func progress_chew() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	time += delta * speed * speed_coeff
+	if menu_mode:
+		time += delta
+	else:
+		time += delta * speed * speed_coeff
 	head.position.x = sin(time) * 1.4 + offset
 	for neck : Sprite2D in neck_pieces:
 		neck.position.x = sin(time + neck.position.y / 16.) * 1.4
