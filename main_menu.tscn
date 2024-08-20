@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://bbqf5y46js4hk"]
+[gd_scene load_steps=19 format=3 uid="uid://bbqf5y46js4hk"]
 
 [ext_resource type="PackedScene" uid="uid://deukgqgqggkkj" path="res://Dragon/dragon_visuals.tscn" id="1_6ax61"]
 [ext_resource type="Script" path="res://main_menu.gd" id="1_opooy"]
 [ext_resource type="AudioStream" uid="uid://vr8wneerxfdh" path="res://Assets/Audio/Harvesting SeasonMixedMastered.mp3" id="2_rnvqp"]
 [ext_resource type="FontFile" uid="uid://d0g7r7ojp0qqk" path="res://Assets/Font/undead11.ttf" id="3_2b8dv"]
+[ext_resource type="Texture2D" uid="uid://dk0n37rec5ajn" path="res://Assets/GMTK_Title.png" id="3_3wwa8"]
 [ext_resource type="Shader" path="res://main_menu.gdshader" id="5_0v5c7"]
 [ext_resource type="Texture2D" uid="uid://2j101es7lhp4" path="res://Assets/skqRzbXb.png" id="5_spo5y"]
 
@@ -89,23 +90,19 @@ color = Color(0.607843, 0.607843, 0.607843, 1)
 
 [node name="Dragon" parent="VBoxContainer" instance=ExtResource("1_6ax61")]
 z_index = -6
-position = Vector2(302, 157)
+position = Vector2(312, 250)
 scale = Vector2(2, 2)
 menu_mode = true
-
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/normal_font = ExtResource("3_2b8dv")
-theme_override_font_sizes/normal_font_size = 33
-bbcode_enabled = true
-text = "[wave amp=10.0 freq=3.0 connected=1]Made for Scales[/wave]"
-fit_content = true
-autowrap_mode = 0
 
 [node name="Control" type="Control" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_3wwa8")
+expand_mode = 5
+stretch_mode = 5
 
 [node name="Button" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(50, 30)

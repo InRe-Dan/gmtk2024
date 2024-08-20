@@ -52,6 +52,7 @@ tray_width = 4
 tray_height = 4
 rules = Array[ExtResource("2_jfvm1")]([SubResource("Resource_smuyn"), SubResource("Resource_0k4mc"), SubResource("Resource_bm3sx"), SubResource("Resource_ohpv7"), SubResource("Resource_nqqfv"), SubResource("Resource_006yh"), SubResource("Resource_2q4fq"), SubResource("Resource_s2h4r")])
 time = 3600
+expected_cost = 0
 
 [sub_resource type="Resource" id="Resource_d65am"]
 script = ExtResource("3_kjlpd")
@@ -94,6 +95,7 @@ tray_width = 4
 tray_height = 4
 rules = Array[ExtResource("2_jfvm1")]([SubResource("Resource_d65am"), SubResource("Resource_jogo8"), SubResource("Resource_6q67b"), SubResource("Resource_18byt"), SubResource("Resource_ki8fp"), SubResource("Resource_cpwhb"), SubResource("Resource_q6fuh"), SubResource("Resource_bhuox")])
 time = 3600
+expected_cost = 0
 
 [sub_resource type="Resource" id="Resource_0g3y0"]
 script = ExtResource("8_kmc1d")
@@ -116,6 +118,7 @@ tray_width = 6
 tray_height = 6
 rules = Array[ExtResource("2_jfvm1")]([SubResource("Resource_0g3y0"), SubResource("Resource_ga0od"), SubResource("Resource_fiksd")])
 time = 60
+expected_cost = 0
 
 [resource]
 script = ExtResource("2_heqo0")
