@@ -97,7 +97,12 @@ static func generate_puzzle_v2(size : Vector2i) -> Puzzle:
 	
 	puzzle.rules = rules
 	puzzle.rules.sort_custom(rule_sorter)
-	puzzle.time = 60
+	var real_rule_count: int = 0
+	for rule in rules:
+		if rule is BlankRule or rule is EmptyCellRule: continue
+		real_rule_count += 1
+	puzzle.time = 8 * real_rule_count
+	print(puzzle.time)
 	return puzzle
 
 static func rule_sorter(a : Rule, b : Rule) -> bool:

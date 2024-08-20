@@ -27,9 +27,9 @@ func _process(delta: float) -> void:
 	
 	var remaining_time: float = puzzle_timer.time_left
 	timer_label.value = remaining_time
-	if remaining_time > 20:
+	if remaining_time > 18:
 		timer_label.tint_progress = Color.from_string("#4cd137", Color.GREEN)
-	elif remaining_time > 10:
+	elif remaining_time > 9:
 		timer_label.tint_progress = Color.from_string("#f9ca24", Color.YELLOW)
 	else:
 		timer_label.tint_progress = Color.from_string("#e84118", Color.RED)
@@ -86,7 +86,7 @@ func _on_solution_submitted(grid_items: Array[GridItem], gridsize: Vector2i) -> 
 		multiplier = 1
 		$Good.play()
 	elif fail_list.size() == 2:
-		anger += 1
+		anger += 0
 		multiplier = 1
 		$Good.play()
 	elif fail_list.size() > 4:

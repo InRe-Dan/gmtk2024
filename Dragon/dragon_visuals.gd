@@ -13,14 +13,12 @@ var time : float = 0
 var offset: float
 
 const speed_coeff: float = 0.5
-var speed: int = 1
+var speed: float = 0.5
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	offset = head.position.x
-	if menu_mode:
-		speed = 0.05
 	var first_neck : Sprite2D = $Node2D/Neck
 	neck_pieces = [first_neck]
 	for i in range(36):
@@ -32,7 +30,7 @@ func _ready() -> void:
 
 ## Sets anger to passed amount
 func change_anger(anger: int) -> void:
-	speed = anger
+	speed = anger / 2
 	if anger > 24:
 		head.region_rect = Rect2i(2, 96, 35, 20)
 		eyes.region_rect = Rect2i(43, 56, 14, 6)
@@ -53,18 +51,10 @@ func progress_chew() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if menu_mode:
-		chewing.visible = true
-		time += delta
-		head.position.x = sin(time) * (1 + speed / 10) + offset
-		for neck : Sprite2D in neck_pieces:
-			neck.position.x = sin(time + neck.position.y / 16.) * (1 + speed / 10)
-		
-		return
-	time += 0.0075 * delta * speed * speed_coeff
-	head.position.x = sin(time) * (1 + speed / 10) + offset
+	time += delta * speed * speed_coeff
+	head.position.x = sin(time) * 1.4 + offset
 	for neck : Sprite2D in neck_pieces:
-		neck.position.x = sin(time + neck.position.y / 16.) * (1 + speed / 10)
+		neck.position.x = sin(time + neck.position.y / 16.) * 1.4
 		
 	if time >= PI * 32: time -= PI * 32
 	
