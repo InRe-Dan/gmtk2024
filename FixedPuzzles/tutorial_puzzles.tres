@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PuzzleList" load_steps=28 format=3 uid="uid://dg1y345lqtryf"]
+[gd_resource type="Resource" script_class="PuzzleList" load_steps=33 format=3 uid="uid://dg1y345lqtryf"]
 
 [ext_resource type="Script" path="res://FixedPuzzles/puzzle.gd" id="1_m4aa0"]
 [ext_resource type="Script" path="res://FixedPuzzles/puzzle_list.gd" id="2_heqo0"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://PuzzleGenerator/Rules/is_in_position.gd" id="4_3yyor"]
 [ext_resource type="Script" path="res://PuzzleGenerator/Rules/empty_cell.gd" id="5_7j4tf"]
 [ext_resource type="Script" path="res://PuzzleGenerator/Rules/value.gd" id="8_kmc1d"]
+[ext_resource type="Script" path="res://PuzzleGenerator/Rules/count.gd" id="9_qylkm"]
 
 [sub_resource type="Resource" id="Resource_smuyn"]
 script = ExtResource("3_kjlpd")
@@ -94,6 +95,28 @@ tray_height = 4
 rules = Array[ExtResource("2_jfvm1")]([SubResource("Resource_d65am"), SubResource("Resource_jogo8"), SubResource("Resource_6q67b"), SubResource("Resource_18byt"), SubResource("Resource_ki8fp"), SubResource("Resource_cpwhb"), SubResource("Resource_q6fuh"), SubResource("Resource_bhuox")])
 time = 3600
 
+[sub_resource type="Resource" id="Resource_0g3y0"]
+script = ExtResource("8_kmc1d")
+min = 100
+max = -1
+amount = 0
+
+[sub_resource type="Resource" id="Resource_ga0od"]
+script = ExtResource("9_qylkm")
+max = 5
+
+[sub_resource type="Resource" id="Resource_fiksd"]
+script = ExtResource("4_3yyor")
+item_name = "Crab"
+position = Vector2i(0, 0)
+
+[sub_resource type="Resource" id="Resource_bcia2"]
+script = ExtResource("1_m4aa0")
+tray_width = 6
+tray_height = 6
+rules = Array[ExtResource("2_jfvm1")]([SubResource("Resource_0g3y0"), SubResource("Resource_ga0od"), SubResource("Resource_fiksd")])
+time = 60
+
 [resource]
 script = ExtResource("2_heqo0")
-list = Array[ExtResource("1_m4aa0")]([SubResource("Resource_qcxip"), SubResource("Resource_6bi8l")])
+list = Array[ExtResource("1_m4aa0")]([SubResource("Resource_qcxip"), SubResource("Resource_6bi8l"), SubResource("Resource_bcia2")])

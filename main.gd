@@ -27,6 +27,7 @@ func _ready() -> void:
 	tint_bar()
 	
 	generate_puzzle(tutorial_list.list[0])
+	tutorial += 1
 
 
 ## Called every frame
@@ -66,9 +67,9 @@ func generate_puzzle(puzzle: Puzzle = null) -> void:
 
 ## Grid cleared
 func _on_grid_cleared() -> void:
-	if tutorial < 1:
+	if tutorial < tutorial_list.list.size():
+		generate_puzzle(tutorial_list.list[tutorial])
 		tutorial += 1
-		generate_puzzle(tutorial_list.list[1])
 		return
 	
 	generate_puzzle()
