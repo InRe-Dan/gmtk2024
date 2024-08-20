@@ -107,7 +107,7 @@ max = 5
 
 [sub_resource type="Resource" id="Resource_fiksd"]
 script = ExtResource("4_3yyor")
-item_name = "Crab"
+item_name = "[color=6f1e51ff]Crab[/color]"
 position = Vector2i(0, 0)
 
 [sub_resource type="Resource" id="Resource_bcia2"]
