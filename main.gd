@@ -128,8 +128,8 @@ func _on_solution_submitted(grid_items: Array[GridItem], gridsize: Vector2i) -> 
 	var budget: int = 0
 	for item: Item in items:
 		budget += item.value
-	
-	points += ((current_puzzle.rules.size() - fail_list.size()) + floor(max(0, current_puzzle.expected_cost - budget) / 4.0)) * multiplier
+
+	points += (floor((current_puzzle.rules.size() - fail_list.size()) * 1.5) + floor(max(0, current_puzzle.expected_cost - budget) / 4.0)) * multiplier
 	info_box._on_points_changed(points)
 	if anger >= anger_bar.max_value or Input.is_action_pressed("restart"):
 		$LossScreen.start(self)
