@@ -105,20 +105,20 @@ func _on_solution_submitted(grid_items: Array[GridItem], gridsize: Vector2i) -> 
 		multiplier = 2
 		$Great.play()
 	elif fail_list.size() == 1:
-		anger += 0
+		anger += -1
 		multiplier = 1
 		$Good.play()
 	elif fail_list.size() == 2:
-		anger += 0
-		multiplier = 1
-		$Good.play()
+		anger += 2
+		multiplier = 0.8
+		$Bad.play()
 	elif fail_list.size() > 4:
-		anger += 5
-		multiplier = 0
+		anger += 6
+		multiplier = 0.2
 		$Bad.play()
 	elif fail_list.size() > 2:
-		anger += 3
-		multiplier = 0
+		anger += 4
+		multiplier = 0.4
 		$Bad.play()
 	anger = max(0, anger)
 	anger_bar.value = anger_bar.max_value - anger
@@ -129,7 +129,7 @@ func _on_solution_submitted(grid_items: Array[GridItem], gridsize: Vector2i) -> 
 	for item: Item in items:
 		budget += item.value
 
-	points += (floor((current_puzzle.rules.size() - fail_list.size()) * 1.5) + floor(max(0, current_puzzle.expected_cost - budget) / 4.0)) * multiplier
+	points += floor((floor((current_puzzle.rules.size() - fail_list.size()) * 1.5) + floor(min(max(0, current_puzzle.expected_cost - budget),40) / 4.0)) * multiplier)
 	info_box._on_points_changed(points)
 	if anger >= anger_bar.max_value or Input.is_action_pressed("restart"):
 		$LossScreen.start(self)

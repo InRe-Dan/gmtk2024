@@ -11,6 +11,6 @@ region = Rect2(0, 0, 16, 24)
 script = ExtResource("1_ghm8l")
 item_name = "Sausages"
 sprite = SubResource("AtlasTexture_lhkg6")
-value = 20
+value = 23
 text_colour = Color(0.976471, 0.498039, 0.317647, 1)
 types = Array[int]([1])

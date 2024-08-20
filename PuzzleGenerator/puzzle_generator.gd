@@ -101,7 +101,7 @@ static func generate_puzzle_v2(size : Vector2i) -> Puzzle:
 	for rule in rules:
 		if rule is BlankRule or rule is EmptyCellRule: continue
 		real_rule_count += 1
-	puzzle.time = 8 * real_rule_count
+	puzzle.time = (6 * real_rule_count) + 4
 	
 	# Add up expected cost
 	for item: Item in items_placed:

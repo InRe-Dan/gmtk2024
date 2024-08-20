@@ -11,6 +11,6 @@ region = Rect2(16, 48, 16, 16)
 script = ExtResource("1_cv2kt")
 item_name = "Croissant"
 sprite = SubResource("AtlasTexture_lhkg6")
-value = 20
+value = 21
 text_colour = Color(1, 0.764706, 0.0705882, 1)
 types = Array[int]([8])
