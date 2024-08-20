@@ -1,19 +1,22 @@
 extends Control
 
-@export var background : Control
 @onready var score_label: RichTextLabel = $VBoxContainer/Score
+@onready var jaw: AnimatedSprite2D = $Jaw
+@onready var jaw_delay: Timer = $JawDelay
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	visible = false
-	background.visible = false
 
 func start(game : MainScene) -> void:
+	jaw.stop()
 	score_label.text = "[center]Score: [color=gold]" + str(game.points) + "[/color][/center]"
 	visible = true
-	background.visible = true
 	get_tree().paused = true
+	jaw_delay.start()
 
 func _on_button_pressed() -> void:
 	get_tree().paused = false
+	visible = false
 	get_tree().change_scene_to_file("res://main.tscn")
+
+
+func _on_jaw_delay_timeout() -> void:
+	jaw.play()

@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmlx3wx0kgjxb"]
+[gd_scene load_steps=18 format=3 uid="uid://dmlx3wx0kgjxb"]
 
 [ext_resource type="FontFile" uid="uid://d0g7r7ojp0qqk" path="res://Assets/Font/undead11.ttf" id="1_eht60"]
 [ext_resource type="Script" path="res://loss.gd" id="1_kw31c"]
+[ext_resource type="Texture2D" uid="uid://cyg2hh6d44tmj" path="res://Assets/jawclosing_anim_sheet.png" id="3_15e3c"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_65s1y"]
 blend_mode = 1
@@ -32,6 +33,56 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 0.158974, 0.158974, 0.158974, 1, 0, 0, 
 [sub_resource type="Gradient" id="Gradient_t34lg"]
 colors = PackedColorArray(1, 0.301961, 0, 1, 1, 1, 0, 1)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3qnd"]
+atlas = ExtResource("3_15e3c")
+region = Rect2(0, 0, 144, 176)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mq3n"]
+atlas = ExtResource("3_15e3c")
+region = Rect2(144, 0, 144, 176)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v33bu"]
+atlas = ExtResource("3_15e3c")
+region = Rect2(288, 0, 144, 176)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ur4ct"]
+atlas = ExtResource("3_15e3c")
+region = Rect2(432, 0, 144, 176)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwn6s"]
+atlas = ExtResource("3_15e3c")
+region = Rect2(576, 0, 144, 176)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1w8co"]
+atlas = ExtResource("3_15e3c")
+region = Rect2(720, 0, 144, 176)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2ys4c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3qnd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mq3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v33bu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ur4ct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwn6s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1w8co")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
 [node name="Control" type="Control"]
 process_mode = 3
 z_index = 200
@@ -42,6 +93,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kw31c")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Underglow" type="TextureRect" parent="."]
 material = SubResource("CanvasItemMaterial_65s1y")
@@ -74,12 +134,17 @@ color_initial_ramp = SubResource("Gradient_t34lg")
 hue_variation_max = 0.31
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+z_index = 20
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 74)
+layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -105,4 +170,15 @@ theme_override_fonts/font = ExtResource("1_eht60")
 theme_override_font_sizes/font_size = 22
 text = "Try Again"
 
+[node name="Jaw" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(180, 136)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_2ys4c")
+
+[node name="JawDelay" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="JawDelay" to="." method="_on_jaw_delay_timeout"]

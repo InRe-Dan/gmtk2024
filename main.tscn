@@ -85,7 +85,7 @@ theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
 [node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/View/MarginContainer"]
-self_modulate = Color(0.73181, 0.73181, 0.73181, 1)
+self_modulate = Color(0.733333, 0.733333, 0.733333, 0.8)
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3
@@ -375,20 +375,10 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="LossScreen" parent="." node_paths=PackedStringArray("background") instance=ExtResource("27_6c2mn")]
+[node name="LossScreen" parent="." instance=ExtResource("27_6c2mn")]
 visible = false
 z_index = 10
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 21.0
-offset_top = 110.0
-offset_right = 341.0
-offset_bottom = 178.0
-grow_horizontal = 1
-grow_vertical = 1
-background = NodePath("../Texture")
+layout_mode = 1
 
 [connection signal="pressed" from="VBoxContainer/Workspace/HBoxContainer/InfoBox/Bottom/Control/Submit" to="VBoxContainer/Workspace/HBoxContainer/InfoBox/Zoner/Grid" method="_on_submit"]
 [connection signal="timeout" from="PuzzleTimer" to="." method="_on_puzzle_timer_timeout"]
