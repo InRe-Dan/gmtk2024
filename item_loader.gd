@@ -28,5 +28,4 @@ func _ready() -> void:
 	var debug_str : String = "Items loaded: \n"
 	for item in items:
 		debug_str += "    " + item.item_name + "\n"
-	print(debug_str)
 		
