@@ -1,27 +1,94 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmlx3wx0kgjxb"]
+[gd_scene load_steps=10 format=3 uid="uid://dmlx3wx0kgjxb"]
 
 [ext_resource type="FontFile" uid="uid://d0g7r7ojp0qqk" path="res://Assets/Font/undead11.ttf" id="1_eht60"]
 [ext_resource type="Script" path="res://loss.gd" id="1_kw31c"]
 
-[node name="Control" type="VBoxContainer"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_65s1y"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_r8me8"]
+offsets = PackedFloat32Array(0, 0.847584)
+colors = PackedColorArray(1, 0.4, 0, 0.298039, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1hu0q"]
+gradient = SubResource("Gradient_r8me8")
+fill = 1
+fill_from = Vector2(0.307087, 0.990814)
+
+[sub_resource type="Gradient" id="Gradient_udl7u"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8agea"]
+gradient = SubResource("Gradient_udl7u")
+width = 6
+height = 6
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_fy8bt"]
+offsets = PackedFloat32Array(0, 0.625641, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.158974, 0.158974, 0.158974, 1, 0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_t34lg"]
+colors = PackedColorArray(1, 0.301961, 0, 1, 1, 1, 0, 1)
+
+[node name="Control" type="Control"]
 process_mode = 3
 z_index = 200
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 10
 script = ExtResource("1_kw31c")
 
-[node name="Label" type="Label" parent="."]
+[node name="Underglow" type="TextureRect" parent="."]
+material = SubResource("CanvasItemMaterial_65s1y")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_1hu0q")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -1
+position = Vector2(181, 270)
+amount = 300
+lifetime = 3.0
+preprocess = 2.0
+texture = SubResource("GradientTexture2D_8agea")
+emission_shape = 3
+emission_rect_extents = Vector2(300, 0)
+direction = Vector2(2, -1)
+gravity = Vector2(0, -50)
+initial_velocity_max = 167.46
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 0.25
+scale_amount_max = 1.5
+color_ramp = SubResource("Gradient_fy8bt")
+color_initial_ramp = SubResource("Gradient_t34lg")
+hue_variation_max = 0.31
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_eht60")
 theme_override_font_sizes/font_size = 33
 text = "The dragon is insatiable!"
 horizontal_alignment = 1
 
-[node name="Score" type="RichTextLabel" parent="."]
+[node name="Score" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("1_eht60")
 theme_override_font_sizes/normal_font_size = 22
@@ -29,7 +96,7 @@ bbcode_enabled = true
 text = "[center]Score: [color=gold]0[/color][/center]"
 fit_content = true
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -38,4 +105,4 @@ theme_override_fonts/font = ExtResource("1_eht60")
 theme_override_font_sizes/font_size = 22
 text = "Try Again"
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

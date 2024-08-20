@@ -9,6 +9,9 @@ extends Control
 @onready var info_box: InfoBox = $VBoxContainer/Workspace/HBoxContainer/InfoBox
 @onready var anger_bar: TextureProgressBar = $VBoxContainer/Workspace/Anger/TextureProgressBar
 
+@onready var music: AudioStreamPlayer = $Music
+@onready var tension_music: AudioStreamPlayer = $MusicTension
+
 @onready var tutorial_list: PuzzleList = preload("res://FixedPuzzles/tutorial_puzzles.tres")
 
 var current_puzzle: Puzzle = null
@@ -138,6 +141,8 @@ func _on_solution_submitted(grid_items: Array[GridItem], gridsize: Vector2i) -> 
 
 func tint_bar() -> float:
 	var anger_percentage: float = anger_bar.value / anger_bar.max_value
+	music.volume_db = 0.0
+	tension_music.volume_db = -80.0
 	if anger_percentage > 0.75:
 		anger_bar.tint_progress = Color.from_string("#1f8744", Color.GREEN)
 	elif anger_percentage > 0.50:
@@ -145,6 +150,8 @@ func tint_bar() -> float:
 	elif anger_percentage > 0.25:
 		anger_bar.tint_progress = Color.from_string("#916023", Color.YELLOW)
 	else:
+		music.volume_db = -80.0
+		tension_music.volume_db = 0.0
 		anger_bar.tint_progress = Color.from_string("#962e24", Color.RED)
 	
 	return anger_percentage

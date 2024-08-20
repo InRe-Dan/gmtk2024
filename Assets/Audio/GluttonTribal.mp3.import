@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/GluttonTribal.mp3-9ba38116d5e6b17d6083824fac6
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

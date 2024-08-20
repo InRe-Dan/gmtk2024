@@ -1,7 +1,7 @@
-extends VBoxContainer
+extends Control
 
 @export var background : Control
-@onready var score_label: RichTextLabel = $Score
+@onready var score_label: RichTextLabel = $VBoxContainer/Score
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
