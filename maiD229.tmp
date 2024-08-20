@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bsne7661tkcrm"]
+[gd_scene load_steps=29 format=3 uid="uid://bsne7661tkcrm"]
 
 [ext_resource type="Texture2D" uid="uid://ctai1fmqwymwc" path="res://Assets/Speech/bubble.png" id="1_dnwtq"]
 [ext_resource type="Script" path="res://Item/item_list.gd" id="1_eu7ty"]
@@ -27,7 +27,6 @@
 [ext_resource type="Texture2D" uid="uid://1xqmsuewirml" path="res://Assets/AngerBar/above.png" id="19_uiud6"]
 [ext_resource type="Texture2D" uid="uid://ddwmuxxpniou8" path="res://Assets/AngerBar/progress.png" id="20_iwric"]
 [ext_resource type="PackedScene" uid="uid://dmlx3wx0kgjxb" path="res://loss.tscn" id="27_6c2mn"]
-[ext_resource type="Texture2D" uid="uid://cdbdt3dby23g7" path="res://Assets/tray.png" id="27_vaigg"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gqly2"]
 load_path = "res://.godot/imported/stonebrick.jpg-9d98909f44f2a758921f2d4b684a2381.ctex"
@@ -336,33 +335,18 @@ stream = ExtResource("15_cahbc")
 [node name="Drop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_no8t7")
 
-[node name="Texture" type="NinePatchRect" parent="."]
-modulate = Color(0.392157, 0.32549, 0.329412, 1)
-z_index = 9
-layout_mode = 0
-offset_left = 13.0
-offset_top = 15.0
-offset_right = 347.0
-offset_bottom = 257.0
-texture = ExtResource("27_vaigg")
-patch_margin_left = 8
-patch_margin_top = 8
-patch_margin_right = 8
-patch_margin_bottom = 8
-
-[node name="LossScreen" parent="." node_paths=PackedStringArray("background") instance=ExtResource("27_6c2mn")]
+[node name="LossScreen" parent="." instance=ExtResource("27_6c2mn")]
 z_index = 10
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 21.0
-offset_top = 110.0
-offset_right = 341.0
-offset_bottom = 178.0
+offset_left = 107.0
+offset_top = 111.0
+offset_right = 267.0
+offset_bottom = 157.0
 grow_horizontal = 1
 grow_vertical = 1
-background = NodePath("../Texture")
 
 [connection signal="pressed" from="VBoxContainer/Workspace/HBoxContainer/InfoBox/Bottom/Control/Submit" to="VBoxContainer/Workspace/HBoxContainer/InfoBox/Zoner/Grid" method="_on_submit"]
 [connection signal="timeout" from="PuzzleTimer" to="." method="_on_puzzle_timer_timeout"]

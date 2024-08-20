@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmlx3wx0kgjxb"]
+
+[ext_resource type="FontFile" uid="uid://d0g7r7ojp0qqk" path="res://Assets/Font/undead11.ttf" id="1_eht60"]
+[ext_resource type="Script" path="res://loss.gd" id="1_kw31c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_84l5h"]
+font = ExtResource("1_eht60")
+font_size = 24
+
+[node name="Control" type="VBoxContainer"]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+script = ExtResource("1_kw31c")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "The dragon is insatiable!"
+label_settings = SubResource("LabelSettings_84l5h")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Try Again"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -123,6 +123,9 @@ func _on_solution_submitted(grid_items: Array[GridItem], gridsize: Vector2i) -> 
 	
 	points += (current_puzzle.rules.size() - fail_list.size()) * multiplier
 	info_box._on_points_changed(points)
+	if anger >= anger_bar.max_value or Input.is_key_pressed(KEY_SPACE):
+		$LossScreen.start(self)
+		
 
 
 func tint_bar() -> float:
