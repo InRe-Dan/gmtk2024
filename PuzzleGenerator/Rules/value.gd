@@ -2,6 +2,7 @@ class_name ValueRule extends Rule
 
 @export var min : int = 0
 @export var max : int = -1
+@export var amount: int = 0
 
 func _init() -> void:
 	priority = 4
@@ -14,17 +15,22 @@ func is_valid(gridsize : Vector2i, placed : Array[Item]) -> bool:
 		return false
 	if max > 0 and value > max:
 		return false
+	if min < 0 and max < 0 and value != amount:
+		return false
 	return true
 
 func get_dragon_request() -> String:
-	if min == max:
-		return "Cost [color=ffe600]$%s[/color]" % [min]
+	if min == max and max > 0:
+		return "Cost exactly [color=ffe600]$%s[/color]" % [min]
 	elif min > 0 and max > 0:
-		return "Cost between [color=ffe600]$%s[/color] and [color=ffe600]$%s[/color]!" % [min, max]
+		return "Cost between [color=ffe600]$%s[/color] and [color=ffe600]$%s[/color]" % [min, max]
 	elif min > 0:
 		return "Cost more than [color=ffe600]$%s[/color]" % [min]
 	else:
-		return "Cost less than [color=ffe600]$%s[/color]" % [max]
+		if max > 0:
+			return "Cheaper than [color=ffe600]$%s[/color]" % [max]
+		else:
+			return "Cost exactly [color=ffe600]$%s[/color]" % [amount]
 
 func get_debug_request() -> String:
 	if min == max:
@@ -48,10 +54,14 @@ static func generate_valid_rule(gridsize : Vector2i, items : Array[Item]) -> Rul
 	var value : int = 0
 	for item : Item in items:
 		value += item.value
-	if value > 80:
-		rule.min = value - 15
-		return rule
-	elif value < 50:
-		rule.max = value + 15
-		return rule
-	return null
+	var mode: int = randi_range(0, 1)
+	match mode:
+		0: rule.min = -1
+		_: rule.min = max(0, value - randi_range(0,10))
+	mode = randi_range(0, 1)
+	match mode:
+		0: rule.max = -1
+		_: rule.max = value + randi_range(0,10)
+	rule.amount = value
+	
+	return rule

@@ -8,10 +8,14 @@ extends Control
 @onready var info_box: InfoBox = $VBoxContainer/Workspace/HBoxContainer/InfoBox
 @onready var anger_bar: TextureProgressBar = $VBoxContainer/Workspace/Anger/TextureProgressBar
 
+@onready var tutorial_list: PuzzleList = preload("res://FixedPuzzles/tutorial_puzzles.tres")
+
 var current_puzzle: Puzzle = null
 
 var anger: int = 0
 var points: int = 0
+
+var tutorial: int = 0
 
 
 ## Node entered the scene tree for the first time
@@ -22,7 +26,7 @@ func _ready() -> void:
 	anger_bar.value = anger_bar.max_value
 	tint_bar()
 	
-	generate_puzzle()
+	generate_puzzle(tutorial_list.list[0])
 
 
 ## Called every frame
@@ -40,11 +44,17 @@ func _process(delta: float) -> void:
 
 
 ## Generate new puzzle and blank grid
-func generate_puzzle() -> void:
+func generate_puzzle(puzzle: Puzzle = null) -> void:	
 	dragon.chewing.visible = false
 	
-	var grid_size: Vector2i = Vector2i(randi_range(Globals.min_grid_size.x, Globals.max_grid_size.x), randi_range(Globals.min_grid_size.y, Globals.max_grid_size.y))
-	current_puzzle = PuzzleGenerator.generate_puzzle_v2(grid_size)
+	var grid_size: Vector2i
+	if puzzle:
+		grid_size = Vector2i(puzzle.tray_width, puzzle.tray_height)
+		current_puzzle = puzzle
+	else:
+		grid_size = Vector2i(randi_range(Globals.min_grid_size.x, Globals.max_grid_size.x), randi_range(Globals.min_grid_size.y, Globals.max_grid_size.y))
+		current_puzzle = PuzzleGenerator.generate_puzzle_v2(grid_size)
+		
 	grid.initialize(grid_size.x, grid_size.y, current_puzzle.rules)
 	
 	rule_list.new_rules(current_puzzle.rules)
@@ -56,6 +66,11 @@ func generate_puzzle() -> void:
 
 ## Grid cleared
 func _on_grid_cleared() -> void:
+	if tutorial < 1:
+		tutorial += 1
+		generate_puzzle(tutorial_list.list[1])
+		return
+	
 	generate_puzzle()
 
 

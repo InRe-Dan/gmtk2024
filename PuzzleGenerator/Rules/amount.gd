@@ -15,6 +15,7 @@ static func format(item: Item) -> String:
 func is_valid(gridsize : Vector2i, placed : Array[Item]) -> bool:
 	var count : int = 0
 	for item : Item in placed:
+		print(format(item))
 		if format(item) == item_name:
 			count += 1
 	if max >= 0 and count > max:

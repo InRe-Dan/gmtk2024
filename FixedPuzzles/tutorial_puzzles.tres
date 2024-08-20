@@ -1,28 +1,99 @@
-[gd_resource type="Resource" script_class="PuzzleList" load_steps=9 format=3 uid="uid://dg1y345lqtryf"]
+[gd_resource type="Resource" script_class="PuzzleList" load_steps=28 format=3 uid="uid://dg1y345lqtryf"]
 
 [ext_resource type="Script" path="res://FixedPuzzles/puzzle.gd" id="1_m4aa0"]
 [ext_resource type="Script" path="res://FixedPuzzles/puzzle_list.gd" id="2_heqo0"]
 [ext_resource type="Script" path="res://PuzzleGenerator/Rules/base_rule.gd" id="2_jfvm1"]
 [ext_resource type="Script" path="res://PuzzleGenerator/Rules/amount.gd" id="3_1510o"]
+[ext_resource type="Script" path="res://PuzzleGenerator/Rules/list.gd" id="3_fpavw"]
+[ext_resource type="Script" path="res://PuzzleGenerator/Rules/message.gd" id="3_kjlpd"]
 [ext_resource type="Script" path="res://PuzzleGenerator/Rules/is_in_position.gd" id="4_3yyor"]
+[ext_resource type="Script" path="res://PuzzleGenerator/Rules/empty_cell.gd" id="5_7j4tf"]
+[ext_resource type="Script" path="res://PuzzleGenerator/Rules/value.gd" id="8_kmc1d"]
 
-[sub_resource type="Resource" id="Resource_0c6pa"]
+[sub_resource type="Resource" id="Resource_smuyn"]
+script = ExtResource("3_kjlpd")
+message = "Welcome player! You must feed the dragon!"
+
+[sub_resource type="Resource" id="Resource_0k4mc"]
+script = ExtResource("3_kjlpd")
+message = "The dragon will present [color=red][wave]rules[/wave][/color] you must follow."
+
+[sub_resource type="Resource" id="Resource_bm3sx"]
+script = ExtResource("3_kjlpd")
+message = "Fear not! I will give you some guidance."
+
+[sub_resource type="Resource" id="Resource_ohpv7"]
+script = ExtResource("3_kjlpd")
+message = "Place the [color=f79f1fff]Carrot[/color] in the bottom right."
+
+[sub_resource type="Resource" id="Resource_nqqfv"]
+script = ExtResource("3_kjlpd")
+message = "Place a [color=e55039ff]Steak[/color] anywhere on the board."
+
+[sub_resource type="Resource" id="Resource_006yh"]
+script = ExtResource("4_3yyor")
+item_name = "[color=f79f1fff]Carrot[/color]"
+position = Vector2i(3, 3)
+
+[sub_resource type="Resource" id="Resource_2q4fq"]
 script = ExtResource("3_1510o")
 min = 1
-max = -1
-item_name = "Drumstick"
+max = 1
+item_name = "[color=e55039ff]Steak[/color]"
 
-[sub_resource type="Resource" id="Resource_yp7yg"]
-script = ExtResource("4_3yyor")
-item_name = "Drumstick"
-position = Vector2i(1, 1)
+[sub_resource type="Resource" id="Resource_s2h4r"]
+script = ExtResource("5_7j4tf")
+positions = Array[Vector2i]([Vector2i(0, 0)])
 
 [sub_resource type="Resource" id="Resource_qcxip"]
 script = ExtResource("1_m4aa0")
-tray_width = 3
-tray_height = 3
-rules = Array[ExtResource("2_jfvm1")]([SubResource("Resource_0c6pa"), SubResource("Resource_yp7yg")])
+tray_width = 4
+tray_height = 4
+rules = Array[ExtResource("2_jfvm1")]([SubResource("Resource_smuyn"), SubResource("Resource_0k4mc"), SubResource("Resource_bm3sx"), SubResource("Resource_ohpv7"), SubResource("Resource_nqqfv"), SubResource("Resource_006yh"), SubResource("Resource_2q4fq"), SubResource("Resource_s2h4r")])
+time = 3600
+
+[sub_resource type="Resource" id="Resource_d65am"]
+script = ExtResource("3_kjlpd")
+message = "Levels have a timer seen just above the grid."
+
+[sub_resource type="Resource" id="Resource_jogo8"]
+script = ExtResource("3_kjlpd")
+message = "Board submits automatically when time runs out."
+
+[sub_resource type="Resource" id="Resource_6q67b"]
+script = ExtResource("3_kjlpd")
+message = "Dragon gets angry when failing too many rules!"
+
+[sub_resource type="Resource" id="Resource_18byt"]
+script = ExtResource("3_kjlpd")
+message = "Score as many points as possible."
+
+[sub_resource type="Resource" id="Resource_ki8fp"]
+script = ExtResource("3_kjlpd")
+message = "Make sure to place [color=black]2[/color] [color=#8e44ad]Fruit[/color] before submitting!"
+
+[sub_resource type="Resource" id="Resource_cpwhb"]
+script = ExtResource("3_kjlpd")
+message = "Good luck!"
+
+[sub_resource type="Resource" id="Resource_q6fuh"]
+script = ExtResource("3_fpavw")
+types = Array[int]([2])
+amounts = Array[int]([2])
+
+[sub_resource type="Resource" id="Resource_bhuox"]
+script = ExtResource("8_kmc1d")
+min = 5
+max = -1
+amount = 0
+
+[sub_resource type="Resource" id="Resource_6bi8l"]
+script = ExtResource("1_m4aa0")
+tray_width = 4
+tray_height = 4
+rules = Array[ExtResource("2_jfvm1")]([SubResource("Resource_d65am"), SubResource("Resource_jogo8"), SubResource("Resource_6q67b"), SubResource("Resource_18byt"), SubResource("Resource_ki8fp"), SubResource("Resource_cpwhb"), SubResource("Resource_q6fuh"), SubResource("Resource_bhuox")])
+time = 3600
 
 [resource]
 script = ExtResource("2_heqo0")
-list = Array[ExtResource("1_m4aa0")]([SubResource("Resource_qcxip")])
+list = Array[ExtResource("1_m4aa0")]([SubResource("Resource_qcxip"), SubResource("Resource_6bi8l")])
