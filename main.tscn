@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bsne7661tkcrm"]
+[gd_scene load_steps=28 format=3 uid="uid://bsne7661tkcrm"]
 
 [ext_resource type="Texture2D" uid="uid://ctai1fmqwymwc" path="res://Assets/Speech/bubble.png" id="1_dnwtq"]
 [ext_resource type="Script" path="res://Item/item_list.gd" id="1_eu7ty"]
@@ -21,15 +21,14 @@
 [ext_resource type="AudioStream" uid="uid://ddihcq00jhnej" path="res://Assets/Audio/failure1(1).mp3" id="15_ho4lw"]
 [ext_resource type="AudioStream" uid="uid://sn7dq2ncukgt" path="res://Assets/Audio/drop1(1).mp3" id="15_no8t7"]
 [ext_resource type="AudioStream" uid="uid://ckt3q0vebj0et" path="res://Assets/Audio/sucesss2(1).mp3" id="15_nou8i"]
+[ext_resource type="Texture2D" uid="uid://cjy7kbmeh625n" path="res://Assets/ServeButton/normal.png" id="16_5x2ie"]
+[ext_resource type="Texture2D" uid="uid://tbtxry276fy3" path="res://Assets/ServeButton/pressed.png" id="17_wgn2q"]
+[ext_resource type="Texture2D" uid="uid://df642pqlrc77q" path="res://Assets/AngerBar/below.png" id="18_fmh6s"]
+[ext_resource type="Texture2D" uid="uid://1xqmsuewirml" path="res://Assets/AngerBar/above.png" id="19_uiud6"]
+[ext_resource type="Texture2D" uid="uid://ddwmuxxpniou8" path="res://Assets/AngerBar/progress.png" id="20_iwric"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gqly2"]
 load_path = "res://.godot/imported/stonebrick.jpg-9d98909f44f2a758921f2d4b684a2381.ctex"
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uii85"]
-bg_color = Color(0.24, 0.24, 0.24, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h4x35"]
-bg_color = Color(0.12, 0.12, 0.12, 1)
 
 [node name="Main" type="Control"]
 texture_filter = 1
@@ -225,6 +224,7 @@ custom_minimum_size = Vector2(160, 100)
 layout_mode = 2
 
 [node name="Grid" parent="VBoxContainer/Workspace/HBoxContainer/InfoBox/Zoner" node_paths=PackedStringArray("pickup_sound", "drop_sound") instance=ExtResource("1_mxj2h")]
+z_index = 3
 layout_mode = 0
 scale = Vector2(2, 2)
 pickup_sound = NodePath("../../../../../../Pickup")
@@ -246,16 +246,28 @@ text = "[center]Items: [color=gray]0[/color][/center]"
 fit_content = true
 autowrap_mode = 0
 
-[node name="Submit" type="Button" parent="VBoxContainer/Workspace/HBoxContainer/InfoBox/Bottom"]
-z_index = 6
+[node name="Control" type="Control" parent="VBoxContainer/Workspace/HBoxContainer/InfoBox/Bottom"]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
+
+[node name="Submit" type="TextureButton" parent="VBoxContainer/Workspace/HBoxContainer/InfoBox/Bottom/Control"]
+modulate = Color(0.9, 0.9, 0.9, 1)
+z_index = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -7.5
+offset_right = 23.0
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
 focus_mode = 0
-theme_override_fonts/font = ExtResource("2_jskw5")
-theme_override_font_sizes/font_size = 11
-theme_override_styles/hover = SubResource("StyleBoxFlat_uii85")
-theme_override_styles/normal = SubResource("StyleBoxFlat_h4x35")
-text = "Submit"
+texture_normal = ExtResource("16_5x2ie")
+texture_pressed = ExtResource("17_wgn2q")
 
 [node name="TotalPrice" type="RichTextLabel" parent="VBoxContainer/Workspace/HBoxContainer/InfoBox/Bottom"]
 custom_minimum_size = Vector2(0, 11)
@@ -281,6 +293,25 @@ grow_vertical = 2
 size_flags_horizontal = 0
 color = Color(0, 0, 0, 1)
 
+[node name="Anger" type="Control" parent="VBoxContainer/Workspace"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 302.0
+offset_top = 24.0
+offset_right = 358.0
+offset_bottom = 112.0
+size_flags_horizontal = 3
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="VBoxContainer/Workspace/Anger"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+fill_mode = 3
+texture_under = ExtResource("18_fmh6s")
+texture_over = ExtResource("19_uiud6")
+texture_progress = ExtResource("20_iwric")
+tint_under = Color(0.53, 0.53, 0.53, 1)
+
 [node name="PuzzleTimer" type="Timer" parent="."]
 one_shot = true
 
@@ -303,5 +334,5 @@ stream = ExtResource("15_cahbc")
 [node name="Drop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_no8t7")
 
-[connection signal="pressed" from="VBoxContainer/Workspace/HBoxContainer/InfoBox/Bottom/Submit" to="VBoxContainer/Workspace/HBoxContainer/InfoBox/Zoner/Grid" method="_on_submit"]
+[connection signal="pressed" from="VBoxContainer/Workspace/HBoxContainer/InfoBox/Bottom/Control/Submit" to="VBoxContainer/Workspace/HBoxContainer/InfoBox/Zoner/Grid" method="_on_submit"]
 [connection signal="timeout" from="PuzzleTimer" to="." method="_on_puzzle_timer_timeout"]

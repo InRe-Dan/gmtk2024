@@ -32,7 +32,7 @@ func get_dragon_request() -> String:
 		return "[color=black]%s[/color] or more %s" % [min, item_name]
 	else:
 		if max == 1:
-			return "Exactly [color=black]1[/color] %s" % [item_name]
+			return "No more than [color=black]1[/color] %s" % [item_name]
 		else:
 			return "[color=black]%s[/color] or less %s" % [max, item_name]
 

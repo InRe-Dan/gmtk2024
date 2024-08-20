@@ -29,12 +29,12 @@ func _ready() -> void:
 
 
 ## Sets anger to passed amount
-func change_anger(anger: int) -> void:
+func change_anger(anger: int, percent: float) -> void:
 	speed = anger / 2
-	if anger > 24:
+	if percent < 0.25:
 		head.region_rect = Rect2i(2, 96, 35, 20)
 		eyes.region_rect = Rect2i(43, 56, 14, 6)
-	elif anger > 12:
+	elif percent < 0.50:
 		head.region_rect = Rect2i(2, 72, 35, 20)
 		eyes.region_rect = Rect2i(45, 48, 10, 5)
 	else:

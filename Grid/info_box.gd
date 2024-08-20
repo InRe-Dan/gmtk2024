@@ -4,7 +4,7 @@ extends VBoxContainer
 signal grid_submitted
 
 @onready var total_price_label: RichTextLabel = $Bottom/TotalPrice
-@onready var submit_button: Button = $Bottom/Submit
+@onready var submit_button: TextureButton = $Bottom/Control/Submit
 @onready var coordinate_label: Label = $Top/Coordinate
 @onready var item_count_label: RichTextLabel = $Bottom/ItemCount
 @onready var point_count_label: RichTextLabel = $Top/PointsLabel

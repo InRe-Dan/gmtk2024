@@ -6,6 +6,7 @@ extends Control
 @onready var timer_label: TextureProgressBar = $VBoxContainer/Workspace/HBoxContainer/InfoBox/Top/Control/TimerLabel
 @onready var dragon: Dragon = $VBoxContainer/Dragon
 @onready var info_box: InfoBox = $VBoxContainer/Workspace/HBoxContainer/InfoBox
+@onready var anger_bar: TextureProgressBar = $VBoxContainer/Workspace/Anger/TextureProgressBar
 
 var current_puzzle: Puzzle = null
 
@@ -17,6 +18,9 @@ var points: int = 0
 func _ready() -> void:
 	grid.solution_submitted.connect(_on_solution_submitted)
 	grid.grid_cleared.connect(_on_grid_cleared)
+	anger_bar.max_value = Globals.anger_limit
+	anger_bar.value = anger_bar.max_value
+	tint_bar()
 	
 	generate_puzzle()
 
@@ -98,10 +102,26 @@ func _on_solution_submitted(grid_items: Array[GridItem], gridsize: Vector2i) -> 
 		multiplier = 0
 		$Bad.play()
 	anger = max(0, anger)
-	dragon.change_anger(anger + 1)
+	anger_bar.value = anger_bar.max_value - anger
+	
+	dragon.change_anger(anger + 1, tint_bar())
 	
 	points += (current_puzzle.rules.size() - fail_list.size()) * multiplier
 	info_box._on_points_changed(points)
+
+
+func tint_bar() -> float:
+	var anger_percentage: float = anger_bar.value / anger_bar.max_value
+	if anger_percentage > 0.75:
+		anger_bar.tint_progress = Color.from_string("#1f8744", Color.GREEN)
+	elif anger_percentage > 0.50:
+		anger_bar.tint_progress = Color.from_string("#a1a322", Color.GREEN_YELLOW)
+	elif anger_percentage > 0.25:
+		anger_bar.tint_progress = Color.from_string("#916023", Color.YELLOW)
+	else:
+		anger_bar.tint_progress = Color.from_string("#962e24", Color.RED)
+	
+	return anger_percentage
 
 
 ## Out of time
