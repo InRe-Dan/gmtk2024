@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bsne7661tkcrm"]
+[gd_scene load_steps=32 format=3 uid="uid://bsne7661tkcrm"]
 
 [ext_resource type="Texture2D" uid="uid://ctai1fmqwymwc" path="res://Assets/Speech/bubble.png" id="1_dnwtq"]
 [ext_resource type="Script" path="res://Item/item_list.gd" id="1_eu7ty"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://df642pqlrc77q" path="res://Assets/AngerBar/below.png" id="18_fmh6s"]
 [ext_resource type="Texture2D" uid="uid://1xqmsuewirml" path="res://Assets/AngerBar/above.png" id="19_uiud6"]
 [ext_resource type="Texture2D" uid="uid://ddwmuxxpniou8" path="res://Assets/AngerBar/progress.png" id="20_iwric"]
+[ext_resource type="AudioStream" uid="uid://b82jreg6fe80v" path="res://Assets/Audio/GluttonTribal.mp3" id="22_evehw"]
 [ext_resource type="PackedScene" uid="uid://dmlx3wx0kgjxb" path="res://loss.tscn" id="27_6c2mn"]
 [ext_resource type="Texture2D" uid="uid://cdbdt3dby23g7" path="res://Assets/tray.png" id="27_vaigg"]
 
@@ -338,6 +339,10 @@ one_shot = true
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_5jd2w")
+autoplay = true
+
+[node name="MusicTension" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_evehw")
 autoplay = true
 
 [node name="Bad" type="AudioStreamPlayer" parent="."]
